@@ -11,4 +11,12 @@ def index(request):
     # this will be used in Jinja templating
 
 def search(request):
-    return render(request, 'basesite/search.html')
+    sample = {'cars': [
+    {'name': 'Toyota', 'type': 'Sedan', 'speed': 'Slow'},
+    {'name': 'Ferarri', 'type': 'Racecar', 'speed': 'Fast'}
+    ]
+    }
+    # note that each car in the cars list cannot be named. no dictionary of named dictionaries
+    # also, 'cars' must refer to a list/array, not a dict
+
+    return render(request, 'basesite/search.html', sample)
