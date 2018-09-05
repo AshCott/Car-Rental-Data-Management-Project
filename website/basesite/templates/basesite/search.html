@@ -1,0 +1,14 @@
+{% extends "basesite/base.html" %} <!-- Looks in every "templates" folder for "base.html" file in "basesite folder" -->
+
+{% block content %}
+
+          <h1> i need to put this here so the next line works </h1>
+          <h1> This is where the search content would go</h1>
+
+<!-- Example for loop for iterating over passed variable -->
+{% for car in cars %}
+  <li>Brand: {{car.name}}, Type: {{car.type}}, Speed: {{car.speed}}</li>
+{% endfor %}
+
+</ul>
+{% endblock %}
