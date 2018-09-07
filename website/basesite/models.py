@@ -14,7 +14,7 @@ class Store(models.Model):
                      ('NT', 'Northen Territory')]
     name = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
-    phone = models.CharField(max_length=25)
+    phone = models.CharField(max_length=12)
     city = models.CharField(max_length=50)
     state = models.CharField(choices=STATE_CHOICES, max_length=25)
 
@@ -23,7 +23,7 @@ class Customer(models.Model):
     SEX_CHOICES = [('M', 'Male'),
                    ('F', 'Female')]
     name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=25)
+    phone = models.CharField(max_length=12)
     address = models.CharField(max_length=100)
     birthday = models.DateField()
     occupation = models.CharField(max_length=100)
@@ -36,7 +36,7 @@ class Car(models.Model):
     series = models.CharField(max_length=50)
     year = models.IntegerField()
     purchase_price = models.IntegerField()
-    engine_size = models.IntegerField()  # 2.5L - Numb only the L is removed
+    engine_size = models.DecimalField(decimal_places=1,max_digits=3)  # 2.5L - Numb only the L is removed
     fuel_system = models.CharField(max_length=50)
     tank_capacity = models.IntegerField()  # 82L - Numb only the L is removed
     power = models.IntegerField()  # 140Kw - Numb only the Kw is removed
