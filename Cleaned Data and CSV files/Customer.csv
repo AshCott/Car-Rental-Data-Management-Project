@@ -1,0 +1,108 @@
+﻿Customer_ID,Customer_Name,Customer_Phone,Customer_Addresss,Customer_Brithday,Customer_Occupation,Customer_Gender
+11014,Sydney B,431535015,7011 Tank Drive,1972-05-08,Labour,M
+11012,Lauren W,717535016,785 Scott Street,1972-01-07,Labour,F
+11011,Curtis L,543535011,224 Shoenic,1967-11-14,Labour,M
+11016,Wyatt H,135535017,666 Northridge Ct.,1983-04-07,Labour,M
+11059,Ashlee A,543535011,255 Highland Road,1958-04-11,Labour,F
+11017,Shannon W,543535019,330 Saddlehill Lane,1948-06-26,Labour,M
+11055,Gilbert R,543535012,811 The Trees Dr.,1956-03-15,Labour,F
+11056,Michele N,543535017,464 Janin Pl.,1957-04-13,Labour,M
+11052,Heidi L,543535016,514 Via Cordona,1955-08-17,Labour,F
+11018,Clarence R,543535013,44 Rivewview,1948-10-19,Labour,F
+11015,Chloe Y,208535014,44 Willow Pass Road,1983-02-27,Labour,F
+11051,Daniel J,543535015,85 Sunnyvale Avenue,1955-08-14,Labour,F
+11019,Luke L,262535011,832 Landing Dr,1982-03-17,Labour,M
+11057,Carl A,543535018,930 Lake Nadine Place,1957-10-22,Labour,F
+11013,Ian J,817535018,902 Hudson Ave.,1972-08-16,Labour,M
+11053,Ana P,859535011,660 Stonyhill Circle,1984-08-20,Labour,M
+11050,Alan Z,543535013,741 Gainborough Dr.,1955-09-17,Labour,F
+11054,Deanna M,543535019,825 B Way,1956-03-20,Labour,M
+11010,Jacquelyn S,543535016,800 Corrinne Court,1968-02-16,Labour,M
+11058,Marc D,543535014,645 Sinaloa,1958-04-27,Labour,F
+11352,Raymond R,543535013,"4, impasse Ste-Madeleine",1944-03-17,Retiree,F
+11312,Sara R,296535017,375 Kipling Court,1957-04-13,Manager,M
+11318,Jessica W,702535018,652 Willcrest Circle,1956-10-26,Manager,M
+11350,Cara Z,543535011,280 Greendell Pl,1941-01-24,Retiree,M
+11317,Victoria R,663535019,268 Keller Ridge,1956-09-27,Manager,M
+11314,Mya F,522535014,439 Rio Grande Drive,1957-12-21,Manager,F
+11319,Jade B,819535016,119 Northridge Ct,1941-04-27,Retiree,F
+11351,Anne R,543535014,113 Eastgate Ave.,1943-04-16,Retiree,M
+11311,Gabrielle L,783535017,619 Parkside Dr.,1957-08-24,Manager,F
+11316,Luke A,786535013,19 Deermeadow Way,1957-11-27,Manager,F
+11313,Trevor J,120535012,697 Yosemite Dr.,1957-02-27,Manager,F
+11310,Erin S,233535016,541 Black Point Pl,1957-07-19,Manager,M
+11315,Hailey W,767535015,321 Maya,1957-10-11,Manager,F
+11410,Maurice G,543535017,"5, avenue de la Gare",1972-08-25,Manager,M
+11419,Kyle S,543535017,381 Alpine Rd.,1949-02-07,Manager,M
+11415,Randy S,543535014,o?str 5538,1948-06-15,Manager,M
+11418,Rafael H,543535015,eiter Weg 7765,1949-02-19,Manager,M
+11411,Devin R,543535017,ostenweg 2428,1958-02-22,Manager,M
+11416,Katrina B,543535015,"205, rue Malar",1949-03-29,Manager,F
+11412,Sydney B,543535015,ostfach 99 92 92,1958-04-19,Manager,M
+11413,Megan S,543535011,192 Seagull Court,1958-04-25,Manager,F
+11414,Ian R,543535011,26 W. Buchanan Rd.,1958-03-07,Manager,M
+11417,Lacey Z,543535017,", rue de Linois",1949-02-26,Manager,F
+11459,Tasha D,543535017,627 Kendall Rd,1976-10-23,Nurse,M
+11559,Frederick S,543535011,otth?user Weg 636,1971-12-26,Nurse,M
+11552,Eddie R,543535015,eiderplatz 662,1971-05-27,Nurse,M
+11554,Sydney S,543535019,"8, avenue de l? Union Centrale",1930-09-07,Retiree,F
+11557,Felicia R,543535019,557 Steven Circle,1971-01-25,Nurse,M
+11556,Lucas E,543535015,663 A St.,1971-05-24,Nurse,M
+11550,Deb T,543535012,553 Harness Circle,1972-08-18,Nurse,M
+11558,Ivan M,543535019,086 Nottingham Place,1971-08-22,Nurse,M
+11535,Alexandria H,543535018,"1, rue de la Cavalerie",1930-07-18,Retiree,M
+11551,Shannon A,543535015,"68, avenue de l?Europe",1971-05-25,Nurse,F
+11553,Sharon L,543535011,804 Coldwater Drive,1971-09-19,Nurse,F
+11513,Alyssa H,805535018,780 Conifer Terrace,1958-09-27,Nurse,M
+11514,Dalton D,994535015,033 Danesta Dr.,1958-04-20,Nurse,F
+11518,Edward W,446535017,747 Carmel Dr.,1959-05-20,Nurse,F
+11519,Jerome N,934535019,537 Ridgewood Drive,1959-03-27,Nurse,M
+11517,Katherine B,802535013,761 Dancing Court,1958-06-20,Nurse,F
+11515,Shannon H,458535011,679 Duke Way,1958-02-25,Nurse,F
+11512,Natalie C,178535014,481 Broadmoor Drive,1958-08-23,Nurse,M
+11511,Caleb P,786535013,324 Cherry Street,1957-06-24,Nurse,F
+11516,Mya G,211535011,826 Fine Drive,1958-10-21,Nurse,F
+11510,Seth R,199535014,989 Concord Ave,1957-07-23,Nurse,M
+11113,Micheal B,543535013,96 Marfargoa Drive,1966-02-21,Labour,M
+11114,Leslie M,543535011,941 Cristobal,1966-05-07,Labour,M
+11116,Clinton C,543535018,943 Cunha Ct.,1966-10-17,Labour,M
+11115,Alvin C,543535019,759 Azalea Avenue,1966-02-22,Labour,M
+11112,Crystal W,543535013,773 Kirkwood Dr,1966-09-19,Labour,F
+11111,Meredith G,543535017,610 Northridge Ct.,1966-02-23,Labour,M
+11119,Evan J,543535018,157 Sierra Ridge,1939-04-20,Retiree,F
+11117,April D,543535018,85 Ash Lane,1965-02-21,Labour,F
+11158,Jason W,694535017,771 Bundros Court,1979-10-18,Labour,F
+11159,Brianna H,319535018,793 Bonifacio St.,1979-09-27,Labour,F
+11157,Hannah L,974535017,832 Preston Ct.,1979-06-21,Labour,M
+11156,Maria R,158535019,452 Mariposa Ct.,1980-02-17,Labour,M
+11150,Russell S,543535019,755 Easley Drive,1945-03-25,Retiree,F
+11151,Melinda G,543535011,05 Rainier Dr.,1946-02-25,Labour,F
+11155,Hunter R,891535012,356 Mori Court,1980-01-26,Labour,F
+11154,Megan W,918535018,898 Holiday Hills,1980-08-21,Labour,F
+11152,James W,355535015,827 Seagull Court,1980-01-20,Labour,F
+11153,Angela J,847535011,877 Weatherly Drive,1980-06-23,Labour,F
+11250,Shannon L,543535011,185 Keywood Ct.,1959-03-22,Manager,F
+11259,Victoria S,230535013,623 Barquentine Court,1969-03-27,Manager,M
+11258,Xavier H,559535014,707 Virgil Street,1937-06-07,Retiree,F
+11256,Katelyn H,249535011,496 Deerfield Dr.,1937-09-20,Retiree,M
+11251,Xavier L,243535011,245 Dantley Way,1936-07-14,Retiree,M
+11253,José H,712535013,703 Donald Dr.,1937-02-07,Retiree,M
+11254,Johnathan V,494535016,430 Versailles Pl,1937-03-13,Retiree,M
+11255,Colin L,599535013,083 San Jose,1937-04-14,Retiree,F
+11252,Nicholas T,377535014,04 O St.,1936-06-17,Retiree,M
+11217,Natalie A,300535015,592 Bent Tree Lane,1954-02-21,Researcher,F
+11219,Charles C,755535011,871 Bel Air Dr.,1954-12-12,Researcher,F
+11213,Stephanie M,293535015,514 Grant Street,1953-05-24,Researcher,M
+11218,Olivia B,414535014,964 Stony Hill Circle,1954-09-21,Researcher,M
+11215,Ana P,446535013,114 Arlington Way,1954-06-21,Researcher,M
+11216,Jasmine T,939535013,328 San Francisco,1954-05-20,Researcher,F
+11214,Charles M,389535011,719 Little Dr,1953-11-17,Researcher,F
+11257,Jacqueline P,796535011,076 Northwood Dr,1937-01-16,Retiree,F
+11210,Edward W,229535011,039 Adelaide St.,1952-06-18,Researcher,M
+11355,Roberto G,543535012,545 Chickpea Ct.,1946-12-07,Manager,M
+11359,Jarrod P,543535015,657 H St.,1982-09-14,Manager,M
+11353,Carrie O,543535011,883 Cowell Rd.,1945-06-21,Retiree,M
+11354,Deanna S,543535014,unckerstr 22525,1946-02-23,Manager,M
+11357,Ramon Y,543535014,245 Vista Oak Dr.,1983-03-23,Manager,M
+11356,Terrence C,543535018,613 Thornhill Place,1984-05-27,Manager,F
+11358,Cynthia M,543535018,757 Pamplona Ct.,1982-11-21,Manager,F
