@@ -46,6 +46,20 @@ class Car(models.Model):
     drive = models.CharField(max_length=3)
     wheelbase = models.IntegerField()  # 2550mm - Numb only the mm is removed
 
+    # why does django have to make things a queryset, their api is so bad. just make it a dictionary instead of being special
+    def JSonObject(self):
+        dump = {'name': self.name, 'model': self.model, 'series': self.series,
+        'year': self.year, 'purchase_price': self.purchase_price, 'engine_size': self.engine_size,
+        'fuel_system': self.fuel_system, 'tank_capacity': self.tank_capacity,
+        'power': self.power, 'seating_capacity': self.seating_capacity,
+        'transmission': self.transmission, 'body_type': self.body_type,
+        'drive': self.drive, 'wheelbase': self.wheelbase}
+        return dump
+
+    # we can just add in recommended similar cars here. search based on some characteristics of current car (eg self.year, self.purchase_price, self.seating_capacity etc)
+    def similar(self):
+        pass
+
 
 class Order(models.Model):
     date = models.DateField()

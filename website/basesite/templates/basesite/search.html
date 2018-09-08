@@ -4,7 +4,21 @@
 
           <h1> i need to put this here so the next line works </h1>
           <h1> This is where the search content would go</h1>
-
+          <input type='text' id='carID'></input>
+          <button>LOOK AT MY API WORKING</button>
+          <script>
+          $(document).ready(function(){
+              $("button").click(function(){
+                  $.post("/api/carByID",
+                  {
+                    id: $('#carID').val()
+                  },
+                  function(data, status){
+                      console.log(Object.values(data))
+                  });
+              });
+          });
+          </script>
 <!-- Example for loop for iterating over passed variable -->
 {% for car in cars %}
   <li>Brand: {{car.name}}, Type: {{car.type}}, Speed: {{car.speed}}</li>
