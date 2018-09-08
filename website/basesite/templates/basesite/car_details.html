@@ -3,11 +3,57 @@
 <div>
     <h1> boiiii </h1>
     <br>
+
+     <center><img src=
+     
+    {% if car.name == "ALFA ROMEO"  %}
+        "/static/images/logos/AlfaRomeo.jpg"
+    {% elif car.name == "AUDI" %}
+        "/static/images/logos/Audi.jpg"
+    {% elif car.name == "BMW" %}
+        "/static/images/logos/BMW.jpg"
+    {% elif car.name == "CHRYSLER" %}
+        "/static/images/logos/Chrysler.jpg"
+    {% elif car.name == "DATSUN" %}
+        "/static/images/logos/Datsun.jpg"
+    {% elif car.name == "EUNOS" %}
+        "/static/images/logos/Eunos.jpg"
+    {% elif car.name == "HONDA" %}
+        "/static/images/logos/Honda.jpg"
+    {% elif car.name == "LAND ROVER" %}
+        "/static/images/logos/landRover.png"
+    {% elif car.name == "MAZDA" %}
+        "/static/images/logos/Mazda.jpg"
+    {% elif car.name == "MERCEDES-BENZ" %}
+        "/static/images/logos/Merc.jpg"
+    {% elif car.name == "MITSUBISHI" %}
+        "/static/images/logos/Mitsubishi.jpg"
+    {% elif car.name == "NISSAN" %}
+        "/static/images/logos/Nissan.jpg"
+    {% elif car.name == "PEUGEOT" %}
+        "/static/images/logos/Peugeot.jpg"
+    {% elif car.name == "RENAULT" %}
+        "/static/images/logos/RENAULT.jpg"
+    {% elif car.name == "SAAB" %}
+        "/static/images/logos/Saab.png"
+    {% elif car.name == "TOYOTA" %}
+        "/static/images/logos/Toyota.jpg"
+    {% elif car.name == "VOLKSWAGEN" %}
+        "/static/images/logos/Volkswagen.jpg"
+    {% elif car.name == "VOLVO" %}
+        "/static/images/logos/Volvo.jpg"
+    
+    {% endif %}
+     
+     
+      alt="Paris" class="center"></center> 
+
+    
     <p>Make: {{ car.name|capfirst }}</p>
     <p>Sodel: {{ car.model }}</p>
     <p>Series: {{ car.series }}</p>
     <p>year: {{ car.year }}</p>
-    <p>Purchase Price: {{ car.purchse_price }}</p>
+    <p>Purchase Price: ${{ car.purchase_price }}</p>
     <p> etc... </p>
 </div>
 {% endblock %}
