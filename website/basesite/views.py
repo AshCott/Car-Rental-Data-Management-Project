@@ -12,6 +12,13 @@ def index(request):
     # Also for dynamically rendered pages pass a dictionary into render, and
     # this will be used in Jinja templating
 
+
+def employee_home(request):
+    return render(request, 'basesite/employee_home.html')
+    # Redirects logged in employee to their homepage
+
+    
+
 def search(request):
     sample = {'cars': [
     {'name': 'Toyota', 'type': 'Sedan', 'speed': 'Slow'},
