@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'basesite', # Each app (in our case, the base website and API) can just be put in this 
+    'basesite', # Each app (in our case, the base website and API) can just be put in this
 ]
 
 MIDDLEWARE = [
@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ifb299',
         'USER': 'root',
-        'PASSWORD': 'mysqlpwd',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': ''
     }
