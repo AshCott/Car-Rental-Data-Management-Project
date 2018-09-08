@@ -3,38 +3,13 @@
 {% block content %}
 <div>
 
-    <h1> boiiii </h>
+    <h1> boiiii </h1>
+    <p> make money bois</p>
 
     {% for car in cars %}
         <h3>Make: {{ car.name|capfirst }}</h3>
-    {% end for %}
+    {% endfor %}
     
     
-    <!--
-    
-    <p> model: {{ <pet></pet>.species }}</p>
-    {% if pet.breed %}
-            <p>Breed: {{ pet.breed }}</p>
-    {% endif %}
-    {% if pet.age %}
-            <p>Age: {{ pet.age }}</p>
-    {% endif %}
-    {% if pet.sex %}
-            <p>Sex: {{ pet.sex }}</p>
-    {% endif %}
-    {% if pet.vaccinations.all %}
-        <p>Vaccinations for:</p>
-        <ul>
-        {% for vaccination in pet.vaccinations.all %}
-            <li>{{ vaccination.name }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    <p> Submitted by: {{ pet.submitter }}</p>
-    <p> Submitted on: {{ pet.submission_date|date:"d M Y" }}</p>
-    <p>{{pet.description }}</p>
-    
-    -->
-
 </div>
 {% endblock %}

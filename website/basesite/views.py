@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import Http404
+from .models import Car
 
 # Create your views here.
 def index(request):
@@ -21,5 +23,9 @@ def search(request):
 
     return render(request, 'basesite/search.html', sample)
 
-def car_details(request):
+def car_details(request, id):
+    try:
+        car = Car.objects.get(id=id)
+    except Car.DoesNotExist:
+            raise Http404('Vehicle not found')
     return render(request, 'basesite/car_details.html')
