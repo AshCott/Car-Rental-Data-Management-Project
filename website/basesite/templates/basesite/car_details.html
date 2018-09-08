@@ -1,8 +1,9 @@
 {% extends "basesite/base.html" %}
 {% block content %}
- <link href="/static/CSS/main.css" rel="stylesheet">
+<link href="/static/CSS/main.css" rel="stylesheet">
 <div>
-    <h1> boiiii </h1>
+    <br>
+    <br>
     <br>
 
      <center><img src=
@@ -47,13 +48,55 @@
      
      
       alt="Car Logo" class="center"></center> 
+<br>
+<table class="darkTable">
+<tbody>
+<tr>
+<td>Make</td>
+<td>{{ car.name|capfirst }}</td>
+</tr>
+<td>Model</td>
+<td>{{ car.model|capfirst }}</td>
+</tr>
+<td>Series</td>
+<td>{{ car.series|capfirst }}</td>
+</tr>
+<td>Year</td>
+<td>{{ car.year }}</td>
+</tr>
+<td>Purchase Price</td>
+<td>${{ car.purchase_price }}</td>
+</tr>
+<td>Engine Size</td>
+<td>{{ car.engine_size }}</td>
+</tr>
+<td>Fuel System</td>
+<td>{{ car.fuel_system }}</td>
+</tr>
+<td>Tank Capacity</td>
+<td>{{ car.tank_capacity }}</td>
+</tr>
+<td>Power</td>
+<td>{{ car.power }}</td>
+</tr>
+<td>Seating Capacity</td>
+<td>{{ car.seating_capacity }}</td>
+</tr>
+<td>Transmission</td>
+<td>{{ car.transmission }}</td>
+</tr>
+<td>Body Type</td>
+<td>{{ car.body_type }}</td>
+</tr>
+<td>Drive</td>
+<td>{{ car.drive }}</td>
+</tr>
+<td>Wheelbase</td>
+<td>{{ car.wheelbase }}</td>
+</tr>
+</tbody>
+</table>    
+<br>
 
-    
-    <p>Make: {{ car.name|capfirst }}</p>
-    <p>Sodel: {{ car.model }}</p>
-    <p>Series: {{ car.series }}</p>
-    <p>year: {{ car.year }}</p>
-    <p>Purchase Price: ${{ car.purchase_price }}</p>
-    <p> etc... </p>
 </div>
 {% endblock %}
