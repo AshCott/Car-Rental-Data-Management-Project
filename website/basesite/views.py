@@ -20,3 +20,6 @@ def search(request):
     # also, 'cars' must refer to a list/array, not a dict
 
     return render(request, 'basesite/search.html', sample)
+
+def car_details(request):
+    return render(request, 'basesite/car_details.html')
