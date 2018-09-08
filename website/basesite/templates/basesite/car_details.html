@@ -1,5 +1,6 @@
 {% extends "basesite/base.html" %}
 {% block content %}
+ <link href="/static/CSS/main.css" rel="stylesheet">
 <div>
     <h1> boiiii </h1>
     <br>
@@ -42,11 +43,10 @@
         "/static/images/logos/Volkswagen.jpg"
     {% elif car.name == "VOLVO" %}
         "/static/images/logos/Volvo.jpg"
-    
     {% endif %}
      
      
-      alt="Paris" class="center"></center> 
+      alt="Car Logo" class="center"></center> 
 
     
     <p>Make: {{ car.name|capfirst }}</p>
