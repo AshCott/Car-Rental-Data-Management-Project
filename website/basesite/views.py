@@ -28,4 +28,4 @@ def car_details(request, id):
         car = Car.objects.get(id=id)
     except Car.DoesNotExist:
             raise Http404('Vehicle not found')
-    return render(request, 'basesite/car_details.html')
+    return render(request, 'basesite/car_details.html', {'car': car})

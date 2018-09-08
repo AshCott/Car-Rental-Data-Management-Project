@@ -1,15 +1,13 @@
 {% extends "basesite/base.html" %}
-
 {% block content %}
 <div>
-
     <h1> boiiii </h1>
-    <p> make money bois</p>
-
-    {% for car in cars %}
-        <h3>Make: {{ car.name|capfirst }}</h3>
-    {% endfor %}
-    
-    
+    <br>
+    <p>Make: {{ car.name|capfirst }}</p>
+    <p>Sodel: {{ car.model }}</p>
+    <p>Series: {{ car.series }}</p>
+    <p>year: {{ car.year }}</p>
+    <p>Purchase Price: {{ car.purchse_price }}</p>
+    <p> etc... </p>
 </div>
 {% endblock %}
