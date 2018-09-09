@@ -47,7 +47,16 @@
       alt="Car Logo" class="center"></center> 
 
 <br>
-<table class="darkTable">
+<center> <h2 class="display-2" face="Helvetica" >
+    {{ car.year }} 
+    {% if car.name == "BMW" %}
+        {{ car.name }} 
+    {% else %}
+        {{ car.name|title }} 
+    {% endif %}
+    {{ car.model|title }}</h2> </center>
+<br>
+<table class="table table-striped">
     <tbody>
         <tr>
             <td>Make</td>
