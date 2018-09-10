@@ -9,11 +9,22 @@ from django.views.decorators.csrf import csrf_exempt
 def carByID(request):
     try:
         id = request.POST
-        # apparently request object is a generator so i need to call next to get the value
-        car = Car.objects.get(id=next(id.values()))
+        car = Car.objects.get(id=id['id'])
 
     # failed to find, sends json
     except Car.DoesNotExist:
         return JsonResponse({'car':'Failed to find'})
 
     return JsonResponse(car.JSonObject())
+
+@csrf_exempt
+def search(request):
+    print("\n\n SEARCH STARTED \n\n")
+    try:
+        vals = request.POST
+        car = Car.objects.filter(name__icontains=vals['name'])
+    except Car.DoesNotExist:
+        return JsonResponse({'val': 'failed'})
+    # list comprehensions are fun
+    resp = {'test': [item.JSonObject() for item in car]}
+    return JsonResponse(resp)

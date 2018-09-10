@@ -3,32 +3,46 @@
 {% block content %}
 
           <h1> i need to put this here so the next line works </h1>
-          <h1> This is where the search content would go</h1>
-          <input type='text' id='carID'></input>
-          <button>LOOK AT MY API WORKING</button>
+          <h1> Search using this horribly designed button </h1>
+          <input type='text' id='carNAME'></input>
+          <button>Search</button>
           <!-- below p tag is where the results are shown -->
-          <p id="object"></p>
+          <div class="col-lg-8 col-md-10 mx-auto" id="object">
+
+          </div>
 
           <!-- function to post input of text box to api endpoint and log results -->
           <script>
+
+          // single result only atm
           $(document).ready(function(){
               $("button").click(function(){
-                  $.post("/api/carByID",
+                  $.post("/api/search",
                   {
-                    id: $('#carID').val()
+                    name: $('#carNAME').val()
                   },
                   function(data, status){
-                      // logs received values and places them in <p> tag. clean this up in prod version
-                      console.log(Object.values(data));
-                      $("#object").text(Object.values(data));
+                      $("#object").text("");
+                      // iterates over all results
+                      data.test.forEach(function (item){
+                        $("#object").append(template(item));
+                      });
+                      //$("#object").append(template(data));
                   });
               });
           });
+
+          // returns the templated result, not in a table or anything fancy
+          function template(object){
+            console.log(object);
+            var temp = "";
+            temp += "<div id='post-preview'>\n";
+            temp += "<a href='/car_details/" + object.id + "/'>";
+            temp += "<h3 class='post-title'>" + object.year + " " + object.name + " " + object.model + " " + object.series + "</h3>";
+            temp += "</a></div>";
+            return temp;
+          }
           </script>
-<!-- Example for loop for iterating over passed variable -->
-{% for car in cars %}
-  <li>Brand: {{car.name}}, Type: {{car.type}}, Speed: {{car.speed}}</li>
-{% endfor %}
 
 </ul>
 {% endblock %}

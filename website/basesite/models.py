@@ -48,7 +48,7 @@ class Car(models.Model):
 
     # why does django have to make things a queryset, their api is so bad. just make it a dictionary instead of being special
     def JSonObject(self):
-        dump = {'name': self.name, 'model': self.model, 'series': self.series,
+        dump = {'id': self.id, 'name': self.name, 'model': self.model, 'series': self.series,
         'year': self.year, 'purchase_price': self.purchase_price, 'engine_size': self.engine_size,
         'fuel_system': self.fuel_system, 'tank_capacity': self.tank_capacity,
         'power': self.power, 'seating_capacity': self.seating_capacity,
