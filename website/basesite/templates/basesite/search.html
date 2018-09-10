@@ -1,13 +1,19 @@
 {% extends "basesite/base.html" %} <!-- Looks in every "templates" folder for "base.html" file in "basesite folder" -->
 
 {% block content %}
-
+          <link rel="stylesheet" type="text/css" href="/static/css/search.css" />
           <h1> i need to put this here so the next line works </h1>
-          <h1> Search using this horribly designed button </h1>
-          <input type='text' id='carNAME'></input>
-          <button>Search</button>
+          <h1> Search using this fantastically well designed button </h1>
+
+          <!-- Straight from bootstrap tutorials -->
+          <div class="input-group mb-3">
+            <input type="text" id="carNAME" class="form-control" placeholder="Search cars..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">Search</button>
+            </div>
+          </div>
           <!-- below p tag is where the results are shown -->
-          <div class="col-lg-8 col-md-10 mx-auto" id="object">
+          <div class="col-lg-8 col-md-10 mx-auto" id="results">
 
           </div>
 
@@ -22,10 +28,10 @@
                     name: $('#carNAME').val()
                   },
                   function(data, status){
-                      $("#object").text("");
+                      $("#results").text("");
                       // iterates over all results
                       data.test.forEach(function (item){
-                        $("#object").append(template(item));
+                        $("#results").append(template(item));
                       });
                       //$("#object").append(template(data));
                   });
@@ -36,7 +42,7 @@
           function template(object){
             console.log(object);
             var temp = "";
-            temp += "<div id='post-preview'>\n";
+            temp += "<div id='post-preview' class='card'>\n";
             temp += "<a href='/car_details/" + object.id + "/'>";
             temp += "<h3 class='post-title'>" + object.year + " " + object.name + " " + object.model + " " + object.series + "</h3>";
             temp += "</a></div>";
