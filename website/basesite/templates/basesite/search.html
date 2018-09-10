@@ -6,6 +6,10 @@
           <h1> This is where the search content would go</h1>
           <input type='text' id='carID'></input>
           <button>LOOK AT MY API WORKING</button>
+          <!-- below p tag is where the results are shown -->
+          <p id="object"></p>
+
+          <!-- function to post input of text box to api endpoint and log results -->
           <script>
           $(document).ready(function(){
               $("button").click(function(){
@@ -14,7 +18,9 @@
                     id: $('#carID').val()
                   },
                   function(data, status){
-                      console.log(Object.values(data))
+                      // logs received values and places them in <p> tag. clean this up in prod version
+                      console.log(Object.values(data));
+                      $("#object").text(Object.values(data));
                   });
               });
           });

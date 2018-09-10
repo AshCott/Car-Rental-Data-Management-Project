@@ -2,7 +2,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
- url(r'sample$', views.sample, name='sample'), # search url, shows on localhost:8000/search/
- url(r'sampleCar$', views.sampleCar, name='sampleCar'),
- url(r'carByID$', views.carByID, name='carByID')
+ # finds the car just by id. will expand later to find based on name
+ url(r'carByID$', views.carByID, name='carByID'),
 ]
