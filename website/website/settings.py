@@ -130,7 +130,7 @@ STATICFILES_DIRS = [
 # Added to redirect Employees after login to homepage
 
 LOGIN_REDIRECT_URL = '/employee_home/'
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/logout/'
 
 
 
