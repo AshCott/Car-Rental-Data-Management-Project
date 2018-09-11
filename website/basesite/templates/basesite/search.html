@@ -3,7 +3,7 @@
 {% block content %}
           <link rel="stylesheet" type="text/css" href="/static/css/search.css" />
           <h1> i need to put this here so the next line works </h1>
-          <h1> Search using this fantastically well designed button </h1>
+          <h1 id="header"> Search using this fantastically well designed button </h1>
 
           <!-- Straight from bootstrap tutorials -->
           <div class="input-group mb-3">
@@ -33,6 +33,7 @@
                       data.test.forEach(function (item){
                         $("#results").append(template(item));
                       });
+                      $("#header").text(data.test.length + " results for " + $('#carNAME').val());
                       //$("#object").append(template(data));
                   });
               });

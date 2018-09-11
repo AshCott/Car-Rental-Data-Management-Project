@@ -4,3 +4,7 @@
     border-radius: 5px; /* 5px rounded corners */
     margin: 10px;
 }
+
+#header{
+  text-align: center;
+}
