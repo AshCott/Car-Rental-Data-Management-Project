@@ -3,6 +3,10 @@ from django.http import HttpResponse
 from django.http import Http404
 from .models import Car
 
+from django.contrib.auth.decorators import login_required
+from django.contrib import auth
+
+
 # Create your views here.
 def index(request):
     return render(request, 'basesite/home.html') #IMPORTANT NOTE - 'base.html' is
@@ -19,9 +23,8 @@ def employee_home(request):
 
 
 
-    
-
 def logout(request):
+    auth.logout(request)
     return render(request, 'basesite/logout.html')
     # Redirects a logged out user to the Logout page
 
