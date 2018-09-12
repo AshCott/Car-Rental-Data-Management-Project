@@ -4,6 +4,17 @@
 {% block content %}
 <br><br><br>
 
+<script>
+$(document).ready(function(){
+    $(".close").click(function(){
+        $("#myAlert").alert("close");
+    });
+});
+</script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <div class=" container center_div col-md-6 mb-4">
 	<div class="card indigo form-white">
         <div class="card-body">
@@ -21,15 +32,27 @@
                         <td><input id="id_password" name="password" type="password" class="form-control" required></td>
                     </tr>
                 </table>
+				
                 
+				
 				{% if form.errors %}
-                    <p class="label label-danger alert alert-warning" role="alert">
-                        Incorrect Username or Password.
-                        Please try again.
-                    </p>
+					<!-- label label-danger -->
+                    <div class=" label label-danger alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong> Incorrect Username or Password. </strong> Please try again.
+                    
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					
+					
+					
                 {% endif %}
+				
+				
+				
 				<div>
-				<button type="submit" class="btn btn-outline-success my-2 my-sm-0">Login</button>
+					<button type="submit" class="btn btn-outline-success my-2 my-sm-0">Login</button>
 				</div>
             </form>
 						
