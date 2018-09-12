@@ -9,57 +9,44 @@
         <div class="card-body">
 			<h2 class="display-2" class="text-center white-text py-3" ><i class="fa fa-user"></i>Employee Login</h2><br>
 
-			<form id="login-form" method="post" >
+			<form method="post" id="login-form" >
                 {% csrf_token %}
                 <table class="table" id="login-table">
                     <tr>
                         <td><label for="id_username">Username</label></td>
-                        <td><input id="id_username" name="username" type="text" class="form-control"></td>
+                        <td><input id="id_username" name="username" type="text" class="form-control" required></td>
                     </tr>
                     <tr>
                         <td><label for="id_password">Password</label></td>
-                        <td><input id="id_password" name="password" type="password" class="form-control"></td>
+                        <td><input id="id_password" name="password" type="password" class="form-control" required></td>
                     </tr>
                 </table>
-                <!-- {% if form.errors %} -->
-                    <!-- <p class=" label label-danger"> -->
-                        <!-- Your username and password didn't match.  -->
-                        <!-- Please try again. -->
-                    <!-- </p> -->
-                <!-- {% endif %} -->
-
-				<button type="submit" class="btn btn-outline-success my-2 my-sm-0" >Login</button>
-					
-                <input type="submit" value="Login" 
-                       class="btn btn-primary pull-right" />
-                <input type="hidden" name="next" value="{{ next }}" />
+                
+				{% if form.errors %}
+                    <p class="label label-danger alert alert-warning" role="alert">
+                        Incorrect Username or Password.
+                        Please try again.
+                    </p>
+                {% endif %}
+				<div>
+				<button type="submit" class="btn btn-outline-success my-2 my-sm-0">Login</button>
+				</div>
             </form>
-			
-			
-			
-			
-			
-			
-			
-			
+						
+
+			<!-- Old Code - Leave until fully complete -->
 			
 			<!-- <form method="post" class="text-center pagination-centered"> -->
-			
 				<!-- {% csrf_token %} -->
 				<!-- <!--{{ form.as_p }}--> 
-				
 				<!-- {{ form.as_p }} -->
-				
 				<!-- {% for input in form %} -->
-				
 					<!-- <div class="fieldWrapper form-text text-muted"> -->
-				
-				
 				<!-- {% endfor %} -->
-				
-				
 				<!-- <button type="submit" class="btn btn-outline-success my-2 my-sm-0" >Login</button> -->
 			<!-- </form> -->
+			
+			
 		</div>
     </div>
 </div>
