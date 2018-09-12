@@ -11,6 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 
+
+    <!-- datatables -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   </head>
 
   <body>
@@ -26,48 +30,48 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Available Cars</button>
           </form>
         </ul>
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 		{% if user.is_authenticated %}
 		<font color="white">{{ user.username }}</font>
 		<form class="form-inline my-2 my-lg-0" action='/'>
           <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
         </form>
-		
+
 		<!-- logout(request) href="{% url 'login' %}" -->
 		{% endif %}
-		
+
 		{% if not user.is_authenticated %}
 		<font color="white">not logged on</font>
 		<form class="form-inline my-2 my-lg-0" action="/accounts/login/" >
           <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
         </form>
 		{% endif %}
-		
-		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <form class="form-inline my-2 my-lg-0" action='/admin'>
           <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Admin Login</button>
         </form>

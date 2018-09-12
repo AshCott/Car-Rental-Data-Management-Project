@@ -2,6 +2,12 @@
 
 {% block content %}
           <link rel="stylesheet" type="text/css" href="/static/css/search.css" />
+
+          <!-- include mdb libraries -->
+
+
+
+
           <h1> i need to put this here so the next line works </h1>
           <h1 id="header"> Search using this fantastically well designed button </h1>
 
@@ -13,14 +19,40 @@
             </div>
           </div>
           <!-- below p tag is where the results are shown -->
-          <div class="col-lg-8 col-md-10 mx-auto" id="results">
+          <div class="col-lg-8 col-md-10 mx-auto" id="resultss">
 
           </div>
+
+          <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+
+          <thead>
+            <tr>
+              <th class="th-sm">Name
+                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+              </th>
+              <th class="th-sm">Model
+                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+              </th>
+              <th class="th-sm">Series
+                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+              </th>
+              <th class="th-sm">Year
+                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="results">
+
+          </tbody>
+
+          </table>
 
           <!-- function to post input of text box to api endpoint and log results -->
           <script>
 
           // single result only atm
+          var datatable = undefined;
+          //var table = $('#dtBasicExample').DataTable();
           $(document).ready(function(){
               $("button").click(function(){
                   $.post("/api/search",
@@ -28,25 +60,31 @@
                     name: $('#carNAME').val()
                   },
                   function(data, status){
+                      if (datatable != undefined) {
+                        datatable.destroy();
+                      }
                       $("#results").text("");
                       // iterates over all results
                       data.test.forEach(function (item){
                         $("#results").append(template(item));
                       });
                       $("#header").text(data.test.length + " results for " + $('#carNAME').val());
-                      //$("#object").append(template(data));
+                      datatable = $('#dtBasicExample').DataTable();
                   });
               });
           });
 
           // returns the templated result, not in a table or anything fancy
           function template(object){
-            console.log(object);
             var temp = "";
-            temp += "<div id='post-preview' class='card'>\n";
-            temp += "<a href='/car_details/" + object.id + "/'>";
-            temp += "<h3 class='post-title'>" + object.year + " " + object.name + " " + object.model + " " + object.series + "</h3>";
-            temp += "</a></div>";
+
+            temp += "<tr>";
+            temp += "<td><a href='/car_details/" + object.id + "/'>" + object.name + "</a></td>";
+            temp += "<td>" + object.model + "</td>";
+            temp += "<td>" + object.series + "</td>";
+            temp += "<td>" + object.year + "</td>";
+            temp += "</tr>"
+
             return temp;
           }
           </script>
