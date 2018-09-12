@@ -31,6 +31,8 @@
           </form>
         </ul>
 
+		<!-- Login/Logout Button Logic --> 
+		
 		{% if user.is_authenticated %}
 		<font color="white">{{ user.username }}</font>
 		<form class="form-inline my-2 my-lg-0" action='/logout/'>
@@ -47,6 +49,8 @@
         </form>
 		{% endif %}
 
+		<!--  End Login/Logout Button Logic  -->
+		
         <form class="form-inline my-2 my-lg-0" action='/admin'>
           <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Admin Login</button>
         </form>

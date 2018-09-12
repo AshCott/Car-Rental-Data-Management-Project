@@ -3,11 +3,21 @@
 <!-- templates/registration/login.html -->
 {% block content %}
 <br><br><br><br><br>
-<h2>Employee Login</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-</form>
+
+<div class="col-md-6 mb-4">
+	<div class="card indigo form-white">
+        <div class="card-body">
+			<h2 class="display-2" class="text-center white-text py-3" ><i class="fa fa-user"></i>Employee Login</h2><br>
+
+			<form method="post" class="text-center" class="pagination-centered">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit" class="btn btn-outline-success my-2 my-sm-0" >Login</button>
+			</form>
+		</div>
+    </div>
+</div>
+
+
 
 {% endblock %}
