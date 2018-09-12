@@ -12,13 +12,9 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 
 
-      <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- Custom styles for this template -->
-    <link href="/static/css/landing-page.min.css" rel="stylesheet">
-
+    <!-- datatables -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   </head>
 
   <body>
@@ -34,31 +30,24 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Available Cars</button>
           </form>
         </ul>
-		
-		
+
 		{% if user.is_authenticated %}
 		<font color="white">{{ user.username }}</font>
 		<form class="form-inline my-2 my-lg-0" action='/accounts/login/'>
           <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
         </form>
-		
+
 		<!-- logout(request) href="{% url 'login' %}" -->
 		{% endif %}
-		
+
 		{% if not user.is_authenticated %}
-				
+
 		<font color="white">not logged on</font>
 		<form class="form-inline my-2 my-lg-0" action="/accounts/login/" >
           <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
         </form>
 		{% endif %}
-		
-		
-		
-		
-		
-		
-		
+
         <form class="form-inline my-2 my-lg-0" action='/admin'>
           <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Admin Login</button>
         </form>
@@ -69,6 +58,8 @@
 
     <!-- Content -->
 
+
+      <div class="starter-template">
         {% block content %}
         <!-- This is where all the content for each page goes, see search.html for an example -->
         {% endblock content %}
