@@ -1,68 +1,121 @@
-{% extends "basesite/base.html" %} <!-- Looks in every "templates" folder for "base.html" file in "basesite folder" -->
+{% extends "basesite/base.html" %}
+<!-- Looks in every "templates" folder for "base.html" file in "basesite folder" -->
 
 
 
 {% block content %}
 
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<!-- Custom fonts for this template -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
-    <!-- Custom styles for this template -->
-    <link href="/static/css/landing-page.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="/static/css/landing-page.min.css" rel="stylesheet">
 
-    <!-- Masthead -->
-    <header class="masthead text-white text-center">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h1 class="mb-5">Search, Compare, and Save!</h1>
-            <h5 class="mb-5"> There are thousands of cars avaliable at your fingertips.</h5>
-          </div>
-
-        </div>
+<!-- Masthead -->
+<header class="masthead text-white text-center">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h1 class="page-header">Search, Compare, and Save!</h1>
+        <h5 class="mb-5"> There are thousands of cars avaliable at your fingertips.</h5>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
 
-    <!-- Icons Grid -->
-    <section class="features-icons bg-light text-center">
-      <div class="container">
-        <h1 class="mb-5">Featured Cars:</h1>
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <img src="/static/images/logos/BMW.png" class="constrain">
-              </div>
-              <h3><a href="/car_details/14883">1986 BMW 3 18i</a><h3>
+<section class="showcase">
+  <script>
+    window.onload = function () {
+
+      var chart = new CanvasJS.Chart("chartContainer", {
+        theme: "dark1",
+        animationEnabled: true,
+        title: {
+          text: "Car Makes Avaliable"
+        },
+        data: [{
+          type: "pie",
+          startAngle: 240,
+          radius:  "100%", 
+          yValueFormatString: "##0.00\"%\"",
+          indexLabel: "{label} {y}",
+          dataPoints: [
+            { y: 1.75, label: "Alfa Romeo" },
+            { y: 5.59, label: "Audi" },
+            { y: 17.48, label: "BMW" },
+            { y: 4.90, label: "Chrysler" },
+            { y: 0.70, label: "Datson" },
+            { y: 0.70, label: "Eunos" },
+            { y: 0.35, label: "Honda" },
+            { y: 2.80, label: "Land Rover" },
+            { y: 13.64, label: "Mazda" },
+            { y: 10.49, label: "Mercedes-Benz" },
+            { y: 0.35, label: "Mitsubishi" },
+            { y: 2.80, label: "Nissan" },
+            { y: 6.99, label: "Peugeot" },
+            { y: 2.10, label: "Renault" },
+            { y: 6.99, label: "Saab" },
+            { y: 0.70, label: "Toyota" },
+            { y: 15.03, label: "Volkswagen" },
+            { y: 6.64, label: "Volvo" },
+
+          ]
+        }]
+      });
+      chart.render();
+
+    }
+  </script>
+
+<!-- Icons Grid -->
+<section class="features-icons bg-light text-center">
+  <div class="container">
+    <h1 class="mb-5">Featured Cars:</h1>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <img src="/static/images/logos/BMW.png" class="constrain">
+          </div>
+          <h3><a href="/car_details/14883">1986 BMW 3 18i</a>
+            <h3>
               <p class="lead mb-0">5 Seats <br> RWD <br> Sedan </p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                 <img src="/static/images/logos/MAZDA.png" class="constrain">
-              </div>
-              <h3><a href="/car_details/15247">2003 Mazda 323</a><h3>
-              <p class="lead mb-0">5 Seats <br> FWD <br> Hatchback </p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                 <img src="/static/images/logos/SAAB.png" class="constrain">
-              </div>
-              <h3><a href="/car_details/15340">2007 Saab 40977</a></h3>
-              <p class="lead mb-0">5 Seats <br> FWD <br> Wagon </p>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
-    
-    
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <img src="/static/images/logos/MAZDA.png" class="constrain">
+          </div>
+          <h3><a href="/car_details/15247">2003 Mazda 323</a>
+            <h3>
+              <p class="lead mb-0">5 Seats <br> FWD <br> Hatchback </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <img src="/static/images/logos/SAAB.png" class="constrain">
+          </div>
+          <h3><a href="/car_details/15340">2007 Saab 40977</a></h3>
+          <p class="lead mb-0">5 Seats <br> FWD <br> Wagon </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div id="chartContainer" style="height: 100%; width: 100%;"></div>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</section>
 
+<br><br><br><br><br><br><br><br><br><br><br><br> <!-- there has to be a better way -->
 
+<!-- Footer -->
+<footer class="footer bg-light">
+  <div class="text-center">
+    <p class="text-muted small mb-4 mb-lg-0">&copy; CRC 2018. All Rights Reserved.</p>
+  </div>
+</footer>
 
-    {% endblock %}
-		
+{% endblock %}
