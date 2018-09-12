@@ -8,45 +8,7 @@
     <br>
     <br>
 
-     <center><img src=
-    {% if car.name == "ALFA ROMEO"  %}
-        "/static/images/logos/AlfaRomeo.jpg"
-    {% elif car.name == "AUDI" %}
-        "/static/images/logos/Audi.jpg"
-    {% elif car.name == "BMW" %}
-        "/static/images/logos/BMW.jpg"
-    {% elif car.name == "CHRYSLER" %}
-        "/static/images/logos/Chrysler.jpg"
-    {% elif car.name == "DATSUN" %}
-        "/static/images/logos/Datsun.jpg"
-    {% elif car.name == "EUNOS" %}
-        "/static/images/logos/Eunos.jpg"
-    {% elif car.name == "HONDA" %}
-        "/static/images/logos/Honda.jpg"
-    {% elif car.name == "LAND ROVER" %}
-        "/static/images/logos/landRover.png"
-    {% elif car.name == "MAZDA" %}
-        "/static/images/logos/Mazda.jpg"
-    {% elif car.name == "MERCEDES-BENZ" %}
-        "/static/images/logos/Merc.jpg"
-    {% elif car.name == "MITSUBISHI" %}
-        "/static/images/logos/Mitsubishi.jpg"
-    {% elif car.name == "NISSAN" %}
-        "/static/images/logos/Nissan.jpg"
-    {% elif car.name == "PEUGEOT" %}
-        "/static/images/logos/Peugeot.jpg"
-    {% elif car.name == "RENAULT" %}
-        "/static/images/logos/RENAULT.jpg"
-    {% elif car.name == "SAAB" %}
-        "/static/images/logos/Saab.png"
-    {% elif car.name == "TOYOTA" %}
-        "/static/images/logos/Toyota.jpg"
-    {% elif car.name == "VOLKSWAGEN" %}
-        "/static/images/logos/Volkswagen.jpg"
-    {% elif car.name == "VOLVO" %}
-        "/static/images/logos/Volvo.jpg"
-    {% endif %}
-      alt="Car Logo" class="center"></center> 
+     <center><img src="/static/images/logos/{{ car.name }}.jpg" alt="Car Logo" class="center"></center> 
 
 <br>
 <center> <h2 class="display-2" face="Helvetica" >
