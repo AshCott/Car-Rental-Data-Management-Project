@@ -2,15 +2,33 @@
 
 
 {% block content %}
-<main role="main" class="container">
 
-{% if user.is_authenticated %}
-  <br><br><br><br><br>
-  <h1>Hi Employee: {{ user.username }}!</h1>
-  <p><a href="{% url 'logout' %}">logout</a></p>
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">login</a>
-{% endif %}
+<main role="main" class="container center_div col-md-6 mb-4">
+	<div class="card indigo form-white">
+        <div class="card-body">
+	
+			{% if user.is_authenticated %}
+				<br><br><br><br><br>
+				<h1>Hi Employee: {{ user.username }}!</h1>
+				<p><a href="{% url 'logout' %}">logout</a></p>
+			{% else %}
+				<p>You are not logged in</p>
+				<a href="{% url 'login' %}">login</a>
+			{% endif %}
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
