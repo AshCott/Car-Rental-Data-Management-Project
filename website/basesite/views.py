@@ -17,6 +17,16 @@ def employee_home(request):
     return render(request, 'basesite/employee_home.html')
     # Redirects logged in employee to their homepage
 
+
+
+    
+
+def logout(request):
+    return render(request, 'basesite/logout.html')
+    # Redirects a logged out user to the Logout page
+
+
+
     
 
 def search(request):
