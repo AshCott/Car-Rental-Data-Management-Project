@@ -16,8 +16,14 @@ padding-top:8rem;
 padding-bottom:8rem;
 }
 
+.boiii{
+    text-shadow: 2px 2px #000000;
+}
+
+
 header.masthead h1 {
-font-size:2rem;
+font-size:4rem;
+text-shadow: 2px 2px #000000;
 }
 
 .center{
