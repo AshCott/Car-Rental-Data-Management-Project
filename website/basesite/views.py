@@ -5,7 +5,7 @@ from .models import Car
 
 # Create your views here.
 def index(request):
-    return render(request, 'basesite/base.html') #IMPORTANT NOTE - 'base.html' is
+    return render(request, 'basesite/home.html') #IMPORTANT NOTE - 'base.html' is
     #automatically found, as django takes all templates from (project)/(app)/templates
     #and considers them the same thing. may make things difficult if we have multiple apps
 
@@ -16,6 +16,16 @@ def index(request):
 def employee_home(request):
     return render(request, 'basesite/employee_home.html')
     # Redirects logged in employee to their homepage
+
+
+
+    
+
+def logout(request):
+    return render(request, 'basesite/logout.html')
+    # Redirects a logged out user to the Logout page
+
+
 
     
 
