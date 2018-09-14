@@ -43,6 +43,13 @@ text-shadow: 2px 2px #000000;
 padding:3rem;
 }
 
+#container {
+    min-width: 100%;
+    min-height: 550px;
+    margin: 0 auto;
+}
+
+
 .showcase .showcase-img {
 min-height:30rem;
 background-size:cover;
@@ -76,6 +83,13 @@ max-width:12rem;
 box-shadow:0 5px 5px 0 #adb5bd;
 }
 
+.highcharts-background {
+    fill: #343a40;
+}
+
+.highcharts-plot-background {
+    fill: #343a40;
+}
 .call-to-action {
 position:relative;
 background-color:#343a40;
