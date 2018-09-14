@@ -21,6 +21,7 @@ padding-bottom:8rem;
 }
 
 
+
 header.masthead h1 {
 font-size:4rem;
 text-shadow: 2px 2px #000000;
@@ -45,6 +46,8 @@ padding:3rem;
 .showcase .showcase-img {
 min-height:30rem;
 background-size:cover;
+width: auto;
+height: auto;
 }
 
 .features-icons .features-icons-item {
