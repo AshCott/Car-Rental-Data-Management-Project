@@ -17,14 +17,24 @@ def carByID(request):
 
     return JsonResponse(car.JSonObject())
 
+# now specifically for the search page. Can specify what to search
 @csrf_exempt
 def search(request):
-    print("\n\n SEARCH STARTED \n\n")
     try:
         vals = request.POST
-        car = Car.objects.filter(name__icontains=vals['name'])
+        if 'selected' in vals:
+            if (vals['selected']=='name'):
+                car = Car.objects.filter(name__icontains=vals['search'])
+            elif (vals['selected']=='model'):
+                car = Car.objects.filter(model__icontains=vals['search'])
+            elif (vals['selected']=='series'):
+                car = Car.objects.filter(series__icontains=vals['search'])
+            else:
+                car = Car.objects.filter(name__icontains=vals['search'])
+        else:
+            car = Car.objects.filter(name__icontains=vals['search'])
     except Car.DoesNotExist:
         return JsonResponse({'val': 'failed'})
     # list comprehensions are fun
-    resp = {'test': [item.JSonObject() for item in car]}
+    resp = {'items': [item.JSonObject() for item in car]}
     return JsonResponse(resp)
