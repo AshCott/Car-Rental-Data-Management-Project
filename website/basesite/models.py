@@ -69,3 +69,5 @@ class Order(models.Model):
     return_store = models.ForeignKey(Store, on_delete=models.CASCADE, blank=True, related_name='return_store')
     customerID = models.ForeignKey(Customer, on_delete=models.CASCADE)
     carID = models.ForeignKey(Car, on_delete=models.CASCADE)
+    unavailable =  models.BooleanField(default=False)
+

@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
 from .models import Car
+from .models import Store
+from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
@@ -54,3 +56,23 @@ def car_history(request):
     return render(request, 'basesite/carhistory.html')
 
 
+def recommendation(request):
+    states = Store.objects.values('state').distinct()
+    cities = Store.objects.values('city').distinct()
+    car_names = Car.objects.values('name').distinct()
+    car_bodys = Car.objects.values('body_type').distinct()
+    car_drives = Car.objects.values('drive').distinct()
+    print (car_names)
+    #Note sure what this does???????
+    form = request.POST # you seem to misinterpret the use of form from django and POST data. you should take a look at [Django with forms][1]
+    # you can remove the preview assignment (form =request.POST)
+    if request.method == 'POST':
+        selected_item = get_object_or_404(Car, pk=request.POST.get('id'))
+        # get the user you want (connect for example) in the var "user"
+        user.item = selected_item
+        user.save()
+    
+    # Then, do a redirect for example
+    
+    return render(request, 'basesite/recommendation.html', {'states': states, 'cities': cities, 'car_names': car_names, 'car_drives': car_drives, 'car_bodys': car_bodys})
+    # Redirects logged in employee to their homepage
