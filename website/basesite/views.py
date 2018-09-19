@@ -49,3 +49,8 @@ def car_details(request, id):
     except Car.DoesNotExist:
             raise Http404('Vehicle not found')
     return render(request, 'basesite/car_details.html', {'car': car})
+
+def car_history(request):
+    return render(request, 'basesite/carhistory.html')
+
+
