@@ -1,0 +1,99 @@
+{% extends "basesite/base.html" %}
+{% block content %}
+<h1>pointless header</h1>
+
+<div class=" container center_div col-md-6 mb-4">
+  <div class="card">
+    <div class="card-header">
+      Quote
+    </div>
+    <div class="card-body">
+      <!-- {% for store in stores %}
+<h3>{{ store.id|capfirst }}</h3>
+{% endfor %} -->
+
+      <form class="form-horizontal">
+        <fieldset>
+
+          <!-- Form Name -->
+          <legend>Car Recomendation</legend>
+
+          <!-- Select Basic -->
+          <div class="form-group" align="left">
+            <label class="col-md-4 control-label" for="select_state">State</label>
+            <div class="col-md-12">
+              <select id="select_state" name="select_state" class="form-control">
+                <option value="" selected disabled hidden>--Select State--</option>
+                {% for state in states %}
+                <option value="{{ state.state }}">{{ state.state }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Select Basic -->
+          <div class="form-group" align="left">
+            <label class="col-md-4 control-label" for="select_city">City</label>
+            <div class="col-md-12">
+              <select id="select_city" name="select_city" class="form-control">
+                <option value="" selected disabled hidden>--Select City--</option>
+                {% for city in cities %}
+                <option value="{{ city.city }}">{{ city.city }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Select Basic -->
+          <div class="form-group" align="left">
+            <label class="col-md-4 control-label" for="select_car_brand">Car Brand</label>
+            <div class="col-md-12">
+              <select id="select_car_brand" name="select_car_brand" class="form-control">
+                <option value="" selected>--None--</option>
+                {% for car in car_names %}
+                <option value="{{ car.name }}">{{ car.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Select Basic -->
+          <div class="form-group" align="left">
+            <label class="col-md-4 control-label" for="select_car_body">Car Body Type</label>
+            <div class="col-md-12">
+              <select id="select_car_body" name="select_car_body" class="form-control">
+                <option value="" selected>--None--</option>
+                {% for car in car_bodys %}
+                <option value="{{ car.body_type }}">{{ car.body_type }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Select Basic -->
+          <div class="form-group" align="left">
+            <label class="col-md-4 control-label" for="select_car_drive">Car Drive</label>
+            <div class="col-md-12">
+              <select id="select_car_drive" name="select_car_drive" class="form-control">
+                <option value="" selected>--None--</option>
+                {% for car in car_drives %}
+                <option value="{{ car.drive }}">{{ car.drive }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Button -->
+          <div class="form-group" align="right">
+            <div class="col-md-4">
+              <button id="Search" name="Search" class="btn btn-primary">Search</button>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
