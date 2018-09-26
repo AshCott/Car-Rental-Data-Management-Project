@@ -1,61 +1,70 @@
+<!doctype html>
+
 {% extends "basesite/base.html" %}
 
 <!-- templates/registration/login.html -->
 {% block content %}
-<br><br><br>
 
+<!-- Javascript-->
 <script>
-$(document).ready(function(){
-    $(".close").click(function(){
-        $("#myAlert").alert("close");
+    // Closes Warning Alert when Clicked on
+    $(document).ready(function(){
+        $(".close").click(function(){
+            $("#myAlert").alert("close");
+        });
     });
-});
 </script>
 
+<!--Older Bootstrap version used for Warning Message -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<!-- Whitespace -->
+<br><br><br>
 
+<!-- Main Content -->
 <div class=" container center_div col-md-6 mb-4">
 	<div class="card indigo form-white">
         <div class="card-body">
+            
+            <!-- Header -->
 			<h2 class="display-2" class="text-center white-text py-3" ><i class="fa fa-user"></i>Employee Login</h2><br>
 
+            <!-- Login Form -->
 			<form method="post" id="login-form" >
-                {% csrf_token %}
+                {% csrf_token %} <!-- Cross Site Request Forgery Protection -->
+
+                <!-- Username and Password Table -->
                 <table class="table" id="login-table">
-                    <tr>
+                    <tr> <!-- Username -->
                         <td><label for="id_username">Username</label></td>
                         <td><input id="id_username" name="username" type="text" class="form-control" required></td>
                     </tr>
-                    <tr>
+                    <tr> <!-- Password -->
                         <td><label for="id_password">Password</label></td>
                         <td><input id="id_password" name="password" type="password" class="form-control" required></td>
                     </tr>
                 </table>
 				
-                
-				
+                <!-- If Error --> 
 				{% if form.errors %}
-					<!-- label label-danger -->
+					<!-- Warning Message -->
                     <div class=" label label-danger alert alert-warning alert-dismissible fade show" role="alert">
+                        <!-- Text -->
                         <strong> Incorrect Username or Password. </strong> Please try again.
                     
+                        <!-- Exit Warning Message Button -->
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
 							<span aria-hidden="true">&times;</span>
 						</button>
-					</div>
-					
-					
-					
+					</div>					
                 {% endif %}
-				
-				
-				
+				<!-- End Error -->
+                
+                <!-- Login Button -->
 				<div>
 					<button type="submit" class="btn btn-outline-success my-2 my-sm-0">Login</button>
 				</div>
-            </form>
-						
+            </form>			
 		</div>
     </div>
 </div>

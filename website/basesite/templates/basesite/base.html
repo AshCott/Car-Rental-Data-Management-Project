@@ -31,34 +31,42 @@
           </form>
         </ul>
 
-		<!-- Login/Logout Button Logic --> 
+		<!-- User Validation --> 
 		
     {% if user.is_authenticated %} <!-- If User is Logged On --> 
     
-    
-    <img aref="/accounts/login/" src="/static/glyph-iconset-master/svg/si-glyph-person-2.svg" style="width:26px; height:26px; filter: invert(100%)" />
-    <font aref="/accounts/login/" class="ml-2" color="white">{{ user.username }}</font>
-    
-		
-      
-    <form class="form-inline my-2 my-lg-0 ml-2" action="/logout/">
-         <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
+      <!-- Username of Employee Logged On --> 
+      <form class="form-inline my-2 my-lg-0 ml-2">
+        <!-- Person Glyph --> 
+        <a href="/employee_home/">
+          <img class="image-responsive" src="/static/glyph-iconset-master/svg/si-glyph-person-2.svg" style="width:26px; height:26px; filter: invert(100%)" />
+        </a>
+        <!-- Username --> 
+        <a href="/employee_home/">
+          <font class="ml-2" color="white">{{ user.username }}</font>
+        </a>
+      </form>
+
+      <!-- Logout Button --> 
+      <form class="form-inline my-2 my-lg-0 ml-2" action="/logout/">
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
       </form>
 
 		{% else %} <!-- If User is Logged Off --> 
 
-		<form class="form-inline my-2 my-lg-0 ml-2" action="/accounts/login/" >
-      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
-    </form>
+      <!-- Login Button --> 
+		  <form class="form-inline my-2 my-lg-0 ml-2" action="/accounts/login/" >
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
+      </form>
 
 		{% endif %}
 
-		<!--  End Login/Logout Button Logic  -->
+		<!-- End User Validation --> 
       
-      <form class="form-inline my-2 my-lg-0 ml-2" action="/admin">
-        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Admin Login</button>
-      </form>
-      </div>
+    <form class="form-inline my-2 my-lg-0 ml-2" action="/admin">
+      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Admin Login</button>
+    </form>
+    </div>
     </nav>
 
     <!-- End navbar -->
