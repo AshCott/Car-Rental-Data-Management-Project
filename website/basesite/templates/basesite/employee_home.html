@@ -3,23 +3,56 @@
 
 {% block content %}
 
+<script>
+$(document).ready(function(){
+    $(".close").click(function(){
+        $("#myAlert").alert("close");
+    });
+});
+</script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<br><br><br>
+
 <main role="main" class="container center_div col-md-6 mb-4">
 	<div class="card indigo form-white">
         <div class="card-body">
 	
 			{% if user.is_authenticated %}
-				<br><br><br><br><br>
-				<h1 class="alert alert-success" role="alert">Hi Employee: {{ user.username }}!</h1>
+			
+				<div class="alert alert-success" role="alert">
+				<h4 class="alert-heading">Welcome <strong>{{ user.username }}! </strong></h4>
+				<p>"We are what we repeatedly do. Excellence then, is not an act, but a habit."</p>
+				<hr>
+				<p class="mb-0">-Aristotle</p>
+				</div>
+			
 				<p><a href="{% url 'logout' %}">logout</a></p>
+				
+				<div  method="post">
+					<button type="submit" class="btn btn-outline-success my-2 my-sm-0" href="{% url 'logout' %}">Logout</button>
+				</div>
+				
 			{% else %}
-				<p>You are not logged in</p>
+				
+				<div class=" label label-danger alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong> You are not logged in! </strong> Please login. 
+                    
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				
 				<a href="{% url 'login' %}">login</a>
+				
 			{% endif %}
 
 {% endblock %}
 
 
-<!-- Use this for Later -->
+<!-- Use this for Later taken from ws3 schools the goat website -->
 
 <!-- <div class="alert alert-success" role="alert"> -->
   <!-- <h4 class="alert-heading">Well done!</h4> -->

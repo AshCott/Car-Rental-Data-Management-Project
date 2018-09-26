@@ -26,33 +26,38 @@
           <li class="nav-item active">
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
-          <form class="form-inline my-2 my-lg-0" action='/search'>
+          <form class="form-inline my-2 my-lg-0" action="/search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Available Cars</button>
           </form>
         </ul>
 
 		<!-- Login/Logout Button Logic --> 
 		
-		{% if user.is_authenticated %}
-		<font color="white">{{ user.username }}</font>
-		<form class="form-inline my-2 my-lg-0" action='/logout/'>
-          <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
-        </form>
-
+    {% if user.is_authenticated %} <!-- If User is Logged On --> 
+    
+    
+    <img aref="/accounts/login/" src="/static/glyph-iconset-master/svg/si-glyph-person-2.svg" style="width:26px; height:26px; filter: invert(100%)" />
+    <font aref="/accounts/login/" class="ml-2" color="white">{{ user.username }}</font>
+    
 		
-		{% else %}
+      
+    <form class="form-inline my-2 my-lg-0 ml-2" action="/logout/">
+         <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
+      </form>
 
-		<font color="white">not logged on</font>
-		<form class="form-inline my-2 my-lg-0" action="/accounts/login/" >
-          <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
-        </form>
+		{% else %} <!-- If User is Logged Off --> 
+
+		<form class="form-inline my-2 my-lg-0 ml-2" action="/accounts/login/" >
+      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
+    </form>
+
 		{% endif %}
 
 		<!--  End Login/Logout Button Logic  -->
-		
-        <form class="form-inline my-2 my-lg-0" action='/admin'>
-          <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Admin Login</button>
-        </form>
+      
+      <form class="form-inline my-2 my-lg-0 ml-2" action="/admin">
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Admin Login</button>
+      </form>
       </div>
     </nav>
 
