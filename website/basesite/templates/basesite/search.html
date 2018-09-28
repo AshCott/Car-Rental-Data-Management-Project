@@ -20,7 +20,7 @@
             </div>
             <input type="text" id="carNAME" class="form-control" placeholder="Search cars..." aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button">Search</button>
+              <button class="btn btn-outline-secondary" type="button" id='searchbtn'>Search</button>
             </div>
           </div>
           <!-- below p tag is where the results are shown -->
@@ -52,29 +52,111 @@
 
           </table>
 
+          <button class="btn btn-outline-secondary" id='load'>Chart</button>
+
+          <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js'></script>
+          <!-- just using chartjs for now -->
+          <div id="canvas-holder">
+          		<canvas id="chart-area"></canvas>
+          </div>
+
           <!-- function to post input of text box to api endpoint and log results -->
           <script>
 
+          var myPie;
+
+          var pieconf = {
+          			type: 'pie',
+          			data: {
+          				datasets: [{
+          					data: [
+          						10,
+          						10,
+          						10,
+          						10,
+          						10,
+          					],
+          					backgroundColor: [
+          						'#ff0000', '#ff6600', '#FFCC00', '#CCFF00', '#33FF00', '#006600'
+          					],
+          					label: 'Test chart'
+          				}],
+          				labels: [
+          					'Red',
+          					'Orange',
+          					'Yellow',
+          					'Green',
+          					'Blue'
+          				]
+          			},
+          			options: {
+          				responsive: true
+          			}
+          };
+
+
+          window.onload = function(){
+            var context = document.getElementById('chart-area').getContext('2d');
+      			myPie = new Chart(context, pieconf);
+            myPie.update();
+            $("#canvas-holder").toggle();
+            $("#load").hide();
+          }
+
+          $('#load').click(function(){
+            $("#canvas-holder").toggle();
+          })
+
+          // Get a random color
+          function getRandomColor() {
+              var letters = '0123456789ABCDEF';
+              var color = '#';
+              for (var i = 0; i < 6; i++ ) {
+                  color += letters[Math.floor(Math.random() * 16)];
+              }
+              return color;
+          }
+
+
+          var counted = {};
           var datatable = undefined;
-          // Gets the results of the search from the api
+
+
+          // Gets the results of the search from the api and change things
           $(document).ready(function(){
-              $("button").click(function(){
+              $("#searchbtn").click(function(){
                   $.post("/api/search",
                   {
                     'search': $('#carNAME').val(),
                     'selected': $('#searchBy').val()
                   },
                   function(data, status){
+                      $("#load").show();
+                      counted = {};
                       if (datatable != undefined) {
                         datatable.destroy();
                       }
                       $("#results").text("");
                       // iterates over all results
                       data.items.forEach(function (item){
+                        if (!(item.name in Object.keys(counted))){
+                          // Add the number of cars by name to the counted object
+                          counted[item.name] = data.items.filter(single => single.name == item.name).length;
+                        }
                         $("#results").append(template(item));
                       });
                       $("#header").text(data.items.length + " results for " + $('#carNAME').val());
                       datatable = $('#resultsTable').DataTable();
+
+                      // Update the chart with the new data
+                      myPie.data.datasets[0].data = Object.values(counted);
+                      myPie.data.labels = Object.keys(counted);
+                      var colors = [];
+                      Object.values(counted).forEach(function(){
+                        colors.push(getRandomColor());
+                      })
+                      myPie.data.datasets[0].backgroundColor = colors;
+                      myPie.update();
                   });
               });
           });

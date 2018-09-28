@@ -26,34 +26,47 @@
           <li class="nav-item active">
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
-          <form class="form-inline my-2 my-lg-0" action='/search'>
+          <form class="form-inline my-2 my-lg-0" action="/search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Available Cars</button>
           </form>
         </ul>
 
-		<!-- Login/Logout Button Logic --> 
+		<!-- User Validation --> 
 		
-		{% if user.is_authenticated %}
-		<font color="white">{{ user.username }}</font>
-		<form class="form-inline my-2 my-lg-0" action='/logout/'>
-          <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
-        </form>
+    {% if user.is_authenticated %} <!-- If User is Logged On --> 
+    
+      <!-- Username of Employee Logged On --> 
+      <form class="form-inline my-2 my-lg-0 ml-2">
+        <!-- Person Glyph --> 
+        <a href="/employee_home/">
+          <img class="image-responsive" src="/static/glyph-iconset-master/svg/si-glyph-person-2.svg" style="width:26px; height:26px; filter: invert(100%)" />
+        </a>
+        <!-- Username --> 
+        <a href="/employee_home/">
+          <font class="ml-2" color="white">{{ user.username }}</font>
+        </a>
+      </form>
 
-		
-		{% else %}
+      <!-- Logout Button --> 
+      <form class="form-inline my-2 my-lg-0 ml-2" action="/logout/">
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
+      </form>
 
-		<font color="white">not logged on</font>
-		<form class="form-inline my-2 my-lg-0" action="/accounts/login/" >
-          <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
-        </form>
+		{% else %} <!-- If User is Logged Off --> 
+
+      <!-- Login Button --> 
+		  <form class="form-inline my-2 my-lg-0 ml-2" action="/accounts/login/" >
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
+      </form>
+
 		{% endif %}
 
-		<!--  End Login/Logout Button Logic  -->
-		
-        <form class="form-inline my-2 my-lg-0" action='/admin'>
-          <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Admin Login</button>
-        </form>
-      </div>
+		<!-- End User Validation --> 
+      
+    <form class="form-inline my-2 my-lg-0 ml-2" action="/admin">
+      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Admin Login</button>
+    </form>
+    </div>
     </nav>
 
     <!-- End navbar -->

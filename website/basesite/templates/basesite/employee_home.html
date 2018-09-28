@@ -1,41 +1,70 @@
+<!doctype html>
+
 {% extends "basesite/base.html" %}
 
-
+<!-- templates/basesite/employee_home.html -->
 {% block content %}
 
+<!-- Javascript-->
+<script>
+	// Closes Warning Alert when Clicked on
+	$(document).ready(function(){
+    	$(".close").click(function(){
+        	$("#myAlert").alert("close");
+    	});
+	});
+</script>
+
+<!--Older Bootstrap version used for Warning Message -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Whitespace -->
+<br><br><br>
+
+<!-- Main Content -->
 <main role="main" class="container center_div col-md-6 mb-4">
 	<div class="card indigo form-white">
         <div class="card-body">
 	
-			{% if user.is_authenticated %}
-				<br><br><br><br><br>
-				<h1 class="alert alert-success" role="alert">Hi Employee: {{ user.username }}!</h1>
-				<p><a href="{% url 'logout' %}">logout</a></p>
-			{% else %}
-				<p>You are not logged in</p>
-				<a href="{% url 'login' %}">login</a>
+			<!-- User Validation --> 
+
+			{% if user.is_authenticated %} <!-- If User is Logged On -->
+
+				<!-- Confirmation Message of User Verification -->
+				<div class="alert alert-success" role="alert">
+					<h4 class="alert-heading">Welcome <strong>{{ user.username }}! </strong></h4>
+					<p>"We are what we repeatedly do. Excellence then, is not an act, but a habit."</p>
+					<hr>
+					<p class="mb-0">-Aristotle</p>
+				</div>
+			
+				<!-- Logout Button -->
+				<form class="form-inline my-2 my-lg-0 ml-2" action="/logout/">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+				</form>
+
+			{% else %} <!-- If User is Logged Off -->
+				
+				<!-- Warning Message Asking User to Login -->
+				<div class=" label label-danger alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong> You are not logged in! </strong> Please login. 
+                    
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				
+				<!-- Login Button -->
+				<form class="form-inline my-2 my-lg-0 ml-2" action="/accounts/login/" >
+					<button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
+				</form>
+
 			{% endif %}
 
+			<!-- End User Validation --> 
+
+		</div>
+	</div>
+</main>
+
 {% endblock %}
-
-
-<!-- Use this for Later -->
-
-<!-- <div class="alert alert-success" role="alert"> -->
-  <!-- <h4 class="alert-heading">Well done!</h4> -->
-  <!-- <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p> -->
-  <!-- <hr> -->
-  <!-- <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p> -->
-<!-- </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
