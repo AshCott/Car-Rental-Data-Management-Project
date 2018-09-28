@@ -31,13 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'basesite',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'basesite', # Each app (in our case, the base website and API) can just be put in this
+    'django.contrib.staticfiles'#,
+    #'basesite', # Each app (in our case, the base website and API) can just be put in this
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,10 @@ LOGOUT_REDIRECT_URL = '/logout/'
 
 
 
+# Car Rental Company Email Used for User Creation Verification
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'carrentalcompany299@gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_PASSWORD = 'whatalegend247'
