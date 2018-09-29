@@ -134,11 +134,11 @@ LOGIN_REDIRECT_URL = '/employee_home/'
 LOGOUT_REDIRECT_URL = '/logout/'
 
 
-
 # Car Rental Company Email Used for User Creation Verification
+# Implemented using the smtplib module, found in the django.core.mail module
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'carrentalcompany299@gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD = 'whatalegend247'
+EMAIL_HOST = 'smtp.gmail.com' # Using gmail as the host
+EMAIL_HOST_USER = 'carrentalcompany299@gmail.com' # Company Email
+EMAIL_PORT = 587 
+EMAIL_HOST_PASSWORD = 'whatalegend247' # Company Email password

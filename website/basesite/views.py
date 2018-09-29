@@ -2,10 +2,6 @@ from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
-
-
-##################################################################
-
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
@@ -34,29 +30,26 @@ def employee_home(request):
     # Redirects logged in employee to their homepage
 
 
-
 def logout(request):
     auth.logout(request)
     return render(request, 'basesite/logout.html')
     # Redirects a logged out user to the Logout page
 
 
-################################################33
-
 def email_new_user(sender, **kwargs):
     if kwargs["created"]:  # only for new users
-        new_user = kwargs["instance"]
-        # send email to new_user.email ..
-
+        new_user = kwargs["instance"] # new_user variable contains currently submitted information
+        # create email strings
         subject = 'Welcome: ' + new_user.first_name + ' ' + new_user.last_name + '!'
-        message = 'Dear ' + new_user.first_name + ',\n\n' + 'Welcome to Car Rental Company!\n' + 'We are so excited to have you on board.\n' + '\nYour new username is: ' + new_user.username + '\n\nFor security purposes your new password has been encrypted. The character based password you created will not be sent via email for security purposes. Please remember the password that you have been given by the administrator. If it has been forgotten, contact an administrator and they will reset the password for you. \n\nWe are exited to work with you! \n\nRegards,\n\nThe Car Rental Company Admin Team'
-        CompanyEmail = 'carrentalcompany299@gmail.com'
-        EmployeeEmail = new_user.email
+        message = 'Dear ' + new_user.first_name + ',\n\n' + 'Welcome to Car Rental Company!\n' + 'We are so excited to have you on board.\n' + '\nYour new username is: ' + new_user.username + '\n\nFor security purposes your new password has been encrypted. The character based password you created will not be sent via email for security purposes. Please remember the password that you have been given by the administrator. If it has been forgotten, contact an administrator and they will reset the password for you. \n\nRegards,\n\nThe Car Rental Company Admin Team'
+        CompanyEmail = 'carrentalcompany299@gmail.com' # Company Email, defined by the SMTP host
+        EmployeeEmail = new_user.email # Extract entered user email
+        # send email to supplied email using send_mail function ..
         send_mail(subject, message, CompanyEmail, [EmployeeEmail,],fail_silently=False)
 
+# Use the post_save signal to execute the above function 
+# when the save button is pressed on the register form
 post_save.connect(email_new_user, sender=User)
-
-##########################################################
 
 
 def search(request):
