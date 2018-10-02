@@ -80,6 +80,27 @@ def car_details(request, id):
 def car_history(request):
     return render(request, 'basesite/carhistory.html')
 
+def car_percentage(request):
+    sample = {'uniqueCars': [
+    {'name': 'Alfa Romeo', 'perc': '1.75'},
+    {'name': 'Audi', 'perc': '5.59'},
+    {'name': 'BMW', 'perc': '17.48'},
+    {'name': 'Chrysler', 'perc': '4.90'},
+    {'name': 'Datson', 'perc': '0.70'},
+    {'name': 'Eunos', 'perc': '0.70'},
+    {'name': 'Honda', 'perc': '0.35'},
+    {'name': 'Land Rover', 'perc': '2.80'},
+    {'name': 'Mazda', 'perc': '13.64'},
+    {'name': 'Mercedes-Benz', 'perc': '1049'},
+    {'name': 'Mitsubishi', 'perc': '0.35'},
+    {'name': 'Nissan', 'perc': '2.80'},
+    {'name': 'Renault', 'perc': '6.99'},
+    {'name': 'Saab', 'perc': '6.99'},
+    {'name': 'Toyota', 'perc': '0.70'},
+    {'name': 'Volkswagen', 'perc': '15.03'},
+    {'name': 'Volvo', 'perc': '6.64'},
+    ]
+    }
 
 def recommendation(request):
     states = Store.objects.values('state').distinct()
