@@ -2,7 +2,7 @@ from selenium import webdriver
 from time import sleep
 
 #driver_path = 'C:\\Users\\35nig_000\\Downloads\\geckodriver-v0.22.0-win64\\geckodriver.exe' 
-driver_path = 'C:\\Users\\35nig_000\\Downloads\\chromedriver_win32\\chromedriver.exe'
+driver_path = '\drivers\\chromedriver.exe'
 
 driver = webdriver.Chrome(executable_path=driver_path)
 
