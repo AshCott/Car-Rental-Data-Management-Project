@@ -11,7 +11,7 @@ driver = webdriver.Chrome(executable_path=driver_path)
 driver.get('http://127.0.0.1:8000')
 
 # First test: Click search button
-search_link = driver.find_element_by_name('search')
+search_link = driver.find_element_by_name('Search')
 sleep(1)
 search_link.click()
 sleep(1)
