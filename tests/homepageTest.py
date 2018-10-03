@@ -21,4 +21,4 @@ sleep(1)
 assert 'Car Rental Company' in driver.title
 
 # Clean up
-driver.quit()
+#driver.quit()
