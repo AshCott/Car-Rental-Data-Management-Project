@@ -2,9 +2,9 @@ from selenium import webdriver
 from time import sleep
 from selenium.webdriver.common.keys import Keys
 
-#driver_path = 'C:\\Users\\35nig_000\\Downloads\\geckodriver-v0.22.0-win64\\geckodriver.exe' 
 driver_path = './\drivers\\chromedriver.exe'
 
+# Using the Chrome Web driver
 driver = webdriver.Chrome(executable_path=driver_path)
 
 # Get the home page of the site
@@ -15,7 +15,6 @@ search_link = driver.find_element_by_name('Search')
 sleep(1)
 search_link.click()
 sleep(1)
-#assert 'Car Rental Company' in driver.title
 
 # Second Test = Enter a car make into the search bar.
 searchBar = driver.find_element_by_id("carNAME")
