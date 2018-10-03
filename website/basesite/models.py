@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 
+# Store Information Table
 class Store(models.Model):
     STATE_CHOICES = [('QLD', 'Queensland'),
                      ('NSW', 'New South Wales'),
@@ -19,6 +20,7 @@ class Store(models.Model):
     state = models.CharField(choices=STATE_CHOICES, max_length=25)
 
 
+# Customer Information Table
 class Customer(models.Model):
     SEX_CHOICES = [('M', 'Male'),
                    ('F', 'Female')]
@@ -30,6 +32,7 @@ class Customer(models.Model):
     gender = models.CharField(choices=SEX_CHOICES, max_length=1)
 
 
+# Car Information Table
 class Car(models.Model):
     name = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
@@ -61,6 +64,7 @@ class Car(models.Model):
         pass
 
 
+# List of history of car rentals 
 class Order(models.Model):
     date = models.DateField()
     pickup_date = models.DateField()
@@ -70,8 +74,3 @@ class Order(models.Model):
     customerID = models.ForeignKey(Customer, on_delete=models.CASCADE)
     carID = models.ForeignKey(Car, on_delete=models.CASCADE)
     unavailable =  models.BooleanField(default=False)
-
-
-
-
-
