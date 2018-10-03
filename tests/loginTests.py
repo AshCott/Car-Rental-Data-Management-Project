@@ -58,7 +58,7 @@ except AssertionError:
 print("PASSED")
 sleep(1)
 
-print("Tests Passed:", str(2)+ "/" + str(2))
+print("Tests Passed:", str(2) + "/" + str(2))
 
 # Clean Up
 driver.quit()
