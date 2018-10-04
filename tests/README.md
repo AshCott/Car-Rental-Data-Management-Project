@@ -4,14 +4,14 @@
 
 https://selenium-python.readthedocs.io/installation.html
 
-### Download various drivers (starting with Chrome)
+### Download various drivers (starting with Chrome, add any more as required)
 
 Very important to note that using a different driver requires you to change both the driver_path and the driver init - needs to be webdriver.Chrome, webdriver.Firefox depending on specified browsers
 
 ### Change the driver_path variable
 
-Must be the path to the downloaded browser driver installed on your computer for this to work. Where this is actually downloaded depends on the person, so it can't be the same for everyone.
+The driver exe files are available in the drivers folder, and can be accessed using the string format './\\drivers\\(driver name).exe'. This can be changed as necessary if a different browser is being tested.
 
-### Base stuff off of the example - homepageTest.py
+### Base test cases off of the example - homepageTest.py
 
-The example is very basic but it does cover some core functionality needed to test other portions of the site. The docs also cover a similar example and goes more in depth with regards to functionality.
+The example is a basic test case but covers core features of the Selenium library. Further info is available in the docs above and should be used where necessary to ensure good tests.
