@@ -89,8 +89,8 @@ class Order(models.Model):
     unavailable =  models.BooleanField(default=False)
 
     # Helper method to convert object to Json
-    def JsonObject(self):
+    def JSonObject(self):
         data = {'date': self.date, 'pickup_date': self.pickup_date,
-        'pickup_store': self.pickup_store, 'return_store': self.return_store,
+        'pickup_store': self.pickup_store.name, 'return_store': self.return_store.name,
         'customerID': self.customerID, 'unavailable': self.unavailable}
         return data
