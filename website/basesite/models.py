@@ -69,7 +69,13 @@ class Car(models.Model):
     # Rental history of a specific car
     def history(self):
         results = Order.objects.filter(carID=self.id).order_by('-pickup_date')
-        return [result.JsonObject for result in results]
+        return [result.JSonObject() for result in results]
+
+    # Returns current store of the car
+    def currentStore(self):
+        results = Order.objects.filter(carID=self.id).order_by('-return_date')
+        return results[0].return_store.name
+
 
 # List of history of car rentals
 class Order(models.Model):
