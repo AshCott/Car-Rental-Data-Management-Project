@@ -18,6 +18,25 @@
 <!--Older Bootstrap version used for Warning Message -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<style>
+	#Customer_Info_Button {
+		background-color: DodgerBlue; /* Blue background */
+		border: none; /* Remove borders */
+		color: white; /* White text */
+		padding: 12px 16px; /* Some padding */
+		font-size: 16px; /* Set a font size */
+		cursor: pointer; /* Mouse pointer on hover */
+	}
+	
+	/* Darker background on mouse-over */
+	#Customer_Info_Button:hover {
+		background-color: RoyalBlue;
+	}
+
+</style>
+
+
+
 <!-- Whitespace -->
 <br><br><br>
 
@@ -37,7 +56,14 @@
 					<hr>
 					<p class="mb-0">-Aristotle</p>
 				</div>
-			
+				
+				<div class="btn" id="Customer_Info_Button">
+					<img class="image-responsive" src="/static/glyph-iconset-master/svg/si-glyph-person-public.svg" style="width:48px; height:48px;" />
+					<i class="fa fa-folder">Customer Information</i>
+				</div>
+				
+				<br><br>
+
 				<!-- Logout Button -->
 				<form class="form-inline my-2 my-lg-0 ml-2" action="/logout/">
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
