@@ -66,9 +66,13 @@ def search(request):
 def car_details(request, id):
     try:
         car = Car.objects.get(id=id)
+        car2 = Car.objects.filter(body_type = car.body_type).order_by('purchase_price')
+        recCar1 = Car.objects.get(id=car2[1].id)
+        recCar2 = Car.objects.get(id=car2[2].id)
+        recCar3 = Car.objects.get(id=car2[3].id)
     except Car.DoesNotExist:
             raise Http404('Vehicle not found')
-    return render(request, 'basesite/car_details.html', {'car': car})
+    return render(request, 'basesite/car_details.html', {'car': car, 'recCar1': recCar1, 'recCar2': recCar2, 'recCar3': recCar3})
 
 def car_history(request):
     return render(request, 'basesite/carhistory.html')

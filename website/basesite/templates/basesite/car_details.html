@@ -2,13 +2,18 @@
 {% block content %}
 <main role="main" class="container">
 
+<!-- Custom styles for this template -->
+<link href="/static/css/landing-page.min.css" rel="stylesheet">
+<!-- Custom fonts for this template -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
 <link href="/static/CSS/main.css" rel="stylesheet">
 <div>
     <br>
     <br>
     <br>
 
-     <center><img src="/static/images/logos/{{ car.name }}.jpg" alt="Car Logo" class="center"></center> 
+    <center><img src="/static/images/logos/{{ car.name }}.jpg" alt="Car Logo" class="center"></center> 
 
 <br>
 <center> <h2 class="display-2" face="Helvetica" >
@@ -67,7 +72,45 @@
         </tr>
     </tbody>
 </table>    
-<br>
-
 </div>
+
+<!-- Icons Grid -->
+<div class="features-icons bg-light text-center">
+  <div class="container card cardColour">
+    <h1 class="mb-5">Suggested Cars:</h1>
+    <div class="row">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <img src="/static/images/logos/{{recCar1.name}}.jpg" class="constrain">
+          </div>
+          <h3><a href="/car_details/{{recCar1.id}}">{{recCar1.year|capfirst}} {{ recCar1.name|title }} {{ recCar1.model|title }}</a>
+            <h3>
+              <p class="lead mb-0">{{ recCar1.seating_capacity|capfirst }}<br> {{ recCar1.drive|capfirst }} <br> {{ recCar1.body_type|title }} </p>
+        </div>
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <img src="/static/images/logos/{{recCar2.name}}.jpg" class="constrain">
+          </div>
+           <h3><a href="/car_details/{{recCar2.id}}">{{recCar2.year|capfirst}} {{ recCar2.name|title }} {{ recCar2.model|title }}</a>
+            <h3>
+              <p class="lead mb-0">{{ recCar2.seating_capacity|capfirst }}<br> {{ recCar2.drive|capfirst }} <br> {{ recCar2.body_type|title }} </p>
+        </div>
+        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <img src="/static/images/logos/{{recCar3.name}}.jpg" class="constrain">
+          </div>
+          <h3><a href="/car_details/{{recCar3.id}}">{{recCar3.year|capfirst}} {{ recCar3.name|title }} {{ recCar3.model|title }}</a>
+            <h3>
+              <p class="lead mb-0">{{ recCar3.seating_capacity|capfirst }}<br> {{ recCar3.drive|capfirst }} <br> {{ recCar3.body_type|title }} </p>
+        </div>
+    </div>
+    </div>
+</div>
+
+<footer class="footer bg-light">
+  <div class="text-center">
+    <p class="text-muted small mb-4 mb-lg-0">&copy; Car Rental Company 2018. All Rights Reserved.</p>
+  </div>
+</footer>
+
 {% endblock %}
