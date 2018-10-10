@@ -62,8 +62,12 @@ class Car(models.Model):
     # Currently only body type similarity
     def similar(self):
         results = Car.objects.filter(body_type__icontains=self.body_type)[:3]
-        return [result.JsonObject for result in results]
+        return [result.JSonObject() for result in results]
 
+    # Rental history of a specific car
+    def history(self):
+        results = Order.objects.filter(carID=self.id).order_by('-pickup_date')
+        return [result.JsonObject for result in results]
 
 # List of history of car rentals
 class Order(models.Model):
@@ -82,8 +86,3 @@ class Order(models.Model):
         'pickup_store': self.pickup_store, 'return_store': self.return_store,
         'customerID': self.customerID, 'unavailable': self.unavailable}
         return data
-
-    # Order history of single car in an array (by carID)
-    def history(self, id):
-        results = Order.objects.filter(carID=id).order_by('-pickup_date')
-        return [result.JsonObject for result in results]
