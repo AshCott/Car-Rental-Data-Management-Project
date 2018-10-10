@@ -2,49 +2,67 @@ from selenium import webdriver
 from time import sleep
 from selenium.webdriver.common.keys import Keys
 
-
 driver_path = './\drivers\\chromedriver.exe'
 
+# Using the Chrome Web driver
 driver = webdriver.Chrome(executable_path=driver_path)
 
 # Get the home page of the site
 driver.get('http://127.0.0.1:8000')
 
-# First test: Click search button
+# First test: Click Featured Car 1
+featuredCar = driver.find_element_by_name('featureCar1')
+sleep(1)
+featuredCar.click()
+sleep(1)
+
+# Navigate back to the homepage
+sleep(1)
+driver.get('http://127.0.0.1:8000')
+sleep(1)
+
+# Second Test: Click search button
 search_link = driver.find_element_by_name('Search')
 sleep(1)
 search_link.click()
 sleep(1)
-#assert 'Car Rental Company' in driver.title
 
-# Second Test = Enter a car make into the search bar.
+# Second Test: Enter a car make into the search bar.
 searchBar = driver.find_element_by_id("carNAME")
-searchBar.send_keys("BMW")
+searchBar.send_keys("mazda")
 sleep(1)
 
-# Third Test = Submit the search.
+# Third Test: Submit the search.
 enter = driver.find_element_by_id("searchbtn")
 sleep(1)
 enter.click()
 sleep(3)
 
-# Fourth Test = Search by model 
+# Fourth Test: Search by model
 modelSearch = driver.find_element_by_id("searchBy")
 modelSearch.click()
 sleep(1)
-modelenter = driver.find_element_by_name("model")
+modelenter = driver.find_element_by_name("series")
 modelenter.click()
 sleep(1)
 searchBar = driver.find_element_by_id("carNAME")
 searchBar.send_keys(Keys.BACKSPACE)
 searchBar.send_keys(Keys.BACKSPACE)
 searchBar.send_keys(Keys.BACKSPACE)
-searchBar.send_keys("X5")
+searchBar.send_keys(Keys.BACKSPACE)
+searchBar.send_keys(Keys.BACKSPACE)
+searchBar.send_keys("SHADES")
 enter = driver.find_element_by_id("searchbtn")
 sleep(1)
 enter.click()
-sleep(1)
+sleep(1) 
 
+# Select first name in the table
+table = driver.find_element_by_name("year")
+table.send_keys(Keys.TAB)
+sleep(1)
+currentElement = driver.switch_to_active_element()
+currentElement.click()
 
 # Clean up
 #driver.quit()

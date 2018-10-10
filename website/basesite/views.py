@@ -105,7 +105,6 @@ def recommendation(request):
     car_names = Car.objects.values('name').distinct()
     car_bodys = Car.objects.values('body_type').distinct()
     car_drives = Car.objects.values('drive').distinct()
-    print (car_names)
     #Note sure what this does???????
     form = request.POST # you seem to misinterpret the use of form from django and POST data. you should take a look at [Django with forms][1]
     # you can remove the preview assignment (form =request.POST)

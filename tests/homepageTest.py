@@ -1,7 +1,7 @@
 from selenium import webdriver
 from time import sleep
 
-driver_path = './\drivers\\chromedriver.exe'
+driver_path = './\\drivers\\chromedriver.exe'
 driver = webdriver.Chrome(executable_path=driver_path)
 
 def testLink(item):
