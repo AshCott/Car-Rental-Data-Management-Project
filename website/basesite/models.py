@@ -49,22 +49,27 @@ class Car(models.Model):
     drive = models.CharField(max_length=3)
     wheelbase = models.IntegerField()  # 2550mm - Numb only the mm is removed
 
-    # why does django have to make things a queryset, their api is so bad. just make it a dictionary instead of being special
+    # Queryset -> Json
     def JSonObject(self):
-        dump = {'id': self.id, 'name': self.name, 'model': self.model, 'series': self.series,
+        data = {'id': self.id, 'name': self.name, 'model': self.model, 'series': self.series,
         'year': self.year, 'purchase_price': self.purchase_price, 'engine_size': self.engine_size,
         'fuel_system': self.fuel_system, 'tank_capacity': self.tank_capacity,
         'power': self.power, 'seating_capacity': self.seating_capacity,
         'transmission': self.transmission, 'body_type': self.body_type,
         'drive': self.drive, 'wheelbase': self.wheelbase}
-        return dump
+        return data
 
-    # we can just add in recommended similar cars here. search based on some characteristics of current car (eg self.year, self.purchase_price, self.seating_capacity etc)
+    # Currently only body type similarity
     def similar(self):
-        pass
+        results = Car.objects.filter(body_type__icontains=self.body_type)[:3]
+        return [result.JSonObject() for result in results]
 
+    # Rental history of a specific car
+    def history(self):
+        results = Order.objects.filter(carID=self.id).order_by('-pickup_date')
+        return [result.JsonObject for result in results]
 
-# List of history of car rentals 
+# List of history of car rentals
 class Order(models.Model):
     date = models.DateField()
     pickup_date = models.DateField()
@@ -74,3 +79,10 @@ class Order(models.Model):
     customerID = models.ForeignKey(Customer, on_delete=models.CASCADE)
     carID = models.ForeignKey(Car, on_delete=models.CASCADE)
     unavailable =  models.BooleanField(default=False)
+
+    # Helper method to convert object to Json
+    def JsonObject(self):
+        data = {'date': self.date, 'pickup_date': self.pickup_date,
+        'pickup_store': self.pickup_store, 'return_store': self.return_store,
+        'customerID': self.customerID, 'unavailable': self.unavailable}
+        return data
