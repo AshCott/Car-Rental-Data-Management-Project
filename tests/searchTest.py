@@ -2,7 +2,6 @@ from selenium import webdriver
 from time import sleep
 from selenium.webdriver.common.keys import Keys
 
-#driver_path = 'C:\\Users\\35nig_000\\Downloads\\geckodriver-v0.22.0-win64\\geckodriver.exe' 
 driver_path = './\drivers\\chromedriver.exe'
 
 driver = webdriver.Chrome(executable_path=driver_path)
@@ -28,7 +27,7 @@ sleep(1)
 enter.click()
 sleep(3)
 
-# Fourth Test = Search by model
+# Fourth Test = Search by model 
 modelSearch = driver.find_element_by_id("searchBy")
 modelSearch.click()
 sleep(1)
