@@ -8,6 +8,20 @@
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
 <link href="/static/CSS/main.css" rel="stylesheet">
+
+<script>
+function toggleHistory(id){
+  $(document).ready(function(){
+      // Toggle rental history div
+      $(id).toggle(10);
+      // Toggle button text
+      $('#history').text(function(i, txt){
+        return txt === "Show Rental History" ? "Collapse Rental History" : "Show Rental History";
+      })
+  });
+};
+</script>
+
 <div>
     <br>
     <br>
@@ -75,21 +89,24 @@
 
 <!-- Rental History of each car: currently available to all. Will change to login only after review -->
 <!-- Note: Django templating will not ignore commented commands. -->
-<center><h2 class="display-2" face="Helvetica">Rental History</h2></center>
-<table class="table table-striped">
-
-    <tbody>
-        {% for order in history %}
-        <tr>
-            <td>Pick up from {{order.pickup_store.name}} on {{order.pickup_date}}</td>
-            <td>Dropped off at {{order.return_store.name}} on {{order.return_date}}</td>
-            <td>Customer: {{order.customerID.name}}</td>
-        </tr>
-        {% endfor %}
-
-
-    </tbody>
-</table>
+<center>
+<button class="btn btn-outline-secondary" type="button" id='history' onclick='toggleHistory("#rentalHistory")'>Show Rental History</button>
+</center>
+<!-- Div class to make section collapse by default. Click button to show -->
+  <div id="rentalHistory" class="accordion-body collapse">
+    <center><h2 class="display-2" face="Helvetica">Rental History</h2></center>
+    <table class="table table-striped">
+        <tbody>
+            {% for order in history %}
+            <tr>
+                <td>Pick up from {{order.pickup_store.name}} on {{order.pickup_date}}</td>
+                <td>Dropped off at {{order.return_store.name}} on {{order.return_date}}</td>
+                <td>Customer: {{order.customerID.name}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Icons Grid -->
