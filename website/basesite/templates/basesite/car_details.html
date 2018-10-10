@@ -89,6 +89,7 @@ function toggleHistory(id){
 
 <!-- Rental History of each car: currently available to all. Will change to login only after review -->
 <!-- Note: Django templating will not ignore commented commands. -->
+{% if user.is_authenticated %}
 <center>
 <button class="btn btn-outline-secondary" type="button" id='history' onclick='toggleHistory("#rentalHistory")'>Show Rental History</button>
 </center>
@@ -108,6 +109,7 @@ function toggleHistory(id){
     </table>
   </div>
 </div>
+{% endif %}
 
 <!-- Icons Grid -->
 <div class="features-icons bg-light text-center">
