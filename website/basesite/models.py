@@ -66,10 +66,10 @@ class Car(models.Model):
         results = Car.objects.filter(body_type__icontains=self.body_type)[:3]
         return [result.JSonObject() for result in results]
 
-    # Rental history of a specific car
+    # Rental history of a specific car. Returns queryset to be used on car_details page
     def history(self):
         results = Order.objects.filter(carID=self.id).order_by('-pickup_date')
-        return [result.JSonObject() for result in results]
+        return results
 
     # Returns current store of the car
     def currentStore(self):
@@ -89,8 +89,8 @@ class Order(models.Model):
     unavailable =  models.BooleanField(default=False)
 
     # Helper method to convert object to Json
-    def JsonObject(self):
+    def JSonObject(self):
         data = {'date': self.date, 'pickup_date': self.pickup_date,
-        'pickup_store': self.pickup_store, 'return_store': self.return_store,
+        'pickup_store': self.pickup_store.name, 'return_store': self.return_store.name,
         'customerID': self.customerID, 'unavailable': self.unavailable}
         return data

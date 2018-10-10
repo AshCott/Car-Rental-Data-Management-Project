@@ -37,4 +37,6 @@ def search(request):
         return JsonResponse({'val': 'failed'})
     # list comprehensions are fun
     resp = {'items': [item.JSonObject() for item in car]}
+    for item in car:
+        print(item.history())
     return JsonResponse(resp)

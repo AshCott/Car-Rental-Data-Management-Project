@@ -47,7 +47,7 @@ def email_new_user(sender, **kwargs):
         # send email to supplied email using send_mail function ..
         send_mail(subject, message, CompanyEmail, [EmployeeEmail,],fail_silently=False)
 
-# Use the post_save signal to execute the above function 
+# Use the post_save signal to execute the above function
 # when the save button is pressed on the register form
 post_save.connect(email_new_user, sender=User)
 
@@ -72,7 +72,9 @@ def car_details(request, id):
         recCar3 = Car.objects.get(id=car2[3].id)
     except Car.DoesNotExist:
             raise Http404('Vehicle not found')
-    return render(request, 'basesite/car_details.html', {'car': car, 'recCar1': recCar1, 'recCar2': recCar2, 'recCar3': recCar3})
+    # Pass car history as well
+    res = car.history()
+    return render(request, 'basesite/car_details.html', {'car': car, 'history': res, 'recCar1': recCar1, 'recCar2': recCar2, 'recCar3': recCar3})
 
 def car_history(request):
     return render(request, 'basesite/carhistory.html')
@@ -113,8 +115,8 @@ def recommendation(request):
         # get the user you want (connect for example) in the var "user"
         user.item = selected_item
         user.save()
-    
+
     # Then, do a redirect for example
-    
+
     return render(request, 'basesite/recommendation.html', {'states': states, 'cities': cities, 'car_names': car_names, 'car_drives': car_drives, 'car_bodys': car_bodys})
     # Redirects logged in employee to their homepage
