@@ -66,7 +66,7 @@ def search(request):
 def car_details(request, id):
     try:
         car = Car.objects.get(id=id)
-        car2 = Car.objects.filter(body_type = car.body_type).order_by('purchase_price')
+        car2 = Car.objects.filter(drive = car.drive).order_by('?')
         recCar1 = Car.objects.get(id=car2[1].id)
         recCar2 = Car.objects.get(id=car2[2].id)
         recCar3 = Car.objects.get(id=car2[3].id)
