@@ -55,11 +55,12 @@
           <center>
             <button class="btn btn-outline-secondary" id='load'>Chart</button>
           </center>
-          
+
           <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js'></script>
           <!-- just using chartjs for now -->
           <div id="canvas-holder">
           		<canvas id="chart-area"></canvas>
+              <button class="btn btn-outline-secondary" id='swap'>Swap to bar</button>
           </div>
 
           <!-- function to post input of text box to api endpoint and log results -->
@@ -67,7 +68,21 @@
 
           // Init chart variables
           var myPie;
-          var pieconf = {
+          var barOptions = {
+            responsive: true,
+            scales: {
+              xAxis: [{gridLines: {
+                display: false
+              }}],
+              yAxis: [{gridLines: {
+                display: false
+              }}]
+            }
+          };
+          var pieOptions = {
+            responsive: true,
+          }
+          var conf = {
           			type: 'pie',
           			data: {
           				datasets: [{
@@ -93,14 +108,18 @@
           					'Blue'
           				]
           			},
-          			options: {
-          				responsive: true
-          			}
+          			options: pieOptions
           };
+
+          function initChart(){
+            var context = document.getElementById('chart-area').getContext('2d');
+      			myPie = new Chart(context, conf);
+            myPie.update();
+          }
 
           window.onload = function(){
             var context = document.getElementById('chart-area').getContext('2d');
-      			myPie = new Chart(context, pieconf);
+      			myPie = new Chart(context, conf);
             myPie.update();
             $("#canvas-holder").toggle();
             $("#load").hide();
@@ -108,6 +127,23 @@
 
           $('#load').click(function(){
             $("#canvas-holder").toggle();
+          })
+
+          $('#swap').click(function(){
+            var swapto;// = (this.text == 'bar') ? 'pie' : 'bar';
+            $('#swap').text(function(i, txt){
+              swapto = txt == "Swap to bar" ? "bar" : "pie";
+              return txt == "Swap to bar" ? "Swap to pie" : "Swap to bar";
+            })
+            conf.type = swapto;
+            if (swapto == 'bar'){
+              conf.options = barOptions;
+            }
+            else{
+              conf.options = pieOptions;
+            }
+            myPie.destroy();
+            initChart();
           })
 
           // Counted holds chart labels in an array
