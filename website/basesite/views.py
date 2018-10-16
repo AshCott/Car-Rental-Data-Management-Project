@@ -70,6 +70,13 @@ def car_details(request, id):
         recCar1 = Car.objects.get(id=car2[1].id)
         recCar2 = Car.objects.get(id=car2[2].id)
         recCar3 = Car.objects.get(id=car2[3].id)
+        if (recCar1.id == car.id)
+            recCar1 = Car.objects.get(id=car2[4.id)
+        elif (recCar2.id == car.id)
+            recCar2 = Car.objects.get(id=car2[4].id)
+        elif (recCar2.id == car.id)
+            recCar3 = Car.objects.get(id=car2[4].id)
+            
     except Car.DoesNotExist:
             raise Http404('Vehicle not found')
     # Pass car history as well
