@@ -2,6 +2,15 @@
 {% block content %}
 <h1>pointless header</h1>
 
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+    <script type="text/javascript" src="http://www.appelsiini.net/projects/chained/jquery.chained.js?v=0.9.10"></script>
+    <script src="script.js"></script>
+  </head>
+
 <div class=" container center_div col-md-6 mb-4">
   <div class="card">
     <div class="card-header">
@@ -12,11 +21,11 @@
 <h3>{{ store.id|capfirst }}</h3>
 {% endfor %} -->
 
-      <form class="form-horizontal">
+      <form class="form-horizontal" action="/recommended_car/" method='GET'>
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Car Recomendation</legend>
+          <legend>Car Recommendation</legend>
 
           <!-- Select Basic -->
           <div class="form-group" align="left">
@@ -38,7 +47,7 @@
               <select id="select_city" name="select_city" class="form-control">
                 <option value="" selected disabled hidden>--Select City--</option>
                 {% for city in cities %}
-                <option value="{{ city.city }}">{{ city.city }}</option>
+                <option value="{{ city.city }}" class="{{ city.state }}">{{ city.city }}</option>
                 {% endfor %}
               </select>
             </div>
