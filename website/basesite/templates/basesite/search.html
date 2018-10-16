@@ -53,14 +53,14 @@
           </table>
 
           <center>
-            <button class="btn btn-outline-secondary" id='load'>Chart</button>
+            <button class="btn btn-outline-secondary" id='load'>Show result chart</button>
           </center>
 
           <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js'></script>
           <!-- just using chartjs for now -->
           <div id="canvas-holder">
           		<canvas id="chart-area"></canvas>
-              <button class="btn btn-outline-secondary" id='swap'>Swap to bar</button>
+              <center><button class="btn btn-outline-secondary" id='swap'>Swap to bar</button></center>
           </div>
 
           <!-- function to post input of text box to api endpoint and log results -->
@@ -70,6 +70,9 @@
           var myPie;
           var barOptions = {
             responsive: true,
+            legend:{
+              display: false
+            },
             scales: {
               xAxis: [{gridLines: {
                 display: false
@@ -81,6 +84,9 @@
           };
           var pieOptions = {
             responsive: true,
+            legend:{
+              display:true
+            }
           }
           var conf = {
           			type: 'pie',
