@@ -7,10 +7,13 @@ from django.http import HttpResponse
 from django.http import Http404
 from .models import Car
 from .models import Store
+from .models import Order
 from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
+from django.template import RequestContext
+
 
 
 
@@ -114,7 +117,7 @@ def car_percentage(request):
 
 def recommendation(request):
     states = Store.objects.values('state').distinct()
-    cities = Store.objects.values('city').distinct()
+    cities = Store.objects.values('city', 'state').distinct()
     car_names = Car.objects.values('name').distinct()
     car_bodys = Car.objects.values('body_type').distinct()
     car_drives = Car.objects.values('drive').distinct()
@@ -131,3 +134,24 @@ def recommendation(request):
 
     return render(request, 'basesite/recommendation.html', {'states': states, 'cities': cities, 'car_names': car_names, 'car_drives': car_drives, 'car_bodys': car_bodys})
     # Redirects logged in employee to their homepage
+
+def recommended_car(request):
+    carID = []
+    state = request.GET.get('select_state')
+    city =  request.GET.get('select_city')
+
+    store_ids = Store.objects.filter(state=state, city=city)
+    print (store_ids[0].city)
+    print (store_ids[0].id)
+    car_ids = Order.objects.filter(return_store_id=store_ids[0].id)
+    for i in car_ids:
+        carID.append(i.carID_id)
+    print (carID)
+    cars = Car.objects.filter(id__in=carID)
+    for a in cars:
+        print (a.model)
+
+
+
+
+    return render(request, 'basesite/recommended_car.html', {'cars': cars})
