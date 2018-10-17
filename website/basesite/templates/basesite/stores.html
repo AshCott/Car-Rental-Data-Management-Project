@@ -16,8 +16,8 @@
         <tbody>
             {% for store in stores %}
             <tr>
-                <td>Location: <a href="/store/{{store.id}}/">{{store.name}}, {{store.state}}</a></td>
-                <td>Address: {{store.address}}</td>
+                <td><strong>Location:</strong> <a href="/store/{{store.id}}/">{{store.name}}, {{store.state}}</a></td>
+                <td><strong>Address:</strong> {{store.address}}</td>
             </tr>
             {% endfor %}
         </tbody>
