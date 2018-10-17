@@ -150,8 +150,4 @@ def recommended_car(request):
     cars = Car.objects.filter(id__in=carID)
     for a in cars:
         print (a.model)
-
-
-
-
     return render(request, 'basesite/recommended_car.html', {'cars': cars})
