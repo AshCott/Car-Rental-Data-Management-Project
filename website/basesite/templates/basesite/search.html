@@ -52,8 +52,10 @@
 
           </table>
 
-          <button class="btn btn-outline-secondary" id='load'>Chart</button>
-
+          <center>
+            <button class="btn btn-outline-secondary" id='load'>Chart</button>
+          </center>
+          
           <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js'></script>
           <!-- just using chartjs for now -->
           <div id="canvas-holder">
@@ -63,8 +65,8 @@
           <!-- function to post input of text box to api endpoint and log results -->
           <script>
 
+          // Init chart variables
           var myPie;
-
           var pieconf = {
           			type: 'pie',
           			data: {
@@ -77,7 +79,9 @@
           						10,
           					],
           					backgroundColor: [
-          						'#ff0000', '#ff6600', '#FFCC00', '#CCFF00', '#33FF00', '#006600'
+          						"#C0392B", "#9B59B6", "#3498DB", "#27AE60", "#1ABC9C", "#8E44AD",
+                      "#2980B9", "#E74C3C", "#2ECC71", "#F1C40F", "#16A085", "#F39C12",
+                      "#E67E22", "#D35400"
           					],
           					label: 'Test chart'
           				}],
@@ -94,7 +98,6 @@
           			}
           };
 
-
           window.onload = function(){
             var context = document.getElementById('chart-area').getContext('2d');
       			myPie = new Chart(context, pieconf);
@@ -107,17 +110,7 @@
             $("#canvas-holder").toggle();
           })
 
-          // Get a random color
-          function getRandomColor() {
-              var letters = '0123456789ABCDEF';
-              var color = '#';
-              for (var i = 0; i < 6; i++ ) {
-                  color += letters[Math.floor(Math.random() * 16)];
-              }
-              return color;
-          }
-
-
+          // Counted holds chart labels in an array
           var counted = {};
           var datatable = undefined;
 
@@ -150,11 +143,6 @@
                       // Update the chart with the new data
                       myPie.data.datasets[0].data = Object.values(counted);
                       myPie.data.labels = Object.keys(counted);
-                      var colors = [];
-                      Object.values(counted).forEach(function(){
-                        colors.push(getRandomColor());
-                      })
-                      myPie.data.datasets[0].backgroundColor = colors;
                       myPie.update();
                   });
               });

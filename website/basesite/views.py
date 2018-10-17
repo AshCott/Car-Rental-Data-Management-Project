@@ -69,10 +69,21 @@ def search(request):
 def car_details(request, id):
     try:
         car = Car.objects.get(id=id)
-        car2 = Car.objects.filter(body_type = car.body_type).order_by('purchase_price')
-        recCar1 = Car.objects.get(id=car2[1].id)
-        recCar2 = Car.objects.get(id=car2[2].id)
-        recCar3 = Car.objects.get(id=car2[3].id)
+        car2 = Car.objects.filter(drive = car.drive).order_by('?')
+        car3 = Car.objects.filter(body_type = car.body_type).order_by('?')
+        car4 = Car.objects.filter(seating_capacity = car.seating_capacity).order_by('?')
+
+        recCar1 = Car.objects.get(id=car2[0].id)
+        recCar2 = Car.objects.get(id=car3[0].id)
+        recCar3 = Car.objects.get(id=car4[0].id)
+
+        if recCar1.id == car.id:
+            recCar1 = Car.objects.get(id=car2[1].id)
+        elif (recCar2.id == car.id):
+            recCar2 = Car.objects.get(id=car3[1].id)
+        elif (recCar2.id == car.id):
+            recCar3 = Car.objects.get(id=car2[2].id)
+
     except Car.DoesNotExist:
             raise Http404('Vehicle not found')
     # Pass car history as well
