@@ -152,11 +152,9 @@ def recommended_car(request):
         print (a.model)
     return render(request, 'basesite/recommended_car.html', {'cars': cars})
 
+# Display customer information and rental history method
 def customer(request, id):
     customer = Customer.objects.get(id=id)
     history = Order.objects.filter(customerID=id)
-    for i in history:
-        print(i.carID)
-    print("Address", customer.address)
     return render(request, 'basesite/customer.html', {'customer':customer, 'history':history})
 
