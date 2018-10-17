@@ -128,3 +128,7 @@ def recommendation(request):
 
     return render(request, 'basesite/recommendation.html', {'states': states, 'cities': cities, 'car_names': car_names, 'car_drives': car_drives, 'car_bodys': car_bodys})
     # Redirects logged in employee to their homepage
+
+def stores(request):
+    stores = Store.objects.all();
+    return render(request, 'basesite/stores.html',{'stores': stores})
