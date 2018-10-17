@@ -9,5 +9,6 @@ url('logout/', views.logout, name='logout'), # redirects employee to the logout 
 url('car_details/(\d+)', views.car_details, name='car_details'), # search url, shows on localhost:8000/car_details/
 url('car_history/',views.car_history, name='car_history'),
 url('recommendation/', views.recommendation, name='recommendation'), # search url, shows on localhost:8000/search/
-url('stores/', views.stores, name='stores')
+url('stores/', views.stores, name='stores'),
+url('store/(\d+)', views.store, name='store')
 ]

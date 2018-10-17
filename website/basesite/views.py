@@ -130,5 +130,9 @@ def recommendation(request):
     # Redirects logged in employee to their homepage
 
 def stores(request):
-    stores = Store.objects.all();
+    stores = Store.objects.all()
     return render(request, 'basesite/stores.html',{'stores': stores})
+
+def store(request, id):
+    store = Store.objects.get(id=id)
+    return render(request, 'basesite/store.html', {'store': store})

@@ -11,15 +11,14 @@
 <br><br>
 <!-- Div class to make section collapse by default. Click button to show -->
   <div id="stores">
-    <center><h2 class="display-2" face="Helvetica">Stores</h2></center>
+    <center><h2 class="display-2" face="Helvetica">{{store.name}}</h2></center>
     <table class="table table-striped">
         <tbody>
-            {% for store in stores %}
             <tr>
-                <td>Location: <a href="/store/{{store.id}}/">{{store.name}}, {{store.state}}</a></td>
-                <td>Address: {{store.address}}</td>
+              <td>Location: {{store.name}}, {{store.state}}</td>
+              <td>Address: {{store.address}}</td>
+              <td>Phone Number: {{store.phone}}</td>
             </tr>
-            {% endfor %}
         </tbody>
     </table>
   </div>
