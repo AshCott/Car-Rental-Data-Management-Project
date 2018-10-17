@@ -7,10 +7,14 @@ from django.http import HttpResponse
 from django.http import Http404
 from .models import Car
 from .models import Store
+from .models import Order
+from .models import Customer
 from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
+from django.template import RequestContext
+
 
 
 
@@ -67,16 +71,19 @@ def car_details(request, id):
     try:
         car = Car.objects.get(id=id)
         car2 = Car.objects.filter(drive = car.drive).order_by('?')
-        recCar1 = Car.objects.get(id=car2[1].id)
-        recCar2 = Car.objects.get(id=car2[2].id)
-        recCar3 = Car.objects.get(id=car2[3].id)
+        car3 = Car.objects.filter(body_type = car.body_type).order_by('?')
+        car4 = Car.objects.filter(seating_capacity = car.seating_capacity).order_by('?')
+
+        recCar1 = Car.objects.get(id=car2[0].id)
+        recCar2 = Car.objects.get(id=car3[0].id)
+        recCar3 = Car.objects.get(id=car4[0].id)
 
         if recCar1.id == car.id:
-            recCar1 = Car.objects.get(id=car2[4].id)
+            recCar1 = Car.objects.get(id=car2[1].id)
         elif (recCar2.id == car.id):
-            recCar2 = Car.objects.get(id=car2[4].id)
+            recCar2 = Car.objects.get(id=car3[1].id)
         elif (recCar2.id == car.id):
-            recCar3 = Car.objects.get(id=car2[4].id)
+            recCar3 = Car.objects.get(id=car2[2].id)
 
     except Car.DoesNotExist:
             raise Http404('Vehicle not found')
@@ -111,7 +118,7 @@ def car_percentage(request):
 
 def recommendation(request):
     states = Store.objects.values('state').distinct()
-    cities = Store.objects.values('city').distinct()
+    cities = Store.objects.values('city', 'state').distinct()
     car_names = Car.objects.values('name').distinct()
     car_bodys = Car.objects.values('body_type').distinct()
     car_drives = Car.objects.values('drive').distinct()
@@ -128,3 +135,26 @@ def recommendation(request):
 
     return render(request, 'basesite/recommendation.html', {'states': states, 'cities': cities, 'car_names': car_names, 'car_drives': car_drives, 'car_bodys': car_bodys})
     # Redirects logged in employee to their homepage
+
+def recommended_car(request):
+    carID = []
+    state = request.GET.get('select_state')
+    city =  request.GET.get('select_city')
+    store_ids = Store.objects.filter(state=state, city=city)
+    print (store_ids[0].city)
+    print (store_ids[0].id)
+    car_ids = Order.objects.filter(return_store_id=store_ids[0].id)
+    for i in car_ids:
+        carID.append(i.carID_id)
+    print (carID)
+    cars = Car.objects.filter(id__in=carID)
+    for a in cars:
+        print (a.model)
+    return render(request, 'basesite/recommended_car.html', {'cars': cars})
+
+# Display customer information and rental history method
+def customer(request, id):
+    customer = Customer.objects.get(id=id)
+    history = Order.objects.filter(customerID=id)
+    return render(request, 'basesite/customer.html', {'customer':customer, 'history':history})
+
