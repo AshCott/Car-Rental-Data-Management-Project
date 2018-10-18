@@ -71,7 +71,7 @@ function toggleHistory(id){
         <tbody>
             {% for order in history %}
             <tr>
-                <td><a href="http://localhost:8000/car_details/{{ order.carID.id }}">{{order.carID.year}} {{order.carID.name}} {{order.carID.model}}</a></td>
+                <td><a href="/car_details/{{ order.carID.id }}">{{order.carID.year}} {{order.carID.name}} {{order.carID.model}}</a></td>
                 <td>Pick up from {{order.pickup_store.name}} on {{order.pickup_date}}</td>
                 <td>Dropped off at {{order.return_store.name}} on {{order.return_date}}</td>
             </tr>

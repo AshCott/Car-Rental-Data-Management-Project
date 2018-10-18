@@ -102,7 +102,7 @@ function toggleHistory(id){
             <tr>
                 <td>Pick up from {{order.pickup_store.name}} on {{order.pickup_date}}</td>
                 <td>Dropped off at {{order.return_store.name}} on {{order.return_date}}</td>
-                <td>Customer: <a href="http://localhost:8000/customer/{{ order.customerID.id }}">{{order.customerID.name}}</a></td>
+                <td>Customer: <a href="/customer/{{ order.customerID.id }}">{{order.customerID.name}}</a></td>
             </tr>
             {% endfor %}
         </tbody>
