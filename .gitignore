@@ -1,6 +1,4 @@
 # Ignore settings.py directory and pycache
 __pycache__/
 *.pyc
-settings.py
-website/website/settings.py
 .vscode
