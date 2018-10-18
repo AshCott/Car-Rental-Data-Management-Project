@@ -135,4 +135,6 @@ def stores(request):
 
 def store(request, id):
     store = Store.objects.get(id=id)
-    return render(request, 'basesite/store.html', {'store': store})
+    # Have to get all cars, then filter on html page
+    currentCars = Car.objects.all()
+    return render(request, 'basesite/store.html', {'store': store, 'cars': currentCars})

@@ -22,6 +22,27 @@
         </tbody>
     </table>
   </div>
+
+  <!-- Current cars at store -->
+  <br>
+
+  <div id="cars">
+    <center><h3 class="display-3" face="Helvetica">Available cars</h3></center>
+    <table class="table table-striped">
+        <tbody>
+            {% for car in cars %}
+              {% if car.currentStore == store.name %}
+                <tr>
+                  <td><a href="/car_details/{{car.id}}">{{car.year}} {{car.name}} {{car.model}}</a></td>
+                  <td>{{car.series}}</td>
+                  <td>{{car.drive}}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+
 </div>
 
 <footer class="footer bg-light">
