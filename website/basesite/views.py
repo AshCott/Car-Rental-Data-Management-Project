@@ -63,6 +63,10 @@ def search(request):
 
     return render(request, 'basesite/search.html', sample)
 
+def customers(request):
+    return render(request, 'basesite/customers.html')
+    # View Customers page
+
 def car_details(request, id):
     try:
         car = Car.objects.get(id=id)
