@@ -157,7 +157,7 @@ def customer(request, id):
     customer = Customer.objects.get(id=id)
     history = Order.objects.filter(customerID=id)
     return render(request, 'basesite/customer.html', {'customer':customer, 'history':history})
-    
+
 def stores(request):
     stores = Store.objects.all()
     return render(request, 'basesite/stores.html',{'stores': stores})
