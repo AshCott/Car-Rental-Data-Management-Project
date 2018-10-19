@@ -8,6 +8,7 @@ from django.http import Http404
 from .models import Car
 from .models import Store
 from .models import Order
+from .models import Customer
 from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.decorators import login_required
@@ -139,7 +140,6 @@ def recommended_car(request):
     carID = []
     state = request.GET.get('select_state')
     city =  request.GET.get('select_city')
-
     store_ids = Store.objects.filter(state=state, city=city)
     print (store_ids[0].city)
     print (store_ids[0].id)
@@ -151,3 +151,19 @@ def recommended_car(request):
     for a in cars:
         print (a.model)
     return render(request, 'basesite/recommended_car.html', {'cars': cars})
+
+# Display customer information and rental history method
+def customer(request, id):
+    customer = Customer.objects.get(id=id)
+    history = Order.objects.filter(customerID=id)
+    return render(request, 'basesite/customer.html', {'customer':customer, 'history':history})
+
+def stores(request):
+    stores = Store.objects.all()
+    return render(request, 'basesite/stores.html',{'stores': stores})
+
+def store(request, id):
+    store = Store.objects.get(id=id)
+    # Have to get all cars, then filter on html page
+    currentCars = Car.objects.all()
+    return render(request, 'basesite/store.html', {'store': store, 'cars': currentCars})
