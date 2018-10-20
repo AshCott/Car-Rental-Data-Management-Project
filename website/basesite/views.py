@@ -63,8 +63,8 @@ def search(request):
 
     return render(request, 'basesite/search.html', sample)
 
-def customers(request):
-    return render(request, 'basesite/customers.html')
+def customer(request):
+    return render(request, 'basesite/customer.html')
     # View Customers page
 
 def car_details(request, id):

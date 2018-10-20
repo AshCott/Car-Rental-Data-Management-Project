@@ -11,5 +11,5 @@ url('car_history/',views.car_history, name='car_history'),
 url('recommendation/', views.recommendation, name='recommendation'), # search url, shows on localhost:8000/search/
 url('stores/', views.stores, name='stores'),
 url('store/(\d+)', views.store, name='store'),
-url('customers/', views.customers, name='customers') # customers url, shows on localhost:8000/customers/
+url('customer/', views.customer, name='customer') # customers url, shows on localhost:8000/customers/
 ]

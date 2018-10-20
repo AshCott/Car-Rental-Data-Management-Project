@@ -66,7 +66,7 @@
         $("#searchbtn").click(function(){
             $.post("/api/customer",
             {
-              'search': $('#customerName').val(),
+              'customer': $('#customerName').val(),
               'selected': $('#searchBy').val()
             },
             function(data, status){
@@ -79,7 +79,7 @@
                 // iterates over all results
                 data.items.forEach(function (item){
                   if (!(item.name in Object.keys(counted))){
-                    // Add the number of cars by name to the counted object
+                    // Add the number of customers by name to the counted object
                     counted[item.name] = data.items.filter(single => single.name == item.name).length;
                   }
                   $("#results").append(template(item));

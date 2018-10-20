@@ -35,7 +35,7 @@ class Customer(models.Model):
 
     # Queryset -> Json
     def JSonObject(self):
-        data = {'customerID': self.customerID, 'name': self.name, 'phone': self.phone, 'address': self.address,
+        data = {'id': self.id, 'name': self.name, 'phone': self.phone, 'address': self.address,
         'birthday': self.birthday, 'occupation': self.occupation, 'gender': self.gender}
         return data
 
