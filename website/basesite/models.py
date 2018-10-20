@@ -33,6 +33,13 @@ class Customer(models.Model):
     occupation = models.CharField(max_length=100)
     gender = models.CharField(choices=SEX_CHOICES, max_length=1)
 
+    # Queryset -> Json
+    def JSonObject(self):
+        data = {'customerID': self.customerID, 'name': self.name, 'phone': self.phone, 'address': self.address,
+        'birthday': self.birthday, 'occupation': self.occupation, 'gender': self.gender}
+        return data
+
+
 
 # Car Information Table
 class Car(models.Model):
