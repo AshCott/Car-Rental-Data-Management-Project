@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.http import Http404
 from .models import Car
 from .models import Store
+from .models import Customer
 from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.decorators import login_required
@@ -87,6 +88,21 @@ def car_details(request, id):
     # Pass car history as well
     res = car.history()
     return render(request, 'basesite/car_details.html', {'car': car, 'history': res, 'recCar1': recCar1, 'recCar2': recCar2, 'recCar3': recCar3})
+
+
+
+
+
+def customer_details(request, id):
+    try:
+        customer = Customer.objects.get(id=id)
+    except Customer.DoesNotExist:
+            raise Http404('Vehicle not found')
+    return render(request, 'basesite/customer_details.html', {'customer': customer })
+
+
+
+
 
 def car_history(request):
     return render(request, 'basesite/carhistory.html')
