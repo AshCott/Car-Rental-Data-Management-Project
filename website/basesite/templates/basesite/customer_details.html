@@ -13,6 +13,8 @@
     <link href="/static/CSS/main.css" rel="stylesheet">
         
     <div>
+
+    {% if user.is_authenticated %} <!-- If User is Logged On -->
        
     <br><br><br><center> <h2 class="display-2" face="Helvetica" >{{ customer.name }}</h2> </center><br>
 
@@ -42,5 +44,22 @@
       </div>
     </footer>
 
+    {% else %} <!-- If User is Logged Off -->
+
+      <!-- Warning Message Asking User to Login --> <br><br><br>
+			<div class=" label label-danger alert alert-warning alert-dismissible fade show" role="alert">
+        <strong> You are not logged in! </strong> Please login. 
+          
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <!-- Login Button -->
+      <form class="form-inline my-2 my-lg-0 ml-2" action="/accounts/login/" >
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
+      </form>
+
+    {% endif %}
 
 {% endblock %}
