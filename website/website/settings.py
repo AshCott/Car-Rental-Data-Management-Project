@@ -140,5 +140,6 @@ LOGOUT_REDIRECT_URL = '/logout/'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com' # Using gmail as the host
 EMAIL_HOST_USER = 'carrentalcompany299@gmail.com' # Company Email
-EMAIL_PORT = 587 
+EMAIL_PORT = 587
+EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = 'whatalegend247' # Company Email password

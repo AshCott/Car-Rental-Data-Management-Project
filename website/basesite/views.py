@@ -164,3 +164,12 @@ def customer(request, id):
     history = Order.objects.filter(customerID=id)
     return render(request, 'basesite/customer.html', {'customer':customer, 'history':history})
 
+def stores(request):
+    stores = Store.objects.all()
+    return render(request, 'basesite/stores.html',{'stores': stores})
+
+def store(request, id):
+    store = Store.objects.get(id=id)
+    # Have to get all cars, then filter on html page
+    currentCars = Car.objects.all()
+    return render(request, 'basesite/store.html', {'store': store, 'cars': currentCars})
