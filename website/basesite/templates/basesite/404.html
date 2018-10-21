@@ -1,0 +1,49 @@
+<!doctype html>
+
+{% extends "basesite/base.html" %}
+{% block content %}
+<!doctype html>
+<!-- Custom styles for this template -->
+<link href="/static/css/landing-page.min.css" rel="stylesheet">
+
+
+<!-- templates/basesite/logout.html -->
+
+<!-- Whitespace -->
+<!-- Logout Notification Boarder-->
+<div class="center2">
+<center>
+  <img src="/static/images/errors/404Whoops.png"
+  style = "
+    max-width: 60%;
+    height: auto;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;  
+  ">
+<h1> 
+  <script>
+    var nameList = [
+      "Jake",
+      "Cole",
+      "Josh",
+      "Ashley",
+      "Jack"
+    ]
+    var num = Math.floor((Math.random() * 5));
+    var firstHalf = "404 - Page not found</h1>  <h6> It seems like someone stole this page, it was </h6>  <h6> probably "
+    var secondHalf = ". Lets go home shall we?"
+    document.write( firstHalf + nameList[num] + secondHalf )
+  </script>
+ </h6>
+  <button id="logout_btn" type="button" style="width: 15%" class="btn btn-primary" onclick="window.location.href='/'">Home</button>
+
+
+</center>
+</div>
+
+
+
+
+
+{% endblock %} 
