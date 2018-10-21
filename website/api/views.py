@@ -38,3 +38,14 @@ def search(request):
     # list comprehension -> javascript array
     resp = {'items': [item.JSonObject() for item in car]}
     return JsonResponse(resp)
+
+@csrf_exempt
+def store(request):
+    selectedStore = request.POST
+    selectedStore = selectedStore['store']
+    car = Car.objects.all()
+    # List comprehension to effectively filter for current store
+    res = [item.JSonObject() for item in car if selectedStore in item.JSonObject().values()]
+    print(res)
+    resp = {'cars': res}
+    return JsonResponse(resp)

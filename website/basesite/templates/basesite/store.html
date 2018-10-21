@@ -42,13 +42,139 @@
         </tbody>
     </table>
   </div>
+  <div id="chart" class="panel-collapse collapse in">
+    <center>
+      <button class="btn btn-outline-secondary" id='load'>Show result chart</button>
+    </center>
 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js'></script>
+    <!-- just using chartjs for now -->
+    <div id="canvas-holder">
+        <canvas id="chart-area"></canvas>
+        <center><button class="btn btn-outline-secondary" id='swap'>Swap to bar</button></center>
+    </div>
+  </div>
 </div>
+
+
 
 <footer class="footer bg-light">
   <div class="text-center">
     <p class="text-muted small mb-4 mb-lg-0">&copy; Car Rental Company 2018. All Rights Reserved.</p>
   </div>
 </footer>
+
+<script>
+var myPie;
+var barOptions = {
+  responsive: true,
+  legend:{
+    display: false
+  },
+  scales: {
+    xAxis: [{gridLines: {
+      display: false
+    }}],
+    yAxis: [{
+        gridLines: {
+          display: false,
+        }
+      }]
+  }
+};
+var pieOptions = {
+  responsive: true,
+  legend:{
+    display:true
+  }
+}
+var conf = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: [
+            10,
+            10,
+            10,
+            10,
+            10,
+          ],
+          backgroundColor: [
+            "#C0392B", "#9B59B6", "#3498DB", "#27AE60", "#1ABC9C", "#8E44AD",
+            "#2980B9", "#E74C3C", "#2ECC71", "#F1C40F", "#16A085", "#F39C12",
+            "#E67E22", "#D35400"
+          ],
+          label: '# Cars'
+        }],
+        labels: [
+          'Red',
+          'Orange',
+          'Yellow',
+          'Green',
+          'Blue'
+        ]
+      },
+      options: pieOptions
+};
+
+function initChart(){
+  var context = document.getElementById('chart-area').getContext('2d');
+  myPie = new Chart(context, conf);
+  myPie.update();
+}
+
+$('#load').click(function(){
+  $("#canvas-holder").toggle();
+})
+
+$('#swap').click(function(){
+  var swapto;// = (this.text == 'bar') ? 'pie' : 'bar';
+  $('#swap').text(function(i, txt){
+    swapto = txt == "Swap to bar" ? "bar" : "pie";
+    return txt == "Swap to bar" ? "Swap to pie" : "Swap to bar";
+  })
+  conf.type = swapto;
+  if (swapto == 'bar'){
+    conf.options = barOptions;
+  }
+  else{
+    conf.options = pieOptions;
+  }
+  myPie.destroy();
+  initChart();
+  // Need to force this value to true. Tried to do in config, wasn't working
+  if (swapto == "bar"){
+    myPie.options.scales.yAxes[0].ticks.beginAtZero = true;
+  }
+  myPie.update();
+})
+
+var numName = [[],[]];
+var counted = {};
+
+$( document ).ready(function(){
+    initChart();
+      $.post("/api/store",
+      {
+        'store': $('.display-2').text(),
+      },
+      function(data, status){
+          res = data;
+          // iterates over all results
+          data.cars.forEach(function (item){
+            // As in search chart
+            if (!(item.name in Object.keys(counted))){
+              counted[item.name] = data.cars.filter(single => single.name == item.name).length;
+            }
+          });
+          myPie.data.datasets[0].data = Object.values(counted);
+          myPie.data.labels = Object.keys(counted);
+          myPie.update();
+          $( '#chart' ).toggle();
+      }
+    )}
+);
+
+</script>
 
 {% endblock %}
