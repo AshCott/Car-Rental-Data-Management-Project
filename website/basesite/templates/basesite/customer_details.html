@@ -1,5 +1,8 @@
+<!doctype html>
+
 {% extends "basesite/base.html" %}
 {% block content %}
+
 <main role="main" class="container">
 
 <!-- Custom styles for this template -->
@@ -48,7 +51,11 @@ function toggleHistory(id){
                 {% endif %}
             </tr>
                 <td>Number of Rentals</td>
-                <td>Yo</td>
+                {% for order in history %}
+                    {% if forloop.last %}
+                        <td>{{forloop.counter}}</td>
+                    {% endif %}
+                {% endfor %}
             </tr>
         </tbody>
     </table>
