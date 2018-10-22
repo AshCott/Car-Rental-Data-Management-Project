@@ -1,65 +1,92 @@
-
 {% extends "basesite/base.html" %}
-
 {% block content %}
-
 <main role="main" class="container">
 
-    <!-- Custom styles for this template -->
-    <link href="/static/css/landing-page.min.css" rel="stylesheet">
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    
-    <link href="/static/CSS/main.css" rel="stylesheet">
-        
-    <div>
+<!-- Custom styles for this template -->
+<link href="/static/css/landing-page.min.css" rel="stylesheet">
+<!-- Custom fonts for this template -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="/static/CSS/main.css" rel="stylesheet">
 
-    {% if user.is_authenticated %} <!-- If User is Logged On -->
-       
-    <br><br><br><center> <h2 class="display-2" face="Helvetica" >{{ customer.name }}</h2> </center><br>
+<!-- Javascript for showing/hiding rental history -->
+<script>
+function toggleHistory(id){
+  $(document).ready(function(){
+      // Toggle rental history div
+      $(id).toggle(10);
+      // Toggle button text
+      $('#history').text(function(i, txt){
+        return txt === "Show Rental History" ? "Collapse Rental History" : "Show Rental History";
+      })
+  });
+};
+</script>
 
+<!-- Title-->
+<div>
+<br>
+<br>
+<center> <h2 class="display-2" face="Helvetica" >
+    {{ customer.name|title }}</h2> </center>
+<br>
+
+<!-- Customer Information Table-->
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <td>Name</td>
+            <td>{{ customer.name|capfirst }}</td>
+        </tr>
+            <td>Phone</td>
+            <td>{{ customer.phone|capfirst }}</td>
+        </tr>
+            <td>Address</td>
+            <td>{{ customer.address|capfirst}}</td>
+        </tr>
+            <td>Birthday</td>
+            <td>{{ customer.birthday }}</td>
+        </tr>
+            <td>Occupation</td>
+            <td>{{ customer.occupation|capfirst }}</td>
+        </tr>
+            <td>Gender</td>
+            {% if customer.gender == "M" %}
+            <td>Male</td>
+            {% elif customer.gender == "F" %}
+            <td>Female</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+
+<!-- Rental History of customer -->
+{% if user.is_authenticated %}
+<center>
+<button class="btn btn-outline-secondary" type="button" id='history' onclick='toggleHistory("#rentalHistory")'>Show Rental History</button>
+</center>
+<!-- Div class to make section collapse by default. Click button to show -->
+  <div id="rentalHistory" class="accordion-body collapse">
+    <center><h2 class="display-2" face="Helvetica">Rental History</h2></center>
     <table class="table table-striped">
         <tbody>
-                <td>Birthday</td>
-                <td>{{ customer.birthday}}</td>
+            {% for order in history %}
+            <tr>
+                <td><a href="/car_details/{{ order.carID.id }}">{{order.carID.year}} {{order.carID.name}} {{order.carID.model}}</a></td>
+                <td>Pick up from {{order.pickup_store.name}} on {{order.pickup_date}}</td>
+                <td>Dropped off at {{order.return_store.name}} on {{order.return_date}}</td>
             </tr>
-                <td>Address</td>
-                <td>{{ customer.address}}</td>
-            </tr>
-                <td>Phone</td>
-                <td>{{customer.phone}}</td>
-            </tr>
-                <td>Occupation</td>
-                <td>{{customer.occupation}}</td> 
-            </tr>
-                <td>Gender</td>
-                <td>{{customer.gender}}</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
-            
-    <footer class="footer bg-light">
-      <div class="text-center">
-        <p class="text-muted small mb-4 mb-lg-0">&copy; Car Rental Company 2018. All Rights Reserved.</p>
-      </div>
-    </footer>
+  </div>
+</div>
+{% endif %}
 
-    {% else %} <!-- If User is Logged Off -->
-
-      <!-- Warning Message Asking User to Login --> <br><br><br>
-			<div class=" label label-danger alert alert-warning alert-dismissible fade show" role="alert">
-        <strong> You are not logged in! </strong> Please login. 
-          
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <!-- Login Button -->
-      <form class="form-inline my-2 my-lg-0 ml-2" action="/accounts/login/" >
-        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
-      </form>
-
-    {% endif %}
+<!-- Disclaimer Footer -->
+<footer class="footer bg-light">
+  <div class="text-center">
+    <p class="text-muted small mb-4 mb-lg-0">&copy; Car Rental Company 2018. All Rights Reserved.</p>
+  </div>
+</footer>
 
 {% endblock %}
