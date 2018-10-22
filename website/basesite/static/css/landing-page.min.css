@@ -31,6 +31,11 @@ text-shadow: 2px 2px #000000;
     margin-left: auto;
     margin-right: auto;
 }
+.center2{
+    margin-top: 15%;
+    margin-bottom: auto;
+}
+
 
 .constrain{
     max-width: 112px;
@@ -38,6 +43,15 @@ text-shadow: 2px 2px #000000;
     margin-left: auto;
     margin-right: auto;
 }
+
+.constrain2{
+    max-width: 60%;
+    height: auto;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 .showcase .showcase-text {
 padding:3rem;

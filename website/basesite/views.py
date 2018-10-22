@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.http import Http404
 from .models import Car
 from .models import Store
@@ -17,8 +17,9 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from django.template import RequestContext
-
-
+from django.conf.urls import handler404, handler500
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 
 
@@ -30,6 +31,11 @@ def index(request):
 
     # Also for dynamically rendered pages pass a dictionary into render, and
     # this will be used in Jinja templating
+
+def error_404_view(request, exception):
+    data = {"name": "boi"}
+    return render(request,'basesite/404.html', data)
+
 
 
 def employee_home(request):
