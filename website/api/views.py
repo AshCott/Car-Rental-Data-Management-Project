@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.core import serializers
 from basesite.models import Car
+from basesite.models import Customer
 from django.views.decorators.csrf import csrf_exempt
 
 # don't want to use a token to access an api
@@ -38,3 +39,40 @@ def search(request):
     # list comprehension -> javascript array
     resp = {'items': [item.JSonObject() for item in car]}
     return JsonResponse(resp)
+
+################################## Customer Search ################################################
+
+@csrf_exempt
+def customerByID(request):
+    try:
+        id = request.POST
+        customer = Customer.get(id=id['id'])
+    # failed to find, sends json
+    except Customer.DoesNotExist:
+        return JsonResponse({'customer':'Failed to find'})
+    return JsonResponse(customer.JSonObject())
+
+# Seach Specifically for the customers page. Specifies what to search
+@csrf_exempt
+def customer(request):
+    try:
+        # Get posted vars
+        vals = request.POST
+        # Effectively a switch statement to get cars
+        if 'selected' in vals:
+            if (vals['selected']=='name'):
+                customer = Customer.objects.filter(name__icontains=vals['customer'])
+            elif (vals['selected']=='birthday'):
+                customer = Customer.objects.filter(birthday__icontains=vals['customer'])
+            elif (vals['selected']=='address'):
+                customer = Customer.objects.filter(address__icontains=vals['customer'])
+            else:
+                customer = Customer.objects.filter(name__icontains=vals['customer'])
+        else:
+            customer = Customer.objects.filter(name__icontains=vals['customer'])
+    except Customer.DoesNotExist:
+        return JsonResponse({'val': 'failed'})
+    # list comprehension -> javascript array
+    resp = {'items': [item.JSonObject() for item in customer]}
+    return JsonResponse(resp)
+

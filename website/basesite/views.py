@@ -7,7 +7,10 @@ from django.http import HttpResponse
 from django.http import Http404
 from .models import Car
 from .models import Store
+<<<<<<< HEAD
 from .models import Order
+=======
+>>>>>>> ID07
 from .models import Customer
 from django.shortcuts import get_object_or_404
 
@@ -67,6 +70,10 @@ def search(request):
 
     return render(request, 'basesite/search.html', sample)
 
+def customer(request):
+    return render(request, 'basesite/customer.html')
+    # View Customers page
+
 def car_details(request, id):
     try:
         car = Car.objects.get(id=id)
@@ -90,6 +97,21 @@ def car_details(request, id):
     # Pass car history as well
     res = car.history()
     return render(request, 'basesite/car_details.html', {'car': car, 'history': res, 'recCar1': recCar1, 'recCar2': recCar2, 'recCar3': recCar3})
+
+
+
+
+
+def customer_details(request, id):
+    try:
+        customer = Customer.objects.get(id=id)
+    except Customer.DoesNotExist:
+            raise Http404('Vehicle not found')
+    return render(request, 'basesite/customer_details.html', {'customer': customer })
+
+
+
+
 
 def car_history(request):
     return render(request, 'basesite/carhistory.html')
