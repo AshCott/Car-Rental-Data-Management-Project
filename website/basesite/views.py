@@ -7,11 +7,9 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.http import Http404
 from .models import Car
 from .models import Store
-<<<<<<< HEAD
 from .models import Order
-=======
->>>>>>> ID07
 from .models import Customer
+
 from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.decorators import login_required
@@ -111,12 +109,10 @@ def car_details(request, id):
 def customer_details(request, id):
     try:
         customer = Customer.objects.get(id=id)
+        history = Order.objects.filter(customerID=id)
     except Customer.DoesNotExist:
             raise Http404('Vehicle not found')
-    return render(request, 'basesite/customer_details.html', {'customer': customer })
-
-
-
+    return render(request, 'basesite/customer_details.html', {'customer':customer, 'history':history})
 
 
 def car_history(request):
@@ -179,12 +175,6 @@ def recommended_car(request):
     for a in cars:
         print (a.model)
     return render(request, 'basesite/recommended_car.html', {'cars': cars})
-
-# Display customer information and rental history method
-def customer(request, id):
-    customer = Customer.objects.get(id=id)
-    history = Order.objects.filter(customerID=id)
-    return render(request, 'basesite/customer.html', {'customer':customer, 'history':history})
 
 def stores(request):
     stores = Store.objects.all()
