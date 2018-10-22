@@ -9,6 +9,7 @@ from .models import Car
 from .models import Store
 from .models import Order
 from .models import Customer
+
 from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.decorators import login_required
@@ -73,6 +74,10 @@ def search(request):
 
     return render(request, 'basesite/search.html', sample)
 
+def customer(request):
+    return render(request, 'basesite/customer.html')
+    # View Customers page
+
 def car_details(request, id):
     try:
         car = Car.objects.get(id=id)
@@ -96,6 +101,19 @@ def car_details(request, id):
     # Pass car history as well
     res = car.history()
     return render(request, 'basesite/car_details.html', {'car': car, 'history': res, 'recCar1': recCar1, 'recCar2': recCar2, 'recCar3': recCar3})
+
+
+
+
+
+def customer_details(request, id):
+    try:
+        customer = Customer.objects.get(id=id)
+        history = Order.objects.filter(customerID=id)
+    except Customer.DoesNotExist:
+            raise Http404('Vehicle not found')
+    return render(request, 'basesite/customer_details.html', {'customer':customer, 'history':history})
+
 
 def car_history(request):
     return render(request, 'basesite/carhistory.html')
@@ -157,12 +175,6 @@ def recommended_car(request):
     for a in cars:
         print (a.model)
     return render(request, 'basesite/recommended_car.html', {'cars': cars})
-
-# Display customer information and rental history method
-def customer(request, id):
-    customer = Customer.objects.get(id=id)
-    history = Order.objects.filter(customerID=id)
-    return render(request, 'basesite/customer.html', {'customer':customer, 'history':history})
 
 def stores(request):
     stores = Store.objects.all()

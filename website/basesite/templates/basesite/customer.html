@@ -1,92 +1,131 @@
 {% extends "basesite/base.html" %}
+
 {% block content %}
+
 <main role="main" class="container">
 
-<!-- Custom styles for this template -->
-<link href="/static/css/landing-page.min.css" rel="stylesheet">
-<!-- Custom fonts for this template -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-<link href="/static/CSS/main.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/search.css" />
 
-<!-- Javascript for showing/hiding rental history -->
-<script>
-function toggleHistory(id){
-  $(document).ready(function(){
-      // Toggle rental history div
-      $(id).toggle(10);
-      // Toggle button text
-      $('#history').text(function(i, txt){
-        return txt === "Show Rental History" ? "Collapse Rental History" : "Show Rental History";
-      })
-  });
-};
-</script>
+    <h1> i need to put this here so the next line works </h1>
 
-<!-- Title-->
-<div>
-<br>
-<br>
-<center> <h2 class="display-2" face="Helvetica" >
-    {{ customer.name|title }}</h2> </center>
-<br>
+    {% if user.is_authenticated %} <!-- If User is Logged On -->
 
-<!-- Customer Information Table-->
-<table class="table table-striped">
-    <tbody>
+    <h1 id="header"> Search Customers </h1>
+
+    <!-- Straight from bootstrap tutorials -->
+    <div class="input-group mb-3">
+      <div class="col-xs-2">
+        <select class="form-control" id="searchBy">
+            <option value="" disabled selected>Search by...</option>
+            <option name ="name" value="name">Name</option>
+            <option name ="birthday" value="birthday">Birthday</option>
+            <option  name ="address" value="address">Address</option>
+        </select>
+      </div>
+      <input type="text" id="customerName" class="form-control" placeholder="Search Customers..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="searchbtn">Search</button>
+      </div>
+    </div>
+    <!-- below p tag is where the results are shown -->
+    <div class="col-lg-8 col-md-10 mx-auto" id="resultss">
+
+    </div>
+
+    <table id="resultsTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+
+      <thead>
         <tr>
-            <td>Name</td>
-            <td>{{ customer.name|capfirst }}</td>
+          <th class="th-sm">Name
+            <i class="fa fa-sort float-right" aria-hidden="true"></i>
+          </th>
+          <th class="th-sm">Birthday
+            <i class="fa fa-sort float-right" aria-hidden="true"></i>
+          </th>
+          <th class="th-sm">Address
+            <i class="fa fa-sort float-right" aria-hidden="true"></i>
+          </th>
+          <th name = "phone" class="th-sm">Phone
+            <i class="fa fa-sort float-right" aria-hidden="true"></i>
+          </th>
         </tr>
-            <td>Phone</td>
-            <td>{{ customer.phone|capfirst }}</td>
-        </tr>
-            <td>Address</td>
-            <td>{{ customer.address|capfirst}}</td>
-        </tr>
-            <td>Birthday</td>
-            <td>{{ customer.birthday }}</td>
-        </tr>
-            <td>Occupation</td>
-            <td>{{ customer.occupation|capfirst }}</td>
-        </tr>
-            <td>Gender</td>
-            {% if customer.gender == "M" %}
-            <td>Male</td>
-            {% elif customer.gender == "F" %}
-            <td>Female</td>
-            {% endif %}
-        </tr>
-    </tbody>
-</table>
+      </thead>
+      <tbody id="results">
 
-<!-- Rental History of customer -->
-{% if user.is_authenticated %}
-<center>
-<button class="btn btn-outline-secondary" type="button" id='history' onclick='toggleHistory("#rentalHistory")'>Show Rental History</button>
-</center>
-<!-- Div class to make section collapse by default. Click button to show -->
-  <div id="rentalHistory" class="accordion-body collapse">
-    <center><h2 class="display-2" face="Helvetica">Rental History</h2></center>
-    <table class="table table-striped">
-        <tbody>
-            {% for order in history %}
-            <tr>
-                <td><a href="/car_details/{{ order.carID.id }}">{{order.carID.year}} {{order.carID.name}} {{order.carID.model}}</a></td>
-                <td>Pick up from {{order.pickup_store.name}} on {{order.pickup_date}}</td>
-                <td>Dropped off at {{order.return_store.name}} on {{order.return_date}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
+      </tbody>
+
     </table>
-  </div>
-</div>
-{% endif %}
 
-<!-- Disclaimer Footer -->
-<footer class="footer bg-light">
-  <div class="text-center">
-    <p class="text-muted small mb-4 mb-lg-0">&copy; Car Rental Company 2018. All Rights Reserved.</p>
-  </div>
-</footer>
+    {% else %} <!-- If User is Logged Off -->
+
+      <!-- Warning Message Asking User to Login --> <br>
+			<div class=" label label-danger alert alert-warning alert-dismissible fade show" role="alert">
+        <strong> You are not logged in! </strong> Please login. 
+          
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <!-- Login Button -->
+      <form class="form-inline my-2 my-lg-0 ml-2" action="/accounts/login/" >
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
+      </form>
+
+    {% endif %}
+
+    <!-- function to post input of text box to api endpoint and log results -->
+    <script>
+
+    // Counted holds chart labels in an array
+    var counted = {};
+    var datatable = undefined;
+
+    // Gets the results of the search from the api and change things
+    $(document).ready(function(){
+        $("#searchbtn").click(function(){
+            $.post("/api/customer",
+            {
+              'customer': $('#customerName').val(),
+              'selected': $('#searchBy').val()
+            },
+            function(data, status){
+                $("#load").show();
+                counted = {};
+                if (datatable != undefined) {
+                  datatable.destroy();
+                }
+                $("#results").text("");
+                // iterates over all results
+                data.items.forEach(function (item){
+                  if (!(item.name in Object.keys(counted))){
+                    // Add the number of customers by name to the counted object
+                    counted[item.name] = data.items.filter(single => single.name == item.name).length;
+                  }
+                  $("#results").append(template(item));
+                });
+                $("#header").text(data.items.length + " results for " + $('#customerName').val());
+                datatable = $('#resultsTable').DataTable();
+
+            });
+        });
+    });
+
+    // returns the templated result, not in a table or anything fancy
+    function template(object){
+      var temp = "";
+
+      temp += "<tr>";
+      temp += "<td><a href='/customer_details/" + object.id + "/'>" + object.name + "</a></td>";
+      temp += "<td>" + object.birthday + "</td>";
+      temp += "<td>" + object.address + "</td>";
+      temp += "<td>" + object.phone + "</td>";
+      temp += "</tr>"
+
+      return temp;
+    }
+    </script>
+
+</ul>
 
 {% endblock %}
