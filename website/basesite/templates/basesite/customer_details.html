@@ -22,50 +22,40 @@ function toggleHistory(id){
 };
 </script>
 
-<!-- Title-->
-<div>
-<br>
-<br>
-<center> <h2 class="display-2" face="Helvetica" >
-    {{ customer.name|title }}</h2> </center>
-<br>
+{% if user.is_authenticated %} <!-- If User is Logged On -->
 
-<!-- Customer Information Table-->
-<table class="table table-striped">
-    <tbody>
-        <tr>
-            <td>Name</td>
-            <td>{{ customer.name|capfirst }}</td>
-        </tr>
-            <td>Phone</td>
-            <td>{{ customer.phone|capfirst }}</td>
-        </tr>
-            <td>Address</td>
-            <td>{{ customer.address|capfirst}}</td>
-        </tr>
-            <td>Birthday</td>
-            <td>{{ customer.birthday }}</td>
-        </tr>
-            <td>Occupation</td>
-            <td>{{ customer.occupation|capfirst }}</td>
-        </tr>
-            <td>Gender</td>
-            {% if customer.gender == "M" %}
-            <td>Male</td>
-            {% elif customer.gender == "F" %}
-            <td>Female</td>
-            {% endif %}
-        </tr>
-    </tbody>
-</table>
+    <br><br><br><center> <h2 class="display-2" face="Helvetica" >{{customer.name|title}}</h2> </center><br>
 
-<!-- Rental History of customer -->
-{% if user.is_authenticated %}
-<center>
-<button class="btn btn-outline-secondary" type="button" id='history' onclick='toggleHistory("#rentalHistory")'>Show Rental History</button>
-</center>
-<!-- Div class to make section collapse by default. Click button to show -->
-  <div id="rentalHistory" class="accordion-body collapse">
+    <table class="table table-striped">
+        <tbody>
+                <td>Birthday</td>
+                <td>{{ customer.birthday}}</td>
+            </tr>
+                <td>Address</td>
+                <td>{{ customer.address}}</td>
+            </tr>
+                <td>Phone</td>
+                <td>{{customer.phone}}</td>
+            </tr>
+                <td>Occupation</td>
+                <td>{{customer.occupation}}</td> 
+            </tr>
+                <td>Gender</td>
+                    {% if customer.gender == "M" %}
+                <td>Male</td>
+                {% elif customer.gender == "F" %}
+                <td>Female</td>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Rental History of customer -->
+    <center>
+    <button class="btn btn-outline-secondary" type="button" id='history' onclick='toggleHistory("#rentalHistory")'>Show Rental History</button>
+    </center>
+    <!-- Div class to make section collapse by default. Click button to show -->
+    <div id="rentalHistory" class="accordion-body collapse">
     <center><h2 class="display-2" face="Helvetica">Rental History</h2></center>
     <table class="table table-striped">
         <tbody>
@@ -78,9 +68,25 @@ function toggleHistory(id){
             {% endfor %}
         </tbody>
     </table>
-  </div>
-</div>
-{% endif %}
+    </div>
+
+    {% else %} <!-- If User is Logged Off -->
+
+      <!-- Warning Message Asking User to Login --> <br><br><br>
+			<div class=" label label-danger alert alert-warning alert-dismissible fade show" role="alert">
+        <strong> You are not logged in! </strong> Please login. 
+          
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <!-- Login Button -->
+      <form class="form-inline my-2 my-lg-0 ml-2" action="/accounts/login/" >
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
+      </form>
+
+    {% endif %}
 
 <!-- Disclaimer Footer -->
 <footer class="footer bg-light">
