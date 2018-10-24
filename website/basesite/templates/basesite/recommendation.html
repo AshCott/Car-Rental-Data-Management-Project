@@ -2,6 +2,7 @@
 {% block content %}
 <h1>pointless header</h1>
 
+<!-- Page header and imports -->
 <head>
     <meta charset="utf-8" />
     <title></title>
@@ -11,6 +12,7 @@
     <script src="script.js"></script>
   </head>
 
+<!-- Card Table with dropdown for user-->
 <br>
 <div class=" container center_div col-md-6 mb-4">
   <div class="card">
@@ -21,12 +23,9 @@
       <form class="form-horizontal" action="/recommended_car/" method='GET'>
         <fieldset>
 
-          <!-- Form Name -->
-          
-
-          <!-- Select Basic -->
+          <!-- Select Store -->
           <div class="form-group" align="left">
-            <label class="col-md-4 control-label" for="select_city"><strong>City**</strong></label>
+            <label class="col-md-4 control-label" for="select_city"><strong>Store**</strong></label>
             <div class="col-md-12">
               <select id="select_city" name="select_city" class="form-control" onchange="enableButton()">
                 <option value="" selected disabled hidden>--Select City--</option>
@@ -39,7 +38,7 @@
 
           <hr>
 
-          <!-- Select Basic -->
+          <!-- Select Car Brand -->
           <div class="form-group" align="left">
             <label class="col-md-4 control-label" for="select_car_brand">Car Brand</label>
             <div class="col-md-12">
@@ -52,7 +51,7 @@
             </div>
           </div>
 
-          <!-- Select Basic -->
+          <!-- Select Car Model -->
           <div class="form-group" align="left">
             <label class="col-md-4 control-label" for="select_car_model">Car Model</label>
             <div class="col-md-12">
@@ -65,11 +64,11 @@
             </div>
           </div>
 
-          <!-- Select Basic -->
+          <!-- Select Car year -->
           <div class="form-group" align="left">
             <label class="col-md-4 control-label" for="select_car_year">Car Year</label>
             <div class="col-md-12">
-              <select id="select_car_model" name="select_car_year" class="form-control">
+              <select id="select_car_year" name="select_car_year" class="form-control">
                 <option value="" selected>--None--</option>
                 {% for car in car_year %}
                 <option value="{{ car.year }}">{{ car.year }}</option>
@@ -78,7 +77,7 @@
             </div>
           </div>
 
-          <!-- Select Basic -->
+          <!-- Select Car Body -->
           <div class="form-group" align="left">
             <label class="col-md-4 control-label" for="select_car_body">Car Body Type</label>
             <div class="col-md-12">
@@ -91,7 +90,7 @@
             </div>
           </div>
 
-          <!-- Select Basic -->
+          <!-- Select Car Drive -->
           <div class="form-group" align="left">
             <label class="col-md-4 control-label" for="select_car_drive">Car Drive</label>
             <div class="col-md-12">
@@ -104,7 +103,7 @@
             </div>
           </div>
 
-          <!-- Select Basic -->
+          <!-- Select car seating capacity -->
           <div class="form-group" align="left">
             <label class="col-md-4 control-label" for="select_car_seating_capacity">Car Seating Capacity</label>
             <div class="col-md-12">
@@ -117,7 +116,7 @@
             </div>
           </div>
 
-          <!-- Button -->
+          <!-- View More Information Button -->
           <div class="form-group" align="right">
             <div class="col-md-4">
               <button id="Search" name="Search" class="btn btn-primary" disabled>Search</button>
@@ -130,6 +129,7 @@
   </div>
 </div>
 
+<!-- Basic javascript to enable/disable button so user can't progress unless they select a store-->
 <script>
 window.onload=function() {
   var e = document.getElementById("select_city");

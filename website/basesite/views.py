@@ -108,10 +108,6 @@ def car_details(request, id):
     res = car.history()
     return render(request, 'basesite/car_details.html', {'car': car, 'history': res, 'recCar1': recCar1, 'recCar2': recCar2, 'recCar3': recCar3})
 
-
-
-
-
 def customer_details(request, id):
     try:
         customer = Customer.objects.get(id=id)
@@ -119,7 +115,6 @@ def customer_details(request, id):
     except Customer.DoesNotExist:
             raise Http404('Vehicle not found')
     return render(request, 'basesite/customer_details.html', {'customer':customer, 'history':history})
-
 
 def car_history(request):
     return render(request, 'basesite/carhistory.html')
@@ -147,42 +142,36 @@ def car_percentage(request):
     }
 
 def recommendation(request):
+    # Pull data required for dropdowns from database
     states = Store.objects.values('state').distinct()
-    cities = Store.objects.values('city', 'state').distinct()
-    car_names = Car.objects.values('name').distinct()
-    car_bodys = Car.objects.values('body_type').distinct()
-    car_drives = Car.objects.values('drive').distinct()
-    car_model = Car.objects.values('model').distinct()
-    car_year = Car.objects.values('year').distinct()
-    car_seating_capacity = Car.objects.values('seating_capacity').distinct()
+    cities = Store.objects.values('city', 'state').distinct().order_by('city')
+    car_names = Car.objects.values('name').distinct().order_by('name').order_by('name')
+    car_bodys = Car.objects.values('body_type').distinct().order_by('body_type')
+    car_drives = Car.objects.values('drive').distinct().order_by('drive')
+    car_model = Car.objects.values('model').distinct().order_by('model')
+    car_year = Car.objects.values('year').distinct().order_by('-year')
+    car_seating_capacity = Car.objects.values('seating_capacity').distinct().order_by('seating_capacity')
 
-    #Note sure what this does???????
-    form = request.POST # you seem to misinterpret the use of form from django and POST data. you should take a look at [Django with forms][1]
-    # you can remove the preview assignment (form =request.POST)
-    if request.method == 'POST':
-        selected_item = get_object_or_404(Car, pk=request.POST.get('id'))
-        # get the user you want (connect for example) in the var "user"
-        user.item = selected_item
-        user.save()
-
-    # Then, do a redirect for example
-
+    # pass the data and render webpage
     return render(request, 'basesite/recommendation.html', {'states': states, 'cities': cities, 'car_names': car_names, 'car_drives': car_drives, 'car_bodys': car_bodys, 'car_model': car_model, 'car_year': car_year, 'car_seating_capacity': car_seating_capacity})
-    # Redirects logged in employee to their homepage
+
 
 def recommended_car(request):
+    # Get user input from dropdown selections
     carID = []
     city =  request.GET.get('select_city')
     car_brand = request.GET.get('select_car_brand')
     car_body = request.GET.get('select_car_body')
-    print("Car Body:",car_body)
     car_drive = request.GET.get('select_car_drive')
     car_model = request.GET.get('select_car_model')
     car_year = request.GET.get('select_car_year')
     car_seating_capacity = request.GET.get('select_car_seating_capacity')
-    #IndexError
+
+    # Query database for required data
     store_ids = Store.objects.filter(city=city)
     car_ids = Order.objects.filter(return_store_id=store_ids[0].id)
+
+    # Filter data based upon user selections
     for i in car_ids:
         carID.append(i.carID_id)
     cars = Car.objects.filter(id__in=carID)
@@ -199,6 +188,7 @@ def recommended_car(request):
     if car_seating_capacity != "":
         cars = cars.filter(seating_capacity=car_seating_capacity)
     
+    # Select a random car to be recommended or alert page that their is no car available
     if len(cars) != 0:
         reco_car = cars[random.randint(0, len(cars)-1)]
         print (reco_car)
@@ -207,7 +197,6 @@ def recommended_car(request):
         no_results = True
         return render(request, 'basesite/recommended_car.html', {'no_results':no_results})
 
-    
 
 def stores(request):
     stores = Store.objects.all()

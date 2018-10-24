@@ -3,6 +3,7 @@
 <h1>pointless header</h1>
 
 <br>
+<!-- Code to display if no car was found-->
 {% if no_results == True %}
 <h2 align="center" >Recommended Car For You:</h2>
 <br>
@@ -21,15 +22,19 @@
   </div>
 </div>
 </div>
+
+<!-- Code to display if car is found-->
 {% else %}
 <h2 align="center" >Recommended Car For You:</h2>
 <br>
 <div class=" container center_div col-md-6 mb-4">
 <div class="card text-center">
+  <!-- Car Name-->
   <div class="card-header">
     <h5 class="card-title"><b>{{ reco_car.year }} {{ reco_car.name }} {{ reco_car.model }}</b></h5>
   </div>
   <div class="card-body">
+    <!-- Table displaying basic car information-->
     <table class="table table-striped">
     <tbody>
         <tr>
@@ -57,12 +62,14 @@
     </tbody>
 </table>
   </div>
+  <!-- Footer -->
   <div class="card-footer text-muted">
     <a href="/car_details/{{ reco_car.id }}" class="btn btn-primary">View More Info</a>
   </div>
 </div>
 </div>
 
+<!-- Table below show other similier cars-->
 <h2 align="center" >Similar Choices:</h2>
 <br>
 <div class=" container center_div col-md-9 mb-4">
@@ -79,7 +86,6 @@
     </thead>
     <tbody>
     {% for car in cars %}
-    
       <tr>
         <th scope="row"><a href="/car_details/{{ car.id }}">{{ car.id }}</a></th>
         <td><a href="/car_details/{{ car.id }}">{{ car.year }} {{ car.name }} {{ car.model }}</a></td>
@@ -94,6 +100,7 @@
   </div>
 {% endif %}
 
+<!-- Javascript for return on button click-->
 <script>
 function goBack() {
     window.history.back();
