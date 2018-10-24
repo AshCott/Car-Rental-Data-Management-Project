@@ -29,20 +29,7 @@
 
           <!-- Select Basic -->
           <div class="form-group" align="left">
-            <label class="col-md-4 control-label" for="select_state">State</label>
-            <div class="col-md-12">
-              <select id="select_state" name="select_state" class="form-control">
-                <option value="" selected disabled hidden>--Select State--</option>
-                {% for state in states %}
-                <option value="{{ state.state }}">{{ state.state }}</option>
-                {% endfor %}
-              </select>
-            </div>
-          </div>
-
-          <!-- Select Basic -->
-          <div class="form-group" align="left">
-            <label class="col-md-4 control-label" for="select_city">City</label>
+            <label class="col-md-4 control-label" for="select_city"><strong>City</strong></label>
             <div class="col-md-12">
               <select id="select_city" name="select_city" class="form-control">
                 <option value="" selected disabled hidden>--Select City--</option>
@@ -61,6 +48,32 @@
                 <option value="" selected>--None--</option>
                 {% for car in car_names %}
                 <option value="{{ car.name }}">{{ car.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Select Basic -->
+          <div class="form-group" align="left">
+            <label class="col-md-4 control-label" for="select_car_model">Car Model</label>
+            <div class="col-md-12">
+              <select id="select_car_model" name="select_car_model" class="form-control">
+                <option value="" selected>--None--</option>
+                {% for car in car_model %}
+                <option value="{{ car.model }}">{{ car.model }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Select Basic -->
+          <div class="form-group" align="left">
+            <label class="col-md-4 control-label" for="select_car_year">Car Year</label>
+            <div class="col-md-12">
+              <select id="select_car_model" name="select_car_year" class="form-control">
+                <option value="" selected>--None--</option>
+                {% for car in car_year %}
+                <option value="{{ car.year }}">{{ car.year }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -87,6 +100,19 @@
                 <option value="" selected>--None--</option>
                 {% for car in car_drives %}
                 <option value="{{ car.drive }}">{{ car.drive }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Select Basic -->
+          <div class="form-group" align="left">
+            <label class="col-md-4 control-label" for="select_car_seating_capacity">Car Seating Capacity</label>
+            <div class="col-md-12">
+              <select id="select_car_seating_capacity" name="select_car_seating_capacity" class="form-control">
+                <option value="" selected>--None--</option>
+                {% for car in car_seating_capacity %}
+                <option value="{{ car.seating_capacity }}">{{ car.seating_capacity }}</option>
                 {% endfor %}
               </select>
             </div>

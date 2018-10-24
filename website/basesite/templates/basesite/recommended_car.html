@@ -1,9 +1,12 @@
 {% extends "basesite/base.html" %}
 {% block content %}
 <h1>pointless header</h1>
-{% for car in cars %}
-    {{ car.id }}
-{% endfor %}
+
+<div class="panel panel-default">
+  <div class="panel-body">Panel Content</div>
+  <div class="panel-footer">Panel Footer</div>
+</div>
+
 
 <table class="table">
     <thead class="thead-dark">
@@ -13,16 +16,19 @@
         <th scope="col">Series</th>
         <th scope="col">Body Type</th>
         <th scope="col">Drive</th>
+        <th scope="col">Seating Capacity</th>
       </tr>
     </thead>
     <tbody>
     {% for car in cars %}
+    
       <tr>
-        <th scope="row"><a href="http://localhost:8000/car_details/{{ car.id }}">{{ car.id }}</a></th>
-        <td><a href="http://localhost:8000/car_details/{{ car.id }}">{{ car.year }} {{ car.name }} {{ car.model }}</a></td>
-        <td><a href="http://localhost:8000/car_details/{{ car.id }}">{{ car.series }}</a></td>
-        <td><a href="http://localhost:8000/car_details/{{ car.id }}">{{ car.body_type }}</a></td>
-        <td><a href="http://localhost:8000/car_details/{{ car.id }}">{{ car.drive }}</a></td>
+        <th scope="row"><a href="/car_details/{{ car.id }}">{{ car.id }}</a></th>
+        <td><a href="/car_details/{{ car.id }}">{{ car.year }} {{ car.name }} {{ car.model }}</a></td>
+        <td><a href="/car_details/{{ car.id }}">{{ car.series }}</a></td>
+        <td><a href="/car_details/{{ car.id }}">{{ car.body_type }}</a></td>
+        <td><a href="/car_details/{{ car.id }}">{{ car.drive }}</a></td>
+        <td><a href="/car_details/{{ car.id }}">{{ car.seating_capacity }}</a></td>
       </tr>
     {% endfor %}
     </tbody>

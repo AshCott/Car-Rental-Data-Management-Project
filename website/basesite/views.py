@@ -146,6 +146,10 @@ def recommendation(request):
     car_names = Car.objects.values('name').distinct()
     car_bodys = Car.objects.values('body_type').distinct()
     car_drives = Car.objects.values('drive').distinct()
+    car_model = Car.objects.values('model').distinct()
+    car_year = Car.objects.values('year').distinct()
+    car_seating_capacity = Car.objects.values('seating_capacity').distinct()
+
     #Note sure what this does???????
     form = request.POST # you seem to misinterpret the use of form from django and POST data. you should take a look at [Django with forms][1]
     # you can remove the preview assignment (form =request.POST)
@@ -157,24 +161,45 @@ def recommendation(request):
 
     # Then, do a redirect for example
 
-    return render(request, 'basesite/recommendation.html', {'states': states, 'cities': cities, 'car_names': car_names, 'car_drives': car_drives, 'car_bodys': car_bodys})
+    return render(request, 'basesite/recommendation.html', {'states': states, 'cities': cities, 'car_names': car_names, 'car_drives': car_drives, 'car_bodys': car_bodys, 'car_model': car_model, 'car_year': car_year, 'car_seating_capacity': car_seating_capacity})
     # Redirects logged in employee to their homepage
 
 def recommended_car(request):
     carID = []
-    state = request.GET.get('select_state')
     city =  request.GET.get('select_city')
-    store_ids = Store.objects.filter(state=state, city=city)
-    print (store_ids[0].city)
-    print (store_ids[0].id)
+    car_brand = request.GET.get('select_car_brand')
+    car_body = request.GET.get('select_car_body')
+    print("Car Body:",car_body)
+    car_drive = request.GET.get('select_car_drive')
+    car_model = request.GET.get('select_car_model')
+    car_year = request.GET.get('select_car_year')
+    car_seating_capacity = request.GET.get('select_car_seating_capacity')
+    print("Car Body:",car_model)
+    print("Car Body:",car_year)
+    print("Car Body:",car_seating_capacity)
+
+    store_ids = Store.objects.filter(city=city)
     car_ids = Order.objects.filter(return_store_id=store_ids[0].id)
     for i in car_ids:
         carID.append(i.carID_id)
-    print (carID)
     cars = Car.objects.filter(id__in=carID)
+    if car_brand != "":
+        cars = cars.filter(name=car_brand)
+    if car_body != "":
+        cars = cars.filter(body_type=car_body)
+    if car_drive != "":
+        cars = cars.filter(drive=car_drive)
+    if car_model != "":
+        cars = cars.filter(model=car_model)
+    if car_year != "":
+        cars = cars.filter(year=car_year)
+    if car_seating_capacity != "":
+        cars = cars.filter(seating_capacity=car_seating_capacity)
+
+
     for a in cars:
-        print (a.model)
-    return render(request, 'basesite/recommended_car.html', {'cars': cars})
+        print (a.body_type)
+    return render(request, 'basesite/recommended_car.html', {'cars': cars, 'car_drive':car_drive})
 
 def stores(request):
     stores = Store.objects.all()
