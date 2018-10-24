@@ -11,25 +11,22 @@
     <script src="script.js"></script>
   </head>
 
+<br>
 <div class=" container center_div col-md-6 mb-4">
   <div class="card">
     <div class="card-header">
-      Quote
+      <legend>Car Recommendation</legend>
     </div>
     <div class="card-body">
-      <!-- {% for store in stores %}
-<h3>{{ store.id|capfirst }}</h3>
-{% endfor %} -->
-
       <form class="form-horizontal" action="/recommended_car/" method='GET'>
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Car Recommendation</legend>
+          
 
           <!-- Select Basic -->
           <div class="form-group" align="left">
-            <label class="col-md-4 control-label" for="select_city"><strong>City</strong></label>
+            <label class="col-md-4 control-label" for="select_city"><strong>City**</strong></label>
             <div class="col-md-12">
               <select id="select_city" name="select_city" class="form-control">
                 <option value="" selected disabled hidden>--Select City--</option>
@@ -39,6 +36,8 @@
               </select>
             </div>
           </div>
+
+          <hr>
 
           <!-- Select Basic -->
           <div class="form-group" align="left">

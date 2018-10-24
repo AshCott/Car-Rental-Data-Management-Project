@@ -2,13 +2,52 @@
 {% block content %}
 <h1>pointless header</h1>
 
-<div class="panel panel-default">
-  <div class="panel-body">Panel Content</div>
-  <div class="panel-footer">Panel Footer</div>
+<br>
+<h2 align="center" >Recomended Car For You:</h2>
+<br>
+<div class=" container center_div col-md-6 mb-4">
+<div class="card text-center">
+  <div class="card-header">
+    <h5 class="card-title"><b>{{ reco_car.year }} {{ reco_car.name }} {{ reco_car.model }}</b></h5>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+    <tbody>
+        <tr>
+            <td><b>Make</b></td>
+            <td>{{ reco_car.name|capfirst }}</td>
+        </tr>
+            <td><b>Model</b></td>
+            <td>{{ reco_car.model|capfirst }}</td>
+        </tr>
+            <td><b>Series</b></td>
+            <td>{{ reco_car.series|capfirst }}</td>
+        </tr>
+            <td><b>Year</b></td>
+            <td>{{ reco_car.year }}</td>
+        </tr>
+            <td><b>Seating Capacity</b></td>
+            <td>{{ reco_car.seating_capacity }}</td>
+        </tr>
+            <td><b>Body Type</b></td>
+            <td>{{ reco_car.body_type }}</td>
+        </tr>
+            <td><b>Drive</b></td>
+            <td>{{ reco_car.drive }}</td>
+        </tr>
+    </tbody>
+</table>
+  </div>
+  <div class="card-footer text-muted">
+    <a href="/car_details/{{ reco_car.id }}" class="btn btn-primary">View More Info</a>
+  </div>
+</div>
 </div>
 
-
-<table class="table">
+<h2 align="center" >Similar Choices:</h2>
+<br>
+<div class=" container center_div col-md-9 mb-4">
+<table class="table table-striped">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -33,6 +72,7 @@
     {% endfor %}
     </tbody>
   </table>
+  </div>
   
   
 

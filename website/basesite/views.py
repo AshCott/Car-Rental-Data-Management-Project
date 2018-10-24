@@ -10,6 +10,8 @@ from .models import Store
 from .models import Order
 from .models import Customer
 
+import random
+
 from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.decorators import login_required
@@ -167,6 +169,7 @@ def recommendation(request):
 def recommended_car(request):
     carID = []
     city =  request.GET.get('select_city')
+
     car_brand = request.GET.get('select_car_brand')
     car_body = request.GET.get('select_car_body')
     print("Car Body:",car_body)
@@ -174,10 +177,7 @@ def recommended_car(request):
     car_model = request.GET.get('select_car_model')
     car_year = request.GET.get('select_car_year')
     car_seating_capacity = request.GET.get('select_car_seating_capacity')
-    print("Car Body:",car_model)
-    print("Car Body:",car_year)
-    print("Car Body:",car_seating_capacity)
-
+    #IndexError
     store_ids = Store.objects.filter(city=city)
     car_ids = Order.objects.filter(return_store_id=store_ids[0].id)
     for i in car_ids:
@@ -196,10 +196,10 @@ def recommended_car(request):
     if car_seating_capacity != "":
         cars = cars.filter(seating_capacity=car_seating_capacity)
 
+    reco_car = cars[random.randint(0, len(cars))]
+    print (reco_car)
 
-    for a in cars:
-        print (a.body_type)
-    return render(request, 'basesite/recommended_car.html', {'cars': cars, 'car_drive':car_drive})
+    return render(request, 'basesite/recommended_car.html', {'cars': cars, 'car_drive':car_drive, 'reco_car':reco_car})
 
 def stores(request):
     stores = Store.objects.all()
