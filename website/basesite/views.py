@@ -34,6 +34,10 @@ def error_404_view(request, exception):
     data = {"name": "boi"}
     return render(request,'basesite/404.html', data)
 
+def error_500_view(request, exception):
+    data = {"name": "boi"}
+    return render(request,'basesite/500.html', data)
+
 
 
 def employee_home(request):
