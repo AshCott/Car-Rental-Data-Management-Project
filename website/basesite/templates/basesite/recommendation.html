@@ -2,6 +2,7 @@
 {% block content %}
 <h1>pointless header</h1>
 
+<!-- Page header and imports -->
 <head>
     <meta charset="utf-8" />
     <title></title>
@@ -11,40 +12,22 @@
     <script src="script.js"></script>
   </head>
 
+<!-- Card Table with dropdown for user-->
+<br>
 <div class=" container center_div col-md-6 mb-4">
   <div class="card">
     <div class="card-header">
-      Quote
+      <legend>Car Recommendation</legend>
     </div>
     <div class="card-body">
-      <!-- {% for store in stores %}
-<h3>{{ store.id|capfirst }}</h3>
-{% endfor %} -->
-
       <form class="form-horizontal" action="/recommended_car/" method='GET'>
         <fieldset>
 
-          <!-- Form Name -->
-          <legend>Car Recommendation</legend>
-
-          <!-- Select Basic -->
+          <!-- Select Store -->
           <div class="form-group" align="left">
-            <label class="col-md-4 control-label" for="select_state">State</label>
+            <label class="col-md-4 control-label" for="select_city"><strong>Store**</strong></label>
             <div class="col-md-12">
-              <select id="select_state" name="select_state" class="form-control">
-                <option value="" selected disabled hidden>--Select State--</option>
-                {% for state in states %}
-                <option value="{{ state.state }}">{{ state.state }}</option>
-                {% endfor %}
-              </select>
-            </div>
-          </div>
-
-          <!-- Select Basic -->
-          <div class="form-group" align="left">
-            <label class="col-md-4 control-label" for="select_city">City</label>
-            <div class="col-md-12">
-              <select id="select_city" name="select_city" class="form-control">
+              <select id="select_city" name="select_city" class="form-control" onchange="enableButton()">
                 <option value="" selected disabled hidden>--Select City--</option>
                 {% for city in cities %}
                 <option value="{{ city.city }}" class="{{ city.state }}">{{ city.city }}</option>
@@ -53,7 +36,9 @@
             </div>
           </div>
 
-          <!-- Select Basic -->
+          <hr>
+
+          <!-- Select Car Brand -->
           <div class="form-group" align="left">
             <label class="col-md-4 control-label" for="select_car_brand">Car Brand</label>
             <div class="col-md-12">
@@ -66,7 +51,33 @@
             </div>
           </div>
 
-          <!-- Select Basic -->
+          <!-- Select Car Model -->
+          <div class="form-group" align="left">
+            <label class="col-md-4 control-label" for="select_car_model">Car Model</label>
+            <div class="col-md-12">
+              <select id="select_car_model" name="select_car_model" class="form-control">
+                <option value="" selected>--None--</option>
+                {% for car in car_model %}
+                <option value="{{ car.model }}">{{ car.model }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Select Car year -->
+          <div class="form-group" align="left">
+            <label class="col-md-4 control-label" for="select_car_year">Car Year</label>
+            <div class="col-md-12">
+              <select id="select_car_year" name="select_car_year" class="form-control">
+                <option value="" selected>--None--</option>
+                {% for car in car_year %}
+                <option value="{{ car.year }}">{{ car.year }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Select Car Body -->
           <div class="form-group" align="left">
             <label class="col-md-4 control-label" for="select_car_body">Car Body Type</label>
             <div class="col-md-12">
@@ -79,7 +90,7 @@
             </div>
           </div>
 
-          <!-- Select Basic -->
+          <!-- Select Car Drive -->
           <div class="form-group" align="left">
             <label class="col-md-4 control-label" for="select_car_drive">Car Drive</label>
             <div class="col-md-12">
@@ -92,10 +103,23 @@
             </div>
           </div>
 
-          <!-- Button -->
+          <!-- Select car seating capacity -->
+          <div class="form-group" align="left">
+            <label class="col-md-4 control-label" for="select_car_seating_capacity">Car Seating Capacity</label>
+            <div class="col-md-12">
+              <select id="select_car_seating_capacity" name="select_car_seating_capacity" class="form-control">
+                <option value="" selected>--None--</option>
+                {% for car in car_seating_capacity %}
+                <option value="{{ car.seating_capacity }}">{{ car.seating_capacity }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- View More Information Button -->
           <div class="form-group" align="right">
             <div class="col-md-4">
-              <button id="Search" name="Search" class="btn btn-primary">Search</button>
+              <button id="Search" name="Search" class="btn btn-primary" disabled>Search</button>
             </div>
           </div>
 
@@ -104,5 +128,21 @@
     </div>
   </div>
 </div>
+
+<!-- Basic javascript to enable/disable button so user can't progress unless they select a store-->
+<script>
+window.onload=function() {
+  var e = document.getElementById("select_city");
+  var value = e.options[e.selectedIndex].value
+  if (value != "") {
+    document.getElementById("Search").disabled = false;
+  }
+  var text = e.options[e.selectedIndex].text;
+}
+
+function enableButton() {
+    document.getElementById("Search").disabled = false;
+}
+</script>
 
 {% endblock %}

@@ -1,11 +1,79 @@
 {% extends "basesite/base.html" %}
 {% block content %}
 <h1>pointless header</h1>
-{% for car in cars %}
-    {{ car.id }}
-{% endfor %}
 
-<table class="table">
+<br>
+<!-- Code to display if no car was found-->
+{% if no_results == True %}
+<h2 align="center" >Recommended Car For You:</h2>
+<br>
+<div class=" container center_div col-md-6 mb-4">
+<div class="card text-center">
+  <div class="card-header">
+    <h5 class="card-title"><b>No Results</b></h5>
+  </div>
+  <div class="card-body">
+    <label>No results found from user selection</label>
+    <br>
+    <label>Please try again!</label>
+  </div>
+  <div class="card-footer text-muted">
+    <a  class="btn btn-primary" style="color:white" onclick="goBack()">Return</a>
+  </div>
+</div>
+</div>
+
+<!-- Code to display if car is found-->
+{% else %}
+<h2 align="center" >Recommended Car For You:</h2>
+<br>
+<div class=" container center_div col-md-6 mb-4">
+<div class="card text-center">
+  <!-- Car Name-->
+  <div class="card-header">
+    <h5 class="card-title"><b>{{ reco_car.year }} {{ reco_car.name }} {{ reco_car.model }}</b></h5>
+  </div>
+  <div class="card-body">
+    <!-- Table displaying basic car information-->
+    <table class="table table-striped">
+    <tbody>
+        <tr>
+            <td><b>Make</b></td>
+            <td>{{ reco_car.name|capfirst }}</td>
+        </tr>
+            <td><b>Model</b></td>
+            <td>{{ reco_car.model|capfirst }}</td>
+        </tr>
+            <td><b>Series</b></td>
+            <td>{{ reco_car.series|capfirst }}</td>
+        </tr>
+            <td><b>Year</b></td>
+            <td>{{ reco_car.year }}</td>
+        </tr>
+            <td><b>Seating Capacity</b></td>
+            <td>{{ reco_car.seating_capacity }}</td>
+        </tr>
+            <td><b>Body Type</b></td>
+            <td>{{ reco_car.body_type }}</td>
+        </tr>
+            <td><b>Drive</b></td>
+            <td>{{ reco_car.drive }}</td>
+        </tr>
+    </tbody>
+</table>
+  </div>
+  <!-- Footer -->
+  <div class="card-footer text-muted">
+    <a href="/car_details/{{ reco_car.id }}" class="btn btn-primary">View More Info</a>
+  </div>
+</div>
+</div>
+
+<!-- Table below show other similier cars-->
+<h2 align="center" >Similar Choices:</h2>
+<br>
+<div class=" container center_div col-md-9 mb-4">
+<table class="table table-striped">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -13,21 +81,31 @@
         <th scope="col">Series</th>
         <th scope="col">Body Type</th>
         <th scope="col">Drive</th>
+        <th scope="col">Seating Capacity</th>
       </tr>
     </thead>
     <tbody>
     {% for car in cars %}
       <tr>
-        <th scope="row"><a href="http://localhost:8000/car_details/{{ car.id }}">{{ car.id }}</a></th>
-        <td><a href="http://localhost:8000/car_details/{{ car.id }}">{{ car.year }} {{ car.name }} {{ car.model }}</a></td>
-        <td><a href="http://localhost:8000/car_details/{{ car.id }}">{{ car.series }}</a></td>
-        <td><a href="http://localhost:8000/car_details/{{ car.id }}">{{ car.body_type }}</a></td>
-        <td><a href="http://localhost:8000/car_details/{{ car.id }}">{{ car.drive }}</a></td>
+        <th scope="row"><a href="/car_details/{{ car.id }}">{{ car.id }}</a></th>
+        <td><a href="/car_details/{{ car.id }}">{{ car.year }} {{ car.name }} {{ car.model }}</a></td>
+        <td><a href="/car_details/{{ car.id }}">{{ car.series }}</a></td>
+        <td><a href="/car_details/{{ car.id }}">{{ car.body_type }}</a></td>
+        <td><a href="/car_details/{{ car.id }}">{{ car.drive }}</a></td>
+        <td><a href="/car_details/{{ car.id }}">{{ car.seating_capacity }}</a></td>
       </tr>
     {% endfor %}
     </tbody>
   </table>
-  
+  </div>
+{% endif %}
+
+<!-- Javascript for return on button click-->
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
   
 
 {% endblock %}
