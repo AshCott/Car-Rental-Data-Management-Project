@@ -3,6 +3,24 @@
 <h1>pointless header</h1>
 
 <br>
+{% if no_results == True %}
+<h2 align="center" >Recomended Car For You:</h2>
+<br>
+<div class=" container center_div col-md-6 mb-4">
+<div class="card text-center">
+  <div class="card-header">
+    <h5 class="card-title"><b>No Results</b></h5>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+    <h1>No Results</h1>
+  </div>
+  <div class="card-footer text-muted">
+    <a  class="btn btn-primary" style="color:white" onclick="goBack()">Return</a>
+  </div>
+</div>
+</div>
+{% else %}
 <h2 align="center" >Recomended Car For You:</h2>
 <br>
 <div class=" container center_div col-md-6 mb-4">
@@ -73,7 +91,13 @@
     </tbody>
   </table>
   </div>
-  
+{% endif %}
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
   
 
 {% endblock %}

@@ -28,7 +28,7 @@
           <div class="form-group" align="left">
             <label class="col-md-4 control-label" for="select_city"><strong>City**</strong></label>
             <div class="col-md-12">
-              <select id="select_city" name="select_city" class="form-control">
+              <select id="select_city" name="select_city" class="form-control" onchange="enableButton()">
                 <option value="" selected disabled hidden>--Select City--</option>
                 {% for city in cities %}
                 <option value="{{ city.city }}" class="{{ city.state }}">{{ city.city }}</option>
@@ -120,7 +120,7 @@
           <!-- Button -->
           <div class="form-group" align="right">
             <div class="col-md-4">
-              <button id="Search" name="Search" class="btn btn-primary">Search</button>
+              <button id="Search" name="Search" class="btn btn-primary" disabled>Search</button>
             </div>
           </div>
 
@@ -129,5 +129,20 @@
     </div>
   </div>
 </div>
+
+<script>
+window.onload=function() {
+  var e = document.getElementById("select_city");
+  var value = e.options[e.selectedIndex].value
+  if (value != "") {
+    document.getElementById("Search").disabled = false;
+  }
+  var text = e.options[e.selectedIndex].text;
+}
+
+function enableButton() {
+    document.getElementById("Search").disabled = false;
+}
+</script>
 
 {% endblock %}

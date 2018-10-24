@@ -169,7 +169,6 @@ def recommendation(request):
 def recommended_car(request):
     carID = []
     city =  request.GET.get('select_city')
-
     car_brand = request.GET.get('select_car_brand')
     car_body = request.GET.get('select_car_body')
     print("Car Body:",car_body)
@@ -195,11 +194,16 @@ def recommended_car(request):
         cars = cars.filter(year=car_year)
     if car_seating_capacity != "":
         cars = cars.filter(seating_capacity=car_seating_capacity)
+    
+    if len(cars) != 0:
+        reco_car = cars[random.randint(0, len(cars)-1)]
+        print (reco_car)
+        return render(request, 'basesite/recommended_car.html', {'cars': cars, 'car_drive':car_drive, 'reco_car':reco_car})
+    else:
+        no_results = True
+        return render(request, 'basesite/recommended_car.html', {'no_results':no_results})
 
-    reco_car = cars[random.randint(0, len(cars))]
-    print (reco_car)
-
-    return render(request, 'basesite/recommended_car.html', {'cars': cars, 'car_drive':car_drive, 'reco_car':reco_car})
+    
 
 def stores(request):
     stores = Store.objects.all()
