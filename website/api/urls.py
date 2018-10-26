@@ -6,4 +6,5 @@ urlpatterns = [
  url(r'carByID$', views.carByID, name='carByID'),
  url(r'search$', views.search, name='search'),
  url(r'store$', views.store, name='store'),
+ url(r'history$', views.carHistory, name='history'),
 ]

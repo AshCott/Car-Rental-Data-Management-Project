@@ -107,6 +107,110 @@ function toggleHistory(id){
             {% endfor %}
         </tbody>
     </table>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js'></script>
+  <div id="canvas-holder">
+      <canvas id="chart-area"></canvas>
+  </div>
+
+  <script>
+  var myChart;
+  var timeFormat = 'YYYY-MM-DD';
+
+  var conf = {
+        type: 'line',
+        data: {
+          datasets: [{
+            data: [
+              10,
+              10,
+              10,
+              10,
+              10,
+            ],
+            backgroundColor: [
+              "#C0392B", "#9B59B6", "#3498DB", "#27AE60", "#1ABC9C", "#8E44AD",
+              "#2980B9", "#E74C3C", "#2ECC71", "#F1C40F", "#16A085", "#F39C12",
+              "#E67E22", "#D35400"
+            ],
+            label: 'Area'
+          }],
+          labels: [
+            'Red',
+            'Orange',
+            'Yellow',
+            'Green',
+            'Blue'
+          ]
+        },
+        options: {
+          responsive: true,
+          legend:{
+            display: false
+          },
+          scales: {
+            xAxis: [{
+              type: 'time',
+              time: {
+  							format: timeFormat,
+  							// round: 'day'
+  							tooltipFormat: 'll HH:mm'
+						  },
+              scaleLabel: {
+  							display: false,
+  							labelString: 'Date'
+              },
+              gridLines: {
+              display: false
+            }}],
+            yAxis: [{
+                gridLines: {
+                  display: false,
+                }
+              }]
+          }},
+  };
+  function initChart(){
+    var context = document.getElementById('chart-area').getContext('2d');
+    myChart = new Chart(context, conf);
+    myChart.update();
+  }
+
+  var res;
+  var stores = {'pickup_date': {},
+                'return_date': {}};
+  $( document ).ready(function(){
+        initChart();
+        $.post("/api/history",
+        {
+          'carID': {{car.id}},
+        },
+        function(data, status){
+            res = data;
+            // iterates over all results
+            data.history.forEach(function (item){
+              // Add values of pickup and return to stores object
+              stores['pickup_date'][item.pickup_date] = [item.pickup_store, 1];
+              stores['return_date'][item.return_date] = [item.pickup_store, 1];
+            });
+            var dates = [];
+            temp = Object.keys(stores.pickup_date)
+            temp.forEach(function (date){
+              dates.push(new Date(date));
+            });
+            var num = Object.values(stores.pickup_date);
+            var nums = [];
+            num.forEach(function (item){
+              nums.push(item[1]);
+            });
+            myChart.data.datasets[0].data = nums.reverse();
+            myChart.data.labels = temp.reverse();
+            myChart.update();
+        }
+      )}
+  );
+  </script>
+
   </div>
 </div>
 {% endif %}

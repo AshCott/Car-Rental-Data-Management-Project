@@ -116,17 +116,14 @@ var conf = {
       },
       options: pieOptions
 };
-
 function initChart(){
   var context = document.getElementById('chart-area').getContext('2d');
   myPie = new Chart(context, conf);
   myPie.update();
 }
-
 $('#load').click(function(){
   $("#canvas-holder").toggle();
 })
-
 $('#swap').click(function(){
   var swapto;// = (this.text == 'bar') ? 'pie' : 'bar';
   $('#swap').text(function(i, txt){
@@ -148,10 +145,8 @@ $('#swap').click(function(){
   }
   myPie.update();
 })
-
 var numName = [[],[]];
 var counted = {};
-
 $( document ).ready(function(){
     initChart();
       $.post("/api/store",
@@ -174,7 +169,6 @@ $( document ).ready(function(){
       }
     )}
 );
-
 </script>
 
 {% endblock %}

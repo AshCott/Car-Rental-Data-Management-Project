@@ -46,6 +46,18 @@ def store(request):
     car = Car.objects.all()
     # List comprehension to effectively filter for current store
     res = [item.JSonObject() for item in car if selectedStore in item.JSonObject().values()]
-    print(res)
     resp = {'cars': res}
     return JsonResponse(resp)
+
+@csrf_exempt
+def carHistory(request):
+    carID = request.POST['carID']
+    car = Car.objects.get(id = carID)
+    history = car.history()
+
+    res = [{'pickup_date': order.pickup_date, 'pickup_store': order.pickup_store.name,
+    'return_store': order.return_store.name, 'return_date': order.return_date}
+    for order in history]
+    
+    res = {'history': res}
+    return JsonResponse(res)
