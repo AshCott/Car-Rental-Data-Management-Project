@@ -48,7 +48,7 @@ def main(driver, url):
     # Verify that user is logged out
     logged_out_message = driver.find_element_by_id("logged_out_message")
     try:
-        assert 'You are logged out' in logged_out_message.text
+        assert 'Logout Succesful' in logged_out_message.text
     except AssertionError:
         print("FAILED")
         print("\n Testing Halted")
