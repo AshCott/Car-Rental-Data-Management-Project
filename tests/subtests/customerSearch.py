@@ -5,6 +5,7 @@ from selenium.webdriver.common.keys import Keys
 def main(driver, url):
     # Get the home page of the site
     driver.get(url)
+    sleep(2)
 
     logIn = driver.find_element_by_id('login')
     sleep(1)
@@ -54,9 +55,13 @@ def main(driver, url):
     sleep(1)
     enter.click()
     sleep(1)
+    
+    # clean up by logging out first
+    logout = driver.find_element_by_id('logout_btn')
+    logout.click()
 
 if __name__ == '__main__':
-    driver_path = './\\drivers\\chromedriver.exe'
+    driver_path = '../\\drivers\\chromedriver.exe'
     driver = webdriver.Chrome(executable_path=driver_path)
     url = 'http://127.0.0.1:8000'
     main(driver, url)

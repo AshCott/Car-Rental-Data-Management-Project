@@ -8,8 +8,33 @@ def main(driver, url):
     driver.get(url)
     sleep(1)
 
-    # ---------------First test: Testing Login---------------
-    print('Testing Login: ', end='')
+    # ---------------First test: Testing Logged out---------------
+    print('Testing Customer Info is Restricted: ', end='')
+
+    driver.get('http://127.0.0.1:8000/customer_details/11055')
+
+    try:
+        login_alert = driver.find_element_by_id("not_logged_in_alert")
+    except Exception:
+        print("FAILED")
+        print("\n Testing Halted")
+        exit()
+    print("PASSED")
+
+    print('Testing Car History Info is Restricted: ', end='')
+
+    driver.get('http://localhost:8000/car_details/14883')
+
+    try:
+        car_history_logged_out = driver.find_element_by_id("history")
+    except Exception:
+        print("PASSED")
+
+
+    # ---------------Second test: Testing Logged In---------------
+    print('Testing Customer Info Logged In: ', end='')
+
+    driver.get(url)
 
     # Navigate to login
     login_button = driver.find_element_by_id('login')
@@ -28,36 +53,27 @@ def main(driver, url):
     sleep(1)
     login_btn.click()
 
-    # Verify that user is logged in
-    login_btn = driver.find_element_by_id("login_welcome")
+    driver.get('http://127.0.0.1:8000/customer_details/11055')
+
     try:
-        assert 'Welcome admin!' in login_btn.text
-    except AssertionError:
+        customer_info = driver.find_element_by_id("history")
+    except Exception:
         print("FAILED")
         print("\n Testing Halted")
         exit()
     print("PASSED")
 
-    # ---------------Second test: Testing Logout---------------
-    print('Testing Logout: ', end='')
+    print('Testing Car History Logged In: ', end='')
 
-    # Click Loggout
-    logout_btn = driver.find_element_by_id("logout_btn")
-    sleep(1)
-    logout_btn.click()
+    driver.get('http://localhost:8000/car_details/14872')
 
-    # Verify that user is logged out
-    logged_out_message = driver.find_element_by_id("logged_out_message")
     try:
-        assert 'Logout Succesful' in logged_out_message.text
-    except AssertionError:
+        car_history = driver.find_element_by_id("history")
+    except Exception:
         print("FAILED")
-        print("\n Testing Halted")
-        exit()
     print("PASSED")
     sleep(1)
 
-    print("Tests Passed:", str(2) + "/" + str(2))
 
 # If this individual test is run, define vars and pass. Otherwise, main can be run directly
 if __name__ == '__main__':
