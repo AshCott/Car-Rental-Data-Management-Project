@@ -17,11 +17,15 @@
 <!-- Div class to make section collapse by default. Click button to show -->
 
   <div id="stores">
+<<<<<<< HEAD
+    <center><h2 id="title" class="display-2" face="Helvetica">{{store.name}}</h2></center>
+=======
     <center><h2 class="display-2" face="Helvetica" id="StoreName">{{store.name}}</h2></center>
+>>>>>>> 26bf5dd6b789a560ce9c09ebde853946cc0c35b4
     <table class="table table-striped">
         <tbody>
             <tr>
-              <td>Location: {{store.name}}, {{store.state}}</td>
+              <td id="StoreName">Location: {{store.name}}, {{store.state}}</td>
               <td>Address: {{store.address}}</td>
               <td>Phone Number: {{store.phone}}</td>
             </tr>
@@ -39,7 +43,7 @@
             {% for car in cars %}
               {% if car.currentStore == store.name %}
                 <tr>
-                  <td><a href="/car_details/{{car.id}}">{{car.year}} {{car.name}} {{car.model}}</a></td>
+                  <td><a name="CarInStore" href="/car_details/{{car.id}}">{{car.year}} {{car.name}} {{car.model}}</a></td>
                   <td>{{car.series}}</td>
                   <td>{{car.drive}}</td>
                 </tr>
