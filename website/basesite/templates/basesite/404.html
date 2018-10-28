@@ -7,12 +7,13 @@
 <link href="/static/css/landing-page.min.css" rel="stylesheet">
 
 
-<!-- templates/basesite/logout.html -->
+<!-- templates/basesite/404.html -->
 
 <!-- Whitespace -->
 <!-- Logout Notification Boarder-->
 <div class="center2">
 <center>
+  <!-- Whoops Image -->
   <img src="/static/images/errors/404Whoops.png"
   style = "
     max-width: 60%;
@@ -23,6 +24,7 @@
   ">
 <h1> 
   <script>
+    // List of Developer Names
     var nameList = [
       "Jake",
       "Cole",
@@ -30,12 +32,15 @@
       "Ashley",
       "Jack"
     ]
+    // Random number between 0 and 5.
     var num = Math.floor((Math.random() * 5));
+    // Message spit into two pieces so random name can be inserted
     var firstHalf = "404 - Page not found</h1>  <h6> It seems like someone stole this page, it was </h6>  <h6> probably "
     var secondHalf = ". Lets go home shall we?"
     document.write( firstHalf + nameList[num] + secondHalf )
   </script>
  </h6>
+ <!-- Home Button -->
   <button id="logout_btn" type="button" style="width: 15%" class="btn btn-primary" onclick="window.location.href='/'">Home</button>
 
 

@@ -20,7 +20,7 @@ from django.conf.urls import handler404, handler500
 
 #Custom Error Pages
 handler404 = 'basesite.views.error_404_view'
-handler500 = 'basesite.views.error_500_view'
+handler500 = 'basesite.views.error_500_view'    
 
 
 
