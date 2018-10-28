@@ -41,21 +41,27 @@
             <td><b>Make</b></td>
             <td>{{ reco_car.name|capfirst }}</td>
         </tr>
+        <tr>
             <td><b>Model</b></td>
             <td>{{ reco_car.model|capfirst }}</td>
         </tr>
+        <tr>
             <td><b>Series</b></td>
             <td>{{ reco_car.series|capfirst }}</td>
         </tr>
+        <tr>
             <td><b>Year</b></td>
             <td>{{ reco_car.year }}</td>
         </tr>
+        <tr>
             <td><b>Seating Capacity</b></td>
             <td>{{ reco_car.seating_capacity }}</td>
         </tr>
+        <tr>
             <td><b>Body Type</b></td>
             <td>{{ reco_car.body_type }}</td>
         </tr>
+        <tr>
             <td><b>Drive</b></td>
             <td>{{ reco_car.drive }}</td>
         </tr>
@@ -63,8 +69,13 @@
 </table>
   </div>
   <!-- Footer -->
+<<<<<<< HEAD
   <div class="card-footer text-muted" >
     <a id="More_Info" href="/car_details/{{ reco_car.id }}" class="btn btn-primary" >View More Info</a>
+=======
+  <div class="card-footer text-muted">
+    <a href="/car_details/{{ reco_car.id }}" id = "More_Info" class="btn btn-primary">View More Info</a>
+>>>>>>> 26bf5dd6b789a560ce9c09ebde853946cc0c35b4
   </div>
 </div>
 </div>
@@ -106,6 +117,6 @@ function goBack() {
     window.history.back();
 }
 </script>
-  
+
 
 {% endblock %}
