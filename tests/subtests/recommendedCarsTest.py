@@ -24,9 +24,8 @@ def main(driver, url):
     search.click()
     sleep(1)
     more_Info = driver.find_element_by_id('More_Info')
-    sleep(1)
+    sleep(10)
 
-    sleep(1)
 
     # select by visible text
     #select.select_by_visible_text('Alexandria')
