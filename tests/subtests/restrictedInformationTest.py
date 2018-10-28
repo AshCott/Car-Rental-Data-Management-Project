@@ -6,6 +6,7 @@ from selenium.webdriver.common.keys import Keys
 def main(driver, url):
     # Get the home page of the site
     driver.get(url)
+    sleep(1)
 
     # ---------------First test: Testing Logged out---------------
     print('Testing Customer Info is Restricted: ', end='')
@@ -29,7 +30,7 @@ def main(driver, url):
     except Exception:
         print("PASSED")
 
-    
+
     # ---------------Second test: Testing Logged In---------------
     print('Testing Customer Info Logged In: ', end='')
 
@@ -61,7 +62,7 @@ def main(driver, url):
         print("\n Testing Halted")
         exit()
     print("PASSED")
-    
+
     print('Testing Car History Logged In: ', end='')
 
     driver.get('http://localhost:8000/car_details/14872')
@@ -76,7 +77,7 @@ def main(driver, url):
 
 # If this individual test is run, define vars and pass. Otherwise, main can be run directly
 if __name__ == '__main__':
-    driver_path = './\\drivers\\chromedriver.exe'
+    driver_path = '../\\drivers\\chromedriver.exe'
     driver = webdriver.Chrome(executable_path=driver_path)
     url = 'http://127.0.0.1:8000'
     main(driver, url)

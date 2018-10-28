@@ -6,9 +6,10 @@ from selenium.webdriver.support.ui import Select
 def main(driver, url):
     # Get the home page of the site
     driver.get(url)
+    sleep(1)
 
     # First test: Click the 'Recommended Cars' button
-    recommendation = driver.find_element_by_id('Recommendation')
+    recommendation = driver.find_element_by_name('Recommendation')
     sleep(1)
     recommendation.click()
     sleep(1)
@@ -33,7 +34,7 @@ def main(driver, url):
     #select.select_by_value('1')
 
 if __name__ == '__main__':
-    driver_path = './\\drivers\\chromedriver.exe'
+    driver_path = '../\\drivers\\chromedriver.exe'
     driver = webdriver.Chrome(executable_path=driver_path)
     url = 'http://127.0.0.1:8000'
     main(driver, url)

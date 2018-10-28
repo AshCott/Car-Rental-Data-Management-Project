@@ -5,6 +5,7 @@ from selenium.webdriver.common.keys import Keys
 def main(driver, url):
     # Get the home page of the site
     driver.get(url)
+    sleep(1)
 
     # First test: Click the 'See All Stores' button
     store = driver.find_element_by_name('Stores')
@@ -13,8 +14,9 @@ def main(driver, url):
     sleep(1)
 
     # Second test: Testing Link to the Individual Stores Page
-    firstLink = driver.find_element_by_name("link")
-    firstLinkText = driver.find_element_by_name("link").text # Storing Store Location variable for use in the 3rd test
+    firstLink = driver.find_elements_by_xpath("//a[@href]")[1]
+    firstLinkText = firstLink.text # Storing Store Location variable for use in the 3rd test
+    print(firstLinkText)
     firstLink.click()
 
     # Third test: Making sure correct individual store has been opened
@@ -46,7 +48,7 @@ def main(driver, url):
         print("The Fifth test has failed: Incorrect Details page has been opened") # Test has failed
 
 if __name__ == '__main__':
-    driver_path = './\\drivers\\chromedriver.exe'
+    driver_path = '../\\drivers\\chromedriver.exe'
     driver = webdriver.Chrome(executable_path=driver_path)
     url = 'http://127.0.0.1:8000'
     main(driver, url)

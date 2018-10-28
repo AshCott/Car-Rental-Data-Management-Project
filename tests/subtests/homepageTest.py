@@ -22,13 +22,13 @@ def main(driver, url):
     sleep(1)
 
     # Second test: ensure buttons lead to desired pages
-    toTest = ["Home", "Search", "Login"]
+    toTest = ["Home", "Search", "Recommendation", "Login"]
     for item in toTest:
         testLink(driver, item)
 
 # Define vars and call main if directly running test
 if __name__ == '__main__':
-    driver_path = './\\drivers\\chromedriver.exe'
+    driver_path = '../\\drivers\\chromedriver.exe'
     driver = webdriver.Chrome(executable_path=driver_path)
     url = 'http://127.0.0.1:8000'
     main(driver, url)

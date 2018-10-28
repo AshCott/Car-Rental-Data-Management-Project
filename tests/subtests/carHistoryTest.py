@@ -37,8 +37,12 @@ def main(driver, url):
     historyOpen.click()
     sleep(1)
 
+    # clean up by logging out first
+    logout = driver.find_element_by_id('logout_btn')
+    logout.click()
+
 if __name__ == '__main__':
-    driver_path = './\\drivers\\chromedriver.exe'
+    driver_path = '../\\drivers\\chromedriver.exe'
     driver = webdriver.Chrome(executable_path=driver_path)
     url = 'http://127.0.0.1:8000'
     main(driver, url)
