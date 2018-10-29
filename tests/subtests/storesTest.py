@@ -14,14 +14,16 @@ def main(driver, url):
     sleep(1)
 
     # Second test: Testing Link to the Individual Stores Page
-    firstLink = driver.find_elements_by_xpath("//a[@href]")[1]
+    firstLink = driver.find_elements_by_name("link")
     firstLinkText = firstLink.text # Storing Store Location variable for use in the 3rd test
-    print(firstLinkText)
     firstLink.click()
 
     # Third test: Making sure correct individual store has been opened
     storeLocation = driver.find_element_by_id("StoreName").text # Finding Store Location from table
     firstLinkText = "Location: " + firstLinkText # Converting link text to same format as storeLocation variable
+
+    print(storeLocation)
+    print(firstLinkText)
 
     # Comparing the Store Location found in the Stores Page to the location found
     # in the hyperlink that was clicked on to direct to the stores page
