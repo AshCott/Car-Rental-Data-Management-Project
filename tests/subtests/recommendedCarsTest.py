@@ -24,13 +24,7 @@ def main(driver, url):
     search.click()
     sleep(1)
     more_Info = driver.find_element_by_id('More_Info')
-    sleep(10)
-
-
-    # select by visible text
-    #select.select_by_visible_text('Alexandria')
-    # select by value
-    #select.select_by_value('1')
+    sleep(1)
 
 if __name__ == '__main__':
     driver_path = '../\\drivers\\chromedriver.exe'
