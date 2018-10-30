@@ -111,6 +111,7 @@ function toggleHistory(id){
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js'></script>
   <div id="canvas-holder">
       <canvas id="chart-area"></canvas>
+      <center><button class="btn btn-outline-secondary" id='swap'>Swap to return store</button></center>
   </div>
 
   <script>
@@ -118,7 +119,7 @@ function toggleHistory(id){
   var timeFormat = 'YYYY-MM-DD';
 
   var conf = {
-        type: 'line',
+        type: 'bar',
         data: {
           datasets: [{
             data: [
@@ -144,6 +145,10 @@ function toggleHistory(id){
           ]
         },
         options: {
+          title: {
+            display: true,
+            text: 'Store the car was picked up at',
+          },
           responsive: true,
           legend:{
             display: false
@@ -166,6 +171,10 @@ function toggleHistory(id){
             yAxis: [{
                 gridLines: {
                   display: false,
+                },
+                ticks: {
+                  beginAtZero: true,
+                  stepSize: 1,
                 }
               }]
           }},
@@ -176,9 +185,33 @@ function toggleHistory(id){
     myChart.update();
   }
 
-  var res;
+  $('#swap').click(function(){
+    var temp = false;
+    $('#swap').text(function(i, txt){
+      temp = (txt == "Store the car was picked up at");
+      return txt == "Store the car was picked up at" ? "Store the car was returned to" : "Store the car was picked up at";
+    })
+    if (temp){
+      myChart.options.title.text = "Store the car was picked up at";
+      myChart.data.datasets[0].data = Object.values(stores.pickup_date);
+      myChart.data.labels = Object.keys(stores.pickup_date);
+    }
+    else {
+      myChart.options.title.text = "Store the car was returned to";
+      myChart.data.datasets[0].data = Object.values(stores.return_date);
+      myChart.data.labels = Object.keys(stores.return_date);
+    }
+    myChart.destroy();
+    myChart.options.scales.yAxes[0].ticks = {
+      stepSize: 1,
+      beginAtZero: true,
+    };
+    initChart();
+  })
+
   var stores = {'pickup_date': {},
                 'return_date': {}};
+
   $( document ).ready(function(){
         initChart();
         $.post("/api/history",
@@ -190,21 +223,11 @@ function toggleHistory(id){
             // iterates over all results
             data.history.forEach(function (item){
               // Add values of pickup and return to stores object
-              stores['pickup_date'][item.pickup_date] = [item.pickup_store, 1];
-              stores['return_date'][item.return_date] = [item.pickup_store, 1];
+              stores['pickup_date'][item.pickup_store] = data.history.filter(store => store.pickup_store == item.pickup_store).length;
+              stores['return_date'][item.return_store] = data.history.filter(store => store.return_store == item.return_store).length;
             });
-            var dates = [];
-            temp = Object.keys(stores.pickup_date)
-            temp.forEach(function (date){
-              dates.push(new Date(date));
-            });
-            var num = Object.values(stores.pickup_date);
-            var nums = [];
-            num.forEach(function (item){
-              nums.push(item[1]);
-            });
-            myChart.data.datasets[0].data = nums.reverse();
-            myChart.data.labels = temp.reverse();
+            myChart.data.datasets[0].data = Object.values(stores.pickup_date);
+            myChart.data.labels = Object.keys(stores.pickup_date);
             myChart.update();
         }
       )}
