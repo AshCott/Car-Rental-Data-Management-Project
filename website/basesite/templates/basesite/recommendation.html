@@ -129,8 +129,10 @@
   </div>
 </div>
 
-<!-- Basic javascript to enable/disable button so user can't progress unless they select a store-->
+
 <script>
+// On page load check that city is selected and enable search buttom
+// Used incase the user navigates back from a search and the box is already filled in
 window.onload=function() {
   var e = document.getElementById("select_city");
   var value = e.options[e.selectedIndex].value
@@ -140,6 +142,7 @@ window.onload=function() {
   var text = e.options[e.selectedIndex].text;
 }
 
+// Enable search button once user selects a city
 function enableButton() {
     document.getElementById("Search").disabled = false;
 }
