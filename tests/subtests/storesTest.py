@@ -19,8 +19,10 @@ def main(driver, url):
     # Second test: Testing Link to the Individual Stores Page
     firstLink = driver.find_elements_by_name("link")
     firstLinkText = firstLink[testStore-1].text # Storing Store Location variable for use in the 3rd test
-    firstLinkText = firstLinkText.split(',')[0] # convert to proper format
-    firstLink[testStore-1].click()
+    firstLinkText = firstLinkText.split(',')[0] # Convert to proper format
+    sleep(5)
+    firstLink[testStore-1].click() # Clicking First Link Present in table
+    sleep(5)
 
     # Third test: Making sure correct individual store has been opened
     storeLocation = driver.find_element_by_id("StoreName").text # Finding Store Location from table
@@ -35,7 +37,9 @@ def main(driver, url):
     # Fourth test: Testing Avaliable Car Links
     firstCarLink = driver.find_element_by_name("CarInStore")
     firstCarLinkText = driver.find_element_by_name("CarInStore").text
+    sleep(5)
     firstCarLink.click()
+    sleep(5)
 
     # Fifth test: Making sure correct Car Details page is displayed
     CarInfo = driver.find_element_by_name("CarTitle").text # Finding Store Location from table
@@ -47,8 +51,9 @@ def main(driver, url):
     else: # If variables don't match
         print("The Fifth test has failed: Incorrect Details page has been opened") # Test has failed
 
-    sleep(1)
+    sleep(1) # Holding test Browser open for a short time
 
+# Initialising the Test
 if __name__ == '__main__':
     driver_path = '../\\drivers\\chromedriver.exe'
     driver = webdriver.Chrome(executable_path=driver_path)
