@@ -2,6 +2,7 @@ from selenium import webdriver
 from time import sleep
 from selenium.webdriver.common.keys import Keys
 
+
 def main(driver, url):
     # Get the home page of the site
     driver.get(url)
@@ -10,7 +11,6 @@ def main(driver, url):
     sleep(1)
     logIn.click()
     sleep(1)
-
 
     usernameField = driver.find_element_by_id("id_username")
     usernameField.send_keys("admin")
@@ -40,6 +40,7 @@ def main(driver, url):
     # clean up by logging out first
     logout = driver.find_element_by_id('logout_btn')
     logout.click()
+
 
 if __name__ == '__main__':
     driver_path = '../\\drivers\\chromedriver.exe'

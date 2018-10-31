@@ -188,7 +188,7 @@ def recommended_car(request):
     if car_seating_capacity != "":
         cars = cars.filter(seating_capacity=car_seating_capacity)
     
-    # Select a random car to be recommended or alert page that their is no car available
+    # Select a random car to be recommended or alert the webpage that their is no results found
     if len(cars) != 0:
         reco_car = cars[random.randint(0, len(cars)-1)]
         print (reco_car)

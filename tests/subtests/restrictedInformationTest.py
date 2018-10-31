@@ -3,6 +3,8 @@ from time import sleep
 from selenium.webdriver.common.keys import Keys
 
 # Define main function to run the test
+
+
 def main(driver, url):
     # Get the home page of the site
     driver.get(url)
@@ -11,8 +13,10 @@ def main(driver, url):
     # ---------------First test: Testing Logged out---------------
     print('Testing Customer Info is Restricted: ', end='')
 
+    # Navigate to webpage
     driver.get('http://127.0.0.1:8000/customer_details/11055')
 
+    # test if the not logged in alert is shown
     try:
         login_alert = driver.find_element_by_id("not_logged_in_alert")
     except Exception:
@@ -23,13 +27,14 @@ def main(driver, url):
 
     print('Testing Car History Info is Restricted: ', end='')
 
+    # Navigate to webpage
     driver.get('http://localhost:8000/car_details/14883')
 
+    # test if history element is not on page
     try:
         car_history_logged_out = driver.find_element_by_id("history")
     except Exception:
         print("PASSED")
-
 
     # ---------------Second test: Testing Logged In---------------
     print('Testing Customer Info Logged In: ', end='')
@@ -53,8 +58,10 @@ def main(driver, url):
     sleep(1)
     login_btn.click()
 
+    # Navigate to webpage
     driver.get('http://127.0.0.1:8000/customer_details/11055')
 
+    # Test if customer history is visible
     try:
         customer_info = driver.find_element_by_id("history")
     except Exception:
@@ -65,8 +72,10 @@ def main(driver, url):
 
     print('Testing Car History Logged In: ', end='')
 
+    # Navigate to webpage
     driver.get('http://localhost:8000/car_details/14872')
 
+    # Test if car history is visible
     try:
         car_history = driver.find_element_by_id("history")
     except Exception:
