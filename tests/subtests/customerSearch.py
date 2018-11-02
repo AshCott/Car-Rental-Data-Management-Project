@@ -7,21 +7,28 @@ def main(driver, url):
     driver.get(url)
     sleep(2)
 
+    # Finding login buton
     logIn = driver.find_element_by_id('login')
     sleep(1)
+    # Clicking Login button
     logIn.click()
     sleep(1)
 
+    # Finding the Username field on login screen    
     usernameField = driver.find_element_by_id("id_username")
     usernameField.send_keys("admin")
     sleep(1)
+   # Finding the password field on login screen
     usernameField = driver.find_element_by_id("id_password")
     usernameField.send_keys("admin")
     sleep(1)
+    # Locating the submit button to log in.
     login = driver.find_element_by_id('submit_btn')
+    # Clicking button
     login.click()
     sleep(3)
 
+    # Finding and clicking customer info button
     logIn = driver.find_element_by_id('Customer_Info_Button')
     sleep(1)
     logIn.click()
@@ -38,7 +45,7 @@ def main(driver, url):
     enter.click()
     sleep(3)
 
-    # Fourth Test = Search by model
+    # Search By customer address
     otherSearch = driver.find_element_by_id("searchBy")
     otherSearch.click()
     sleep(1)
@@ -46,10 +53,13 @@ def main(driver, url):
     modelenter.click()
     sleep(1)
 
+    # Remove previous search query entry
     searchBar = driver.find_element_by_id("customerName")
     searchBar.send_keys(Keys.BACKSPACE)
     searchBar.send_keys(Keys.BACKSPACE)
     searchBar.send_keys(Keys.BACKSPACE)
+
+    # Search for a user address
     searchBar.send_keys("800 Corrinne Court")
     enter = driver.find_element_by_id("searchbtn")
     sleep(1)

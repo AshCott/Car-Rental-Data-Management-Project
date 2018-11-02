@@ -18,7 +18,7 @@
     <label>Please try again!</label>
   </div>
   <div class="card-footer text-muted">
-    <a  class="btn btn-primary" style="color:white" onclick="goBack()">Return</a>
+    <a id="goBack" class="btn btn-primary" style="color:white" onclick="goBack()">Return</a>
   </div>
 </div>
 </div>
@@ -69,7 +69,6 @@
 </table>
   </div>
   <!-- Footer -->
-
   <div class="card-footer text-muted">
     <a href="/car_details/{{ reco_car.id }}" id = "More_Info" class="btn btn-primary">View More Info</a>
 </div>
@@ -107,8 +106,9 @@
   </div>
 {% endif %}
 
-<!-- Javascript for return on button click-->
+
 <script>
+// Javascript for return on button click
 function goBack() {
     window.history.back();
 }

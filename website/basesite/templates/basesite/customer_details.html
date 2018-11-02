@@ -28,7 +28,7 @@ function toggleHistory(id){
 {% if user.is_authenticated %} <!-- If User is Logged On -->
 
     <br><br><br><center> <h2 class="display-2" face="Helvetica" >{{customer.name|title}}</h2> </center><br>
-
+    <!-- Table containing customer information -->
     <table class="table table-striped">
         <tbody>
                 <td>Birthday</td>
@@ -43,14 +43,14 @@ function toggleHistory(id){
                 <td>Occupation</td>
                 <td>{{customer.occupation}}</td> 
             </tr>
-                <td>Gender</td>
+                <td>Gender</td> <!-- Replacing standard M/F found in database with full Male/Female -->
                     {% if customer.gender == "M" %}
                 <td>Male</td>
                 {% elif customer.gender == "F" %}
                 <td>Female</td>
                 {% endif %}
             </tr>
-                <td>Number of Rentals</td>
+                <td>Number of Rentals</td> <!-- Counting number of rentals done by customer -->
                 {% for order in history %}
                     {% if forloop.last %}
                         <td>{{forloop.counter}}</td>
@@ -71,7 +71,7 @@ function toggleHistory(id){
         <tbody>
             {% for order in history %}
             <tr>
-                <td><a href="/car_details/{{ order.carID.id }}">{{order.carID.year}} {{order.carID.name}} {{order.carID.model}}</a></td>
+                <td><a href="/car_details/{{ order.carID.id }}" id="car_info">{{order.carID.year}} {{order.carID.name}} {{order.carID.model}}</a></td>
                 <td>Pick up from {{order.pickup_store.name}} on {{order.pickup_date}}</td>
                 <td>Dropped off at {{order.return_store.name}} on {{order.return_date}}</td>
             </tr>
