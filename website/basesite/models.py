@@ -65,7 +65,7 @@ class Car(models.Model):
         'fuel_system': self.fuel_system, 'tank_capacity': self.tank_capacity,
         'power': self.power, 'seating_capacity': self.seating_capacity,
         'transmission': self.transmission, 'body_type': self.body_type,
-        'drive': self.drive, 'wheelbase': self.wheelbase}
+        'drive': self.drive, 'wheelbase': self.wheelbase, 'current_store': self.currentStore()}
         return data
 
     # Currently only body type similarity

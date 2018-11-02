@@ -29,6 +29,7 @@ function toggleHistory(id){
 
     <br><br><br><center> <h2 class="display-2" face="Helvetica" >{{customer.name|title}}</h2> </center><br>
 
+    <!-- Table containing customer information -->
     <table class="table table-striped">
         <tbody>
                 <td>Birthday</td>
@@ -71,7 +72,7 @@ function toggleHistory(id){
         <tbody>
             {% for order in history %}
             <tr>
-                <td><a href="/car_details/{{ order.carID.id }}">{{order.carID.year}} {{order.carID.name}} {{order.carID.model}}</a></td>
+                <td><a href="/car_details/{{ order.carID.id }}" id="car_info">{{order.carID.year}} {{order.carID.name}} {{order.carID.model}}</a></td>
                 <td>Pick up from {{order.pickup_store.name}} on {{order.pickup_date}}</td>
                 <td>Dropped off at {{order.return_store.name}} on {{order.return_date}}</td>
             </tr>
