@@ -2,7 +2,8 @@
 {% block content %}
 <br><br>
 <div class="mapouter">
-    <div class="gmap_canvas"><iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q={{store.city}} {{store.state}}&t=&z=18&ie=UTF8&iwloc=&output=embed&z=15"
+    <div class="gmap_canvas"><iframe width="100%" height="500" id="gmap_canvas"
+      src="https://maps.google.com/maps?q={{store.city}} {{store.state}}&t=&z=18&ie=UTF8&iwloc=&output=embed&z=15"
     frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 </div>
 
@@ -36,9 +37,11 @@
     <center><h3 class="display-3" face="Helvetica">Available cars</h3></center>
     <table class="table table-striped">
         <tbody>
+            <!-- Check if the car is at the store, display if it is -->
             {% for car in cars %}
               {% if car.currentStore == store.name %}
                 <tr>
+                  <!-- Provide a link to individual car page -->
                   <td><a name="CarInStore" href="/car_details/{{car.id}}">{{car.year}} {{car.name}} {{car.model}}</a></td>
                   <td>{{car.series}}</td>
                   <td>{{car.drive}}</td>
@@ -54,7 +57,7 @@
     </center>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js'></script>
-    <!-- just using chartjs for now -->
+    <!-- Chart to display visual of current cars -->
     <div id="canvas-holder">
         <canvas id="chart-area"></canvas>
         <center><button class="btn btn-outline-secondary" id='swap'>Swap to bar</button></center>
@@ -151,7 +154,8 @@ $('#swap').click(function(){
   }
   myPie.update();
 })
-var numName = [[],[]];
+
+// Similar to implementation in search, car_details etc.
 var counted = {};
 $( document ).ready(function(){
     initChart();

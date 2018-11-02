@@ -45,49 +45,62 @@ function toggleHistory(id){
             <td>Make</td>
             <td>{{ car.name|capfirst }}</td>
         </tr>
+        <tr>
             <td>Model</td>
             <td>{{ car.model|capfirst }}</td>
         </tr>
+        <tr>
             <td>Series</td>
             <td>{{ car.series|capfirst }}</td>
         </tr>
+        <tr>
             <td>Year</td>
             <td>{{ car.year }}</td>
         </tr>
+        <tr>
             <td>Purchase Price</td>
             <td>${{ car.purchase_price }}</td>
         </tr>
+        <tr>
             <td>Engine Size</td>
             <td>{{ car.engine_size }}</td>
         </tr>
+        <tr>
             <td>Fuel System</td>
             <td>{{ car.fuel_system }}</td>
         </tr>
+        <tr>
             <td>Tank Capacity</td>
             <td>{{ car.tank_capacity }}</td>
         </tr>
+        <tr>
             <td>Power</td>
             <td>{{ car.power }}</td>
         </tr>
+        <tr>
             <td>Seating Capacity</td>
             <td>{{ car.seating_capacity }}</td>
         </tr>
+        <tr>
             <td>Transmission</td>
             <td>{{ car.transmission }}</td>
         </tr>
+        <tr>
             <td>Body Type</td>
             <td>{{ car.body_type }}</td>
         </tr>
+        <tr>
             <td>Drive</td>
             <td>{{ car.drive }}</td>
         </tr>
+        <tr>
             <td>Wheelbase</td>
             <td>{{ car.wheelbase }}</td>
         </tr>
     </tbody>
 </table>
 
-<!-- Rental History of each car: currently available to all. Will change to login only after review -->
+<!-- Rental History of each car, available to logged in users
 <!-- Note: Django templating will not ignore commented commands. -->
 {% if user.is_authenticated %}
 <center>
@@ -187,10 +200,12 @@ function toggleHistory(id){
 
   $('#swap').click(function(){
     var temp = false;
+    // Change the button text and set temp var
     $('#swap').text(function(i, txt){
       temp = (txt == "Store the car was picked up at");
       return txt == "Store the car was picked up at" ? "Store the car was returned to" : "Store the car was picked up at";
     })
+    // Change chart options and data
     if (temp){
       myChart.options.title.text = "Store the car was picked up at";
       myChart.data.datasets[0].data = Object.values(stores.pickup_date);
@@ -201,6 +216,7 @@ function toggleHistory(id){
       myChart.data.datasets[0].data = Object.values(stores.return_date);
       myChart.data.labels = Object.keys(stores.return_date);
     }
+    // Rebuild chart
     myChart.destroy();
     myChart.options.scales.yAxes[0].ticks = {
       stepSize: 1,

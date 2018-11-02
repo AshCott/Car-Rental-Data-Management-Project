@@ -15,6 +15,7 @@
     <table id="Store_Table" class="table table-striped">
         <tbody>
             {% for store in stores %}
+            <!-- Make the table entry and link to individual store page -->
             <tr>
                 <td><strong>Location:</strong> <a name="link" href="/store/{{store.id}}/">{{store.name}}, {{store.state}}</a></td>
                 <td><strong>Address:</strong> {{store.address}}</td>
@@ -23,7 +24,6 @@
         </tbody>
     </table>
   </div>
-</div>
 
 <footer class="footer bg-light">
   <div class="text-center">
