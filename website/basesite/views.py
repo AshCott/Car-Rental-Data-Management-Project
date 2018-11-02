@@ -113,7 +113,7 @@ def customer_details(request, id):
         customer = Customer.objects.get(id=id)
         history = Order.objects.filter(customerID=id)
     except Customer.DoesNotExist:
-            raise Http404('Vehicle not found')
+            raise Http404('Customer not found')
     return render(request, 'basesite/customer_details.html', {'customer':customer, 'history':history})
 
 def car_history(request):
