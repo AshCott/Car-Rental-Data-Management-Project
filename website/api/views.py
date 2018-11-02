@@ -76,7 +76,7 @@ def customer(request):
     # list comprehension -> javascript array
     resp = {'items': [item.JSonObject() for item in customer]}
     return JsonResponse(resp)
-    
+
 @csrf_exempt
 def store(request):
     selectedStore = request.POST
@@ -89,10 +89,13 @@ def store(request):
 
 @csrf_exempt
 def carHistory(request):
+    # Get posted carID
     carID = request.POST['carID']
+    # Get the one car that matches ID and call history method
     car = Car.objects.get(id = carID)
     history = car.history()
 
+    # List comprehension to make a JSON interpreted object out of each "Order" object
     res = [{'pickup_date': order.pickup_date, 'pickup_store': order.pickup_store.name,
     'return_store': order.return_store.name, 'return_date': order.return_date}
     for order in history]
