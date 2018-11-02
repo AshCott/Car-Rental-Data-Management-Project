@@ -27,9 +27,11 @@ function toggleHistory(id){
     <br>
     <br>
 
+<!-- Getting car make logo for top of page -->
     <center><img src="/static/images/logos/{{ car.name }}.jpg" alt="Car Logo" class="center"></center>
 
 <br>
+<!-- Getting car make and year for title -->
 <center> <h2 name="CarTitle" class="display-2" face="Helvetica" >
     {{ car.year }}
     {% if car.name == "BMW" %}
@@ -39,6 +41,7 @@ function toggleHistory(id){
     {% endif %}
     {{ car.model|title }}</h2> </center>
 <br>
+<!-- Car details table - uses bootstrap -->
 <table class="table table-striped">
     <tbody>
         <tr>
@@ -58,16 +61,16 @@ function toggleHistory(id){
             <td>${{ car.purchase_price }}</td>
         </tr>
             <td>Engine Size</td>
-            <td>{{ car.engine_size }}</td>
+            <td>{{ car.engine_size }}L</td>
         </tr>
             <td>Fuel System</td>
             <td>{{ car.fuel_system }}</td>
         </tr>
             <td>Tank Capacity</td>
-            <td>{{ car.tank_capacity }}</td>
+            <td>{{ car.tank_capacity }}L</td>
         </tr>
             <td>Power</td>
-            <td>{{ car.power }}</td>
+            <td>{{ car.power }}KW</td>
         </tr>
             <td>Seating Capacity</td>
             <td>{{ car.seating_capacity }}</td>
@@ -82,7 +85,7 @@ function toggleHistory(id){
             <td>{{ car.drive }}</td>
         </tr>
             <td>Wheelbase</td>
-            <td>{{ car.wheelbase }}</td>
+            <td>{{ car.wheelbase }}mm</td>
         </tr>
     </tbody>
 </table>
