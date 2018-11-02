@@ -115,6 +115,7 @@ def customer_details(request, id):
     except Customer.DoesNotExist:
             raise Http404('Customer not found')
     return render(request, 'basesite/customer_details.html', {'customer':customer, 'history':history})
+    # Returns specific customer information from the selected id, and loads the customer_details page
 
 def car_history(request):
     return render(request, 'basesite/carhistory.html')
