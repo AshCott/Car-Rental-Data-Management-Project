@@ -59,7 +59,7 @@ def customer(request):
     try:
         # Get posted vars
         vals = request.POST
-        # Effectively a switch statement to get cars, powering the dropbox
+        # Effectively a switch statement to get customers
         if 'selected' in vals:
             if (vals['selected']=='name'): # Filter by Name
                 customer = Customer.objects.filter(name__icontains=vals['customer'])

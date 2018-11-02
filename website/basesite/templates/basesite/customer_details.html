@@ -28,7 +28,6 @@ function toggleHistory(id){
 {% if user.is_authenticated %} <!-- If User is Logged On -->
 
     <br><br><br><center> <h2 class="display-2" face="Helvetica" >{{customer.name|title}}</h2> </center><br>
-
     <!-- Table containing customer information -->
     <table class="table table-striped">
         <tbody>
@@ -44,14 +43,14 @@ function toggleHistory(id){
                 <td>Occupation</td>
                 <td>{{customer.occupation}}</td> 
             </tr>
-                <td>Gender</td>
+                <td>Gender</td> <!-- Replacing standard M/F found in database with full Male/Female -->
                     {% if customer.gender == "M" %}
                 <td>Male</td>
                 {% elif customer.gender == "F" %}
                 <td>Female</td>
                 {% endif %}
             </tr>
-                <td>Number of Rentals</td>
+                <td>Number of Rentals</td> <!-- Counting number of rentals done by customer -->
                 {% for order in history %}
                     {% if forloop.last %}
                         <td>{{forloop.counter}}</td>
