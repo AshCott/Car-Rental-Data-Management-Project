@@ -51,7 +51,7 @@
             </tbody>
 
           </table>
-          
+
           <center>
             <button class="btn btn-outline-secondary" id='load'>Show result chart</button>
           </center>
@@ -138,7 +138,8 @@
           })
 
           $('#swap').click(function(){
-            var swapto;// = (this.text == 'bar') ? 'pie' : 'bar';
+            var swapto;
+            // Change the button text, set the swapto var to "bar" if swapping to a bar chart
             $('#swap').text(function(i, txt){
               swapto = txt == "Swap to bar" ? "bar" : "pie";
               return txt == "Swap to bar" ? "Swap to pie" : "Swap to bar";
@@ -152,7 +153,7 @@
             }
             myPie.destroy();
             initChart();
-            // Need to force this value to true. Tried to do in config, wasn't working
+            // Forces this value to true
             if (swapto == "bar"){
               myPie.options.scales.yAxes[0].ticks.beginAtZero = true;
             }
